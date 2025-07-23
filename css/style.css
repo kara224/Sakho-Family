@@ -47,8 +47,9 @@ nav a {
   transition: background-color 0.3s;
 }
 
-nav a:hover, nav a.active {
-  background-color: #3498db;
+nav a:hover,
+nav a.active {
+  background-color: #a68c5a;
   color: white;
 }
 
@@ -78,7 +79,7 @@ nav a:hover, nav a.active {
 
 /* Boutons */
 .buttons button {
-  background-color: #3498db;
+  background-color: #a68c5a;
   border: none;
   color: white;
   padding: 0.7rem 1.8rem;
@@ -86,13 +87,13 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgb(52 152 219 / 0.4);
+  box-shadow: 0 4px 8px rgba(166, 140, 90, 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .buttons button:hover {
-  background-color: #2980b9;
-  box-shadow: 0 6px 12px rgb(41 128 185 / 0.6);
+  background-color: #8c764b;
+  box-shadow: 0 6px 12px rgba(140, 118, 75, 0.6);
 }
 
 /* Main (page arbre) */
@@ -101,7 +102,7 @@ main.container {
   padding: 2rem 2.5rem;
   margin-top: 2rem;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Arbre généalogique */
@@ -114,7 +115,7 @@ main.container {
 .tree ul {
   list-style-type: none;
   padding-left: 1.2rem;
-  border-left: 2px solid #3498db;
+  border-left: 2px solid #a68c5a;
   margin-top: 0.4rem;
 }
 
@@ -125,7 +126,7 @@ main.container {
 
 .tree .toggle {
   cursor: pointer;
-  color: #2980b9;
+  color: #8c764b;
   position: relative;
   user-select: none;
   display: inline-block;
@@ -161,7 +162,7 @@ footer small {
   font-size: 0.8rem;
 }
 
-/* Responsive pour petits écrans */
+/* Responsive */
 @media (max-width: 600px) {
   .hero-content h2 {
     font-size: 2rem;
