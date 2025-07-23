@@ -52,21 +52,13 @@ nav a:hover, nav a.active {
   color: white;
 }
 
-/* Section hero */
+/* Section hero avec nouvelle image de fond */
 .hero {
-  .hero {
   background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)),
     url('https://raw.githubusercontent.com/kara224/Sakho-Family/main/Image%20fond.jpg') no-repeat center center/cover;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: white;
+  padding: 6rem 1rem 5rem;
   text-align: center;
-  padding: 0 20px;
-}
-
 }
 
 .hero-content h2 {
@@ -102,55 +94,6 @@ nav a:hover, nav a.active {
 .buttons button:hover {
   background-color: #2980b9;
   box-shadow: 0 6px 12px rgb(41 128 185 / 0.6);
-}
-
-/* Main (page arbre) */
-main.container {
-  background: white;
-  padding: 2rem 2.5rem;
-  margin-top: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
-}
-
-/* Arbre généalogique */
-
-.tree {
-  list-style-type: none;
-  padding-left: 1rem;
-  font-weight: 600;
-}
-
-.tree ul {
-  list-style-type: none;
-  padding-left: 1.2rem;
-  border-left: 2px solid #3498db;
-  margin-top: 0.4rem;
-}
-
-.tree li {
-  margin: 0.5rem 0;
-  cursor: default;
-}
-
-.tree .toggle {
-  cursor: pointer;
-  color: #2980b9;
-  position: relative;
-  user-select: none;
-  display: inline-block;
-}
-
-.tree .toggle::before {
-  content: "▶";
-  display: inline-block;
-  margin-right: 6px;
-  transition: transform 0.3s ease;
-  font-weight: bold;
-}
-
-.tree .toggle.open::before {
-  transform: rotate(90deg);
 }
 
 /* Pied de page */
