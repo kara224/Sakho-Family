@@ -54,10 +54,19 @@ nav a:hover, nav a.active {
 
 /* Section hero */
 .hero {
-  background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+  .hero {
+  background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)),
+    url('https://raw.githubusercontent.com/kara224/Sakho-Family/main/Image%20fond.jpg') no-repeat center center/cover;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
-  padding: 6rem 1rem 5rem;
   text-align: center;
+  padding: 0 20px;
+}
+
 }
 
 .hero-content h2 {
