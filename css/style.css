@@ -2,8 +2,8 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #F9F6F2; /* ivoire clair */
-  color: #4A4A4A; /* gris foncé */
+  background: #fdfcf9; /* blanc cassé */
+  color: #333;
   line-height: 1.5;
 }
 
@@ -16,7 +16,7 @@ body {
 
 /* En-tête */
 header {
-  background: #8B7E74; /* brun/gris doux */
+  background: #2c3e50;
   color: white;
   padding: 1rem 0;
   position: sticky;
@@ -38,7 +38,7 @@ nav {
 }
 
 nav a {
-  color: #F9F6F2; /* ivoire */
+  color: #ecf0f1;
   margin: 0 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -48,13 +48,13 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-  background-color: #A67B5B; /* ton chaud, élégant */
+  background-color: #3498db;
   color: white;
 }
 
 /* Section hero */
 .hero {
-  background: linear-gradient(rgba(139, 126, 116, 0.7), rgba(139, 126, 116, 0.7)), url('https://github.com/kara224/Sakho-Family/raw/main/Image%20fond.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.6)), url('https://raw.githubusercontent.com/kara224/Sakho-Family/main/Image%20fond.jpg') no-repeat center center/cover;
   color: white;
   padding: 6rem 1rem 5rem;
   text-align: center;
@@ -78,7 +78,7 @@ nav a:hover, nav a.active {
 
 /* Boutons */
 .buttons button {
-  background-color: #8B7E74; /* brun/gris doux */
+  background-color: #3498db;
   border: none;
   color: white;
   padding: 0.7rem 1.8rem;
@@ -86,18 +86,18 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgb(139 126 116 / 0.4);
+  box-shadow: 0 4px 8px rgb(52 152 219 / 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .buttons button:hover {
-  background-color: #A67B5B; /* ton chaud, élégant */
-  box-shadow: 0 6px 12px rgb(166 123 91 / 0.6);
+  background-color: #2980b9;
+  box-shadow: 0 6px 12px rgb(41 128 185 / 0.6);
 }
 
 /* Main (page arbre) */
 main.container {
-  background: white;
+  background: #fffefc; /* ivoire léger */
   padding: 2rem 2.5rem;
   margin-top: 2rem;
   border-radius: 10px;
@@ -114,7 +114,7 @@ main.container {
 .tree ul {
   list-style-type: none;
   padding-left: 1.2rem;
-  border-left: 2px solid #A67B5B;
+  border-left: 2px solid #3498db;
   margin-top: 0.4rem;
 }
 
@@ -125,7 +125,7 @@ main.container {
 
 .tree .toggle {
   cursor: pointer;
-  color: #A67B5B;
+  color: #2980b9;
   position: relative;
   user-select: none;
   display: inline-block;
@@ -151,9 +151,17 @@ footer {
   color: #666;
   margin-top: 3rem;
   border-top: 1px solid #ddd;
+  font-size: 0.95rem;
 }
 
-/* Responsive */
+footer small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Responsive pour petits écrans */
 @media (max-width: 600px) {
   .hero-content h2 {
     font-size: 2rem;
@@ -163,10 +171,19 @@ footer {
     width: 100%;
     margin: 0.5rem 0;
   }
-  
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+  }
+
   nav a {
-    display: inline-block;
-    margin: 0 0.4rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    margin: 0.2rem;
+    white-space: nowrap;
   }
 }
