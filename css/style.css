@@ -2,8 +2,8 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #f0f4f8;
-  color: #333;
+  background: #F9F6F2; /* ivoire clair */
+  color: #4A4A4A; /* gris foncé */
   line-height: 1.5;
 }
 
@@ -16,7 +16,7 @@ body {
 
 /* En-tête */
 header {
-  background: #2c3e50;
+  background: #8B7E74; /* brun/gris doux */
   color: white;
   padding: 1rem 0;
   position: sticky;
@@ -38,7 +38,7 @@ nav {
 }
 
 nav a {
-  color: #ecf0f1;
+  color: #F9F6F2; /* ivoire */
   margin: 0 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -48,14 +48,13 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-  background-color: #3498db;
+  background-color: #A67B5B; /* ton chaud, élégant */
   color: white;
 }
 
-/* Section hero avec nouvelle image de fond */
+/* Section hero */
 .hero {
-  background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)),
-    url('https://raw.githubusercontent.com/kara224/Sakho-Family/main/Image%20fond.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(139, 126, 116, 0.7), rgba(139, 126, 116, 0.7)), url('https://github.com/kara224/Sakho-Family/raw/main/Image%20fond.jpg') no-repeat center center/cover;
   color: white;
   padding: 6rem 1rem 5rem;
   text-align: center;
@@ -79,7 +78,7 @@ nav a:hover, nav a.active {
 
 /* Boutons */
 .buttons button {
-  background-color: #3498db;
+  background-color: #8B7E74; /* brun/gris doux */
   border: none;
   color: white;
   padding: 0.7rem 1.8rem;
@@ -87,13 +86,61 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgb(52 152 219 / 0.4);
+  box-shadow: 0 4px 8px rgb(139 126 116 / 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .buttons button:hover {
-  background-color: #2980b9;
-  box-shadow: 0 6px 12px rgb(41 128 185 / 0.6);
+  background-color: #A67B5B; /* ton chaud, élégant */
+  box-shadow: 0 6px 12px rgb(166 123 91 / 0.6);
+}
+
+/* Main (page arbre) */
+main.container {
+  background: white;
+  padding: 2rem 2.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+}
+
+/* Arbre généalogique */
+.tree {
+  list-style-type: none;
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+.tree ul {
+  list-style-type: none;
+  padding-left: 1.2rem;
+  border-left: 2px solid #A67B5B;
+  margin-top: 0.4rem;
+}
+
+.tree li {
+  margin: 0.5rem 0;
+  cursor: default;
+}
+
+.tree .toggle {
+  cursor: pointer;
+  color: #A67B5B;
+  position: relative;
+  user-select: none;
+  display: inline-block;
+}
+
+.tree .toggle::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: 6px;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.tree .toggle.open::before {
+  transform: rotate(90deg);
 }
 
 /* Pied de page */
