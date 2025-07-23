@@ -1,0 +1,75 @@
+/* Style global simple, responsive et élégant */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+  color: #222;
+  line-height: 1.6;
+}
+
+header {
+  background: #34495e;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  font-style: italic;
+  padding: 1rem;
+  color: #555;
+  margin-top: 3rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+}
+
+button {
+  background: #2980b9;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: #3498db;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+ul ul {
+  margin-left: 1rem;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+}
