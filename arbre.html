@@ -3,61 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Famille Sakho - Arbre généalogique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <title>Arbre généalogique - Famille Sakho</title>
+  <base href="/sakho.family/" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Famille Sakho</h1>
-      <nav>
-        <a href="index.html">Accueil</a>
-        <a href="arbre.html" class="active">Arbre généalogique</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
+    <h1>Famille Sakho</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="arbre.html" class="active">Arbre généalogique</a>
+      <a href="pourquoi.html">Pourquoi ce site</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <main class="container">
-    <h2>Arbre généalogique interactif</h2>
-    <p>Cliquez sur un nom pour afficher/cacher ses descendants.</p>
-
-    <ul class="tree">
-      <li>
-        <span class="toggle">Sakho Senior</span>
-        <ul>
-          <li>
-            <span class="toggle">Ali Sakho</span>
-            <ul>
-              <li>Fatou Sakho</li>
-              <li>Oumar Sakho</li>
-            </ul>
-          </li>
-          <li>Aminata Sakho</li>
-        </ul>
-      </li>
-    </ul>
+    <h2>Arbre généalogique</h2>
+    <p>(Arbre interactif à compléter)</p>
+    <!-- Structure arbre à implémenter -->
   </main>
 
   <footer>
-    <p>« Connaître ses racines, c’est éclairer son avenir. »</p>
+    <p class="discret">
+      Site réalisé par Karamba Sakho Sila Koto (par médiation) à partir des souvenirs et récits transmis par nos anciens.
+      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
+    </p>
   </footer>
-
-  <script>
-    // Toggle affichage des enfants dans l'arbre
-    document.querySelectorAll('.tree .toggle').forEach(node => {
-      node.addEventListener('click', () => {
-        const children = node.nextElementSibling;
-        if (children) {
-          children.style.display = children.style.display === 'none' ? 'block' : 'none';
-          node.classList.toggle('open');
-        }
-      });
-    });
-
-    // Cache tous les sous-arbres au chargement
-    document.querySelectorAll('.tree ul').forEach(ul => ul.style.display = 'none');
-  </script>
 </body>
 </html>
