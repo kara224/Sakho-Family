@@ -1,174 +1,70 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Famille Sakho</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f1ec;
-      color: #333;
-    }
+/* STYLE GENERAL */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fefcf7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
 
-    header {
-      background-color: #a68c5a;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+/* EN-TÊTE */
+header {
+  background-color: #2f4f4f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
 
-    .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
 
-    nav {
-      display: flex;
-      gap: 20px;
-    }
+nav {
+  margin-top: 10px;
+}
 
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      padding: 6px 10px;
-      border-radius: 5px;
-    }
+nav a {
+  color: #f5eecf;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
 
-    nav a.active,
-    nav a:hover {
-      background-color: #c79e64;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    .mobile-menu-btn {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
+/* CONTENU PRINCIPAL */
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
 
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background-color: #a68c5a;
-      padding: 10px 20px;
-    }
+/* BOUTONS / BLOCS LIENS */
+.button-link {
+  display: inline-block;
+  background-color: #6b8e23;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  margin: 10px 5px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
 
-    .mobile-menu a {
-      margin: 5px 0;
-    }
+.button-link:hover {
+  background-color: #5c7a1e;
+}
 
-    .hero {
-      background: url('https://i.ibb.co/tZ2pwCR/touba-bg.jpg') center/cover no-repeat;
-      text-align: center;
-      padding: 100px 20px;
-      color: white;
-      background-attachment: fixed;
-    }
-
-    .hero h1 {
-      font-size: 2.2em;
-    }
-
-    .hero p {
-      font-size: 1.1em;
-      margin-top: 10px;
-    }
-
-    .hero .btn-group {
-      margin-top: 30px;
-    }
-
-    .btn {
-      background-color: #a68c5a;
-      border: none;
-      padding: 12px 20px;
-      margin: 5px;
-      font-size: 1em;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #c79e64;
-    }
-
-    footer {
-      background-color: #f4f1ec;
-      color: #555;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.95em;
-      border-top: 1px solid #ccc;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      .mobile-menu.active {
-        display: flex;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">Famille Sakho</div>
-    <nav class="desktop-menu">
-      <a href="#" class="active">Accueil</a>
-      <a href="#">Arbre généalogique</a>
-      <a href="#">Pourquoi ce site</a>
-      <a href="#">Contact</a>
-    </nav>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-  </header>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#" class="active">Accueil</a>
-    <a href="#">Arbre généalogique</a>
-    <a href="#">Pourquoi ce site</a>
-    <a href="#">Contact</a>
-  </div>
-
-  <section class="hero">
-    <h1>Bienvenue sur le site de la Famille Sakho</h1>
-    <p>Un espace pour préserver notre mémoire, transmettre notre histoire, et célébrer nos liens.</p>
-    <div class="btn-group">
-      <button class="btn">Voir l’arbre généalogique</button>
-      <button class="btn">Pourquoi ce site</button>
-    </div>
-  </section>
-
-  <footer>
-    Ce site a été réalisé par Karamba Sakho Silo Koto, grâce aux précieux récits et souvenirs transmis par les anciens de notre famille. <br />
-    Nous faisons de notre mieux pour rester fidèles aux faits, tout en acceptant humblement que des erreurs ou oublis puissent subsister. <br /><br />
-    <em>* Connaître ses racines, c’est éclairer son avenir. *</em>
-  </footer>
-
-  <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById("mobileMenu");
-      menu.classList.toggle("active");
-    }
-  </script>
-
-</body>
-</html>
+/* PIED DE PAGE */
+footer {
+  background-color: #2f4f4f;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  margin-top: 40px;
+}
