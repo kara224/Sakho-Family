@@ -1,147 +1,72 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Famille Sakho</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://sakhofamily.github.io/sakho.family/images/background.jpg') center/cover no-repeat fixed;
-      color: #333;
-    }
+/* === Variables de couleur === */
+:root {
+  --fond-principal: #a68c5a;       /* Beige doré noble */
+  --fond-clair: #f8f5f0;           /* Blanc cassé */
+  --texte-principal: #ffffff;      /* Blanc pour titres */
+  --texte-secondaire: #333333;     /* Gris foncé */
+  --accent: #d1b280;               /* Taupe doré */
+}
 
-    header {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 20px 10px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+/* === Style général === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--fond-clair);
+  color: var(--texte-secondaire);
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 10px;
-    }
+/* === Header / Titre principal === */
+header {
+  background-color: var(--fond-principal);
+  padding: 2em 1em;
+  text-align: center;
+  color: var(--texte-principal);
+}
 
-    nav a {
-      color: #a68c5a;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+/* === Barre de navigation === */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fond-principal);
+  padding: 1em 0;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 28px;
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      color: #a68c5a;
-    }
+nav a {
+  color: var(--texte-principal);
+  background-color: transparent;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        gap: 20px;
-        background: rgba(255,255,255,0.95);
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-      }
+nav a.active,
+nav a:hover {
+  background-color: var(--accent);
+  color: var(--texte-secondaire);
+}
 
-      nav.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    main {
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    h1 {
-      color: #a68c5a;
-      font-size: 2.5rem;
-    }
-
-    p {
-      max-width: 700px;
-      margin: 20px auto;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      margin: 20px 10px;
-      padding: 10px 25px;
-      background-color: #a68c5a;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      transition: background 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #8a7447;
-    }
-
-    footer {
-      background-color: rgba(255, 255, 255, 0.95);
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav id="navMenu">
-      <a href="index.html">Accueil</a>
-      <a href="arbre.html">Arbre généalogique</a>
-      <a href="pourquoi.html">Pourquoi ce site</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <h1>Bienvenue sur le site de la Famille Sakho</h1>
-    <p>Ce site a été conçu pour retracer l’histoire, les origines et les descendants de la famille Sakho, afin de préserver nos racines et de tisser des liens entre les générations.</p>
-    <a href="arbre.html" class="btn">Voir l'arbre généalogique</a>
-    <a href="pourquoi.html" class="btn">Pourquoi ce site</a>
-  </main>
-
-  <footer>
-    &copy; 2025 Famille Sakho. Tous droits réservés.
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('navMenu');
-      nav.classList.toggle('show');
-    }
-  </script>
-</body>
-</html>
+/* === Section Hero avec image principale === */
+.hero {
+  background-image: url('../Image fond.jpg'); /* Mets à jour le chemin si besoin */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--texte-principal);
+  text-sh
