@@ -1,72 +1,57 @@
-/* === Variables de couleur === */
-:root {
-  --fond-principal: #a68c5a;       /* Beige doré noble */
-  --fond-clair: #f8f5f0;           /* Blanc cassé */
-  --texte-principal: #ffffff;      /* Blanc pour titres */
-  --texte-secondaire: #333333;     /* Gris foncé */
-  --accent: #d1b280;               /* Taupe doré */
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Image + Ancre</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    nav {
+      background: #a68c5a;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      height: 300px;
+      background-image: url('image-fond.jpg'); /* adapte le nom et chemin */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+    section {
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
 
-/* === Style général === */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--fond-clair);
-  color: var(--texte-secondaire);
-}
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#autre">Autre</a>
+  </nav>
 
-/* === Header / Titre principal === */
-header {
-  background-color: var(--fond-principal);
-  padding: 2em 1em;
-  text-align: center;
-  color: var(--texte-principal);
-}
+  <section id="accueil" class="hero">
+    <h1>Bienvenue</h1>
+  </section>
 
-header h1 {
-  margin: 0;
-  font-size: 2em;
-}
+  <section id="autre">
+    <h2>Autre section</h2>
+    <p>Du contenu ici</p>
+  </section>
 
-/* === Barre de navigation === */
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--fond-principal);
-  padding: 1em 0;
-  flex-wrap: nowrap;
-  gap: 20px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-nav a {
-  color: var(--texte-principal);
-  background-color: transparent;
-  padding: 10px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1em;
-  transition: background-color 0.3s;
-}
-
-nav a.active,
-nav a:hover {
-  background-color: var(--accent);
-  color: var(--texte-secondaire);
-}
-
-/* === Section Hero avec image principale === */
-.hero {
-  background-image: url('../Image fond.jpg'); /* Mets à jour le chemin si besoin */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--texte-principal);
-  text-sh
+</body>
+</html>
