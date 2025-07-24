@@ -2,7 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #f0f4f8;
+  background: #fefcf7; /* blanc cassé */
   color: #333;
   line-height: 1.5;
 }
@@ -12,162 +12,140 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
+  background-color: #fffefb; /* ivoire très clair */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
 }
 
 /* En-tête */
 header {
-  background: #2c3e50;
-  color: white;
+  background: #eae6db; /* ivoire doux */
+  color: #5a4a2d; /* brun doux, couleur noble */
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(90, 74, 45, 0.2);
+  font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
 header h1 {
-  margin: 0 0 0.5rem 0;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  font-size: 2rem;
+  margin: 0 0 0.2rem 1.5rem;
+  font-weight: 900;
+  font-size: 1.9rem;
 }
 
+/* Menu de navigation */
 nav {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
 }
 
 nav a {
-  color: #ecf0f1;
-  margin: 0 1rem;
-  font-weight: 600;
+  color: #5a4a2d;
   text-decoration: none;
-  padding: 0.3rem 0.5rem;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
 
-nav a:hover, nav a.active {
-  background-color: #3498db;
-  color: white;
+nav a.active,
+nav a:hover {
+  background-color: #a68c5a; /* beige doré noble */
+  color: #fff;
 }
 
-/* Section hero */
+/* Section Hero */
 .hero {
-  background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-  color: white;
-  padding: 6rem 1rem 5rem;
-  text-align: center;
-}
-
-.hero-content h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  background-image: url('../images/famille-sakho.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a4a2d;
+  text-shadow: 1px 1px 3px #fff;
   font-weight: 700;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 0 1rem;
 }
 
-.hero-content p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+/* Boutons sous Hero */
+.buttons {
+  text-align: center;
+  margin: 2rem 0;
 }
 
-/* Boutons */
 .buttons button {
-  background-color: #3498db;
+  background-color: #a68c5a;
   border: none;
   color: white;
-  padding: 0.7rem 1.8rem;
-  margin: 0 0.5rem;
-  font-size: 1.1rem;
-  border-radius: 30px;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  margin: 0 0.8rem;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgb(52 152 219 / 0.4);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.25s;
 }
 
 .buttons button:hover {
-  background-color: #2980b9;
-  box-shadow: 0 6px 12px rgb(41 128 185 / 0.6);
+  background-color: #887544;
 }
 
-/* Main (page arbre) */
-main.container {
-  background: white;
-  padding: 2rem 2.5rem;
-  margin-top: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
-}
-
-/* Arbre généalogique */
-
+/* Arbre généalogique (exemple simple) */
 .tree {
   list-style-type: none;
   padding-left: 1rem;
-  font-weight: 600;
-}
-
-.tree ul {
-  list-style-type: none;
-  padding-left: 1.2rem;
-  border-left: 2px solid #3498db;
-  margin-top: 0.4rem;
 }
 
 .tree li {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
   cursor: default;
 }
 
 .tree .toggle {
   cursor: pointer;
-  color: #2980b9;
-  position: relative;
+  font-weight: 700;
+  color: #5a4a2d;
   user-select: none;
-  display: inline-block;
 }
 
-.tree .toggle::before {
-  content: "▶";
-  display: inline-block;
-  margin-right: 6px;
-  transition: transform 0.3s ease;
-  font-weight: bold;
+.tree .toggle.open::after {
+  content: " ▼";
+  font-weight: normal;
 }
 
-.tree .toggle.open::before {
-  transform: rotate(90deg);
+.tree .toggle::after {
+  content: " ▶";
+  font-weight: normal;
 }
 
-/* Pied de page */
+/* Footer */
 footer {
+  background-color: #eae6db;
+  color: #5a4a2d;
+  font-size: 0.9rem;
   text-align: center;
-  font-style: italic;
-  padding: 1.5rem 1rem;
-  color: #666;
+  padding: 1rem 1rem 2rem 1rem;
   margin-top: 3rem;
-  border-top: 1px solid #ddd;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .hero-content h2 {
-    font-size: 2rem;
-  }
+.footer-note {
+  max-width: 900px;
+  margin: 0 auto 1rem auto;
+  font-style: italic;
+  font-weight: 500;
+  opacity: 0.7;
+}
 
-  .buttons button {
-    width: 100%;
-    margin: 0.5rem 0;
-  }
-  
-  nav a {
-    display: inline-block;
-    margin: 0 0.4rem;
-    font-size: 0.9rem;
+/* Responsive pour le menu */
+@media screen and (max-width: 480px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 0.7rem;
   }
 }
