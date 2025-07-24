@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Famille Sakho - Arbre Généalogique</title>
-  <style>
-    /* === Variables de couleur === */
-    :root {
-      --fond-principal: #a68c5a;       /* Beige doré noble */
-      --fond-clair: #f8f5f0;           /* Blanc cassé */
-      --texte-principal: #ffffff;      /* Blanc pour titres */
-      --texte-secondaire: #333333;     /* Gris foncé */
-      --accent: #d1b280;               /* Taupe doré */
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famille Sakho</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Famille Sakho</h1>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="arbre.html">Arbre généalogique</a></li>
+          <li><a href="pourquoi.html">Pourquoi ce site</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    /* === Style général === */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--fond-clair);
-      color: var(--texte-secondaire);
-      scroll-behavior: smooth;
-    }
+  <main class="intro">
+    <h2>Bienvenue sur le site de la Famille Sakho</h2>
+    <p>Un espace pour préserver notre mémoire, transmettre notre histoire, et célébrer nos liens.</p>
+    <div class="buttons">
+      <a href="arbre.html" class="btn">Voir l’arbre généalogique</a>
+      <a href="pourquoi.html" class="btn">Pourquoi ce site</a>
+    </div>
+  </main>
 
-    /* === Header / Titre principal === */
-    header {
-      background-color: var(--fond-principal);
-      padding: 2em 1em;
-      text-align: center;
-      color: var(--
+  <footer>
+    <p>Ce site a été réalisé par Karamba Sakho Silo Koto...</p>
+    <p><em>« Connaître ses racines, c’est éclairer son avenir. »</em></p>
+  </footer>
+</body>
+</html>
