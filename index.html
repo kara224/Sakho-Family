@@ -2,146 +2,158 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Famille Sakho</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Famille Sakho - Arbre Généalogique</title>
   <style>
+    /* === Variables de couleur === */
+    :root {
+      --fond-principal: #a68c5a;       /* Beige doré noble */
+      --fond-clair: #f8f5f0;           /* Blanc cassé */
+      --texte-principal: #ffffff;      /* Blanc pour titres */
+      --texte-secondaire: #333333;     /* Gris foncé */
+      --accent: #d1b280;               /* Taupe doré */
+    }
+
+    /* === Style général === */
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://sakhofamily.github.io/sakho.family/images/background.jpg') center/cover no-repeat fixed;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--fond-clair);
+      color: var(--texte-secondaire);
+      scroll-behavior: smooth;
     }
 
+    /* === Header / Titre principal === */
     header {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 20px 10px;
+      background-color: var(--fond-principal);
+      padding: 2em 1em;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      color: var(--texte-principal);
     }
 
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    /* === Barre de navigation === */
     nav {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 10px;
+      align-items: center;
+      background-color: var(--fond-principal);
+      padding: 1em 0;
+      gap: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     nav a {
-      color: #a68c5a;
+      color: var(--texte-principal);
+      background-color: transparent;
+      padding: 10px 16px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1em;
+      transition: background-color 0.3s;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    nav a:hover,
+    nav a:focus {
+      background-color: var(--accent);
+      color: var(--texte-secondaire);
+      outline: none;
     }
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 28px;
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      color: #a68c5a;
+    /* === Section Hero avec image principale === */
+    .hero {
+      background-image: url('Image_fond.jpg'); /* Mets à jour le nom/chemin ici */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--texte-principal);
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+      font-size: 2em;
+      font-weight: bold;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        gap: 20px;
-        background: rgba(255,255,255,0.95);
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-      }
-
-      nav.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    main {
-      padding: 80px 20px;
+    /* === Sections principales === */
+    section {
+      padding: 3em 1em;
+      max-width: 900px;
+      margin: 0 auto;
       text-align: center;
     }
 
-    h1 {
-      color: #a68c5a;
-      font-size: 2.5rem;
+    section h2 {
+      color: var(--fond-principal);
+      margin-bottom: 1em;
+      font-size: 1.8em;
     }
 
-    p {
-      max-width: 700px;
-      margin: 20px auto;
-      font-size: 1.1rem;
+    section p {
       line-height: 1.6;
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .btn {
-      display: inline-block;
-      margin: 20px 10px;
-      padding: 10px 25px;
-      background-color: #a68c5a;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      transition: background 0.3s;
-    }
+    /* === Responsive (mobile) === */
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9em;
+        padding: 8px 12px;
+      }
 
-    .btn:hover {
-      background-color: #8a7447;
-    }
+      header h1 {
+        font-size: 1.6em;
+      }
 
-    footer {
-      background-color: rgba(255, 255, 255, 0.95);
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
+      .hero {
+        height: 250px;
+        font-size: 1.4em;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav id="navMenu">
-      <a href="index.html">Accueil</a>
-      <a href="arbre.html">Arbre généalogique</a>
-      <a href="pourquoi.html">Pourquoi ce site</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <h1>Famille Sakho</h1>
   </header>
 
-  <main>
-    <h1>Bienvenue sur le site de la Famille Sakho</h1>
-    <p>Ce site a été conçu pour retracer l’histoire, les origines et les descendants de la famille Sakho, afin de préserver nos racines et de tisser des liens entre les générations.</p>
-    <a href="arbre.html" class="btn">Voir l'arbre généalogique</a>
-    <a href="pourquoi.html" class="btn">Pourquoi ce site</a>
-  </main>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#arbre">Arbre Généalogique</a>
+    <a href="#pourquoi">Pourquoi ce site</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <footer>
-    &copy; 2025 Famille Sakho. Tous droits réservés.
-  </footer>
+  <section id="accueil" class="hero">
+    Bienvenue sur l'histoire de la famille Sakho
+  </section>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('navMenu');
-      nav.classList.toggle('show');
-    }
-  </script>
+  <section id="arbre">
+    <h2>Arbre Généalogique</h2>
+    <p>Découvrez l’histoire et les liens familiaux de la famille Sakho à travers notre arbre interactif.</p>
+    <!-- Ici tu pourras intégrer ton arbre généalogique (image, plugin JS, SVG, etc.) -->
+  </section>
+
+  <section id="pourquoi">
+    <h2>Pourquoi ce site</h2>
+    <p>Ce site a été créé pour partager notre patrimoine familial, faciliter les échanges et préserver la mémoire des générations Sakho.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Pour toute question ou suggestion, n’hésitez pas à nous envoyer un message via notre formulaire de contact (à venir).</p>
+  </section>
+
 </body>
 </html>
