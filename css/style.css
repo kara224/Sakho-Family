@@ -35,10 +35,10 @@ nav {
   align-items: center;
   background-color: var(--fond-principal);
   padding: 1em 0;
-  flex-wrap: nowrap;             /* Empêche les retours à la ligne */
-  gap: 20px;                     /* Espace entre les liens */
-  overflow-x: auto;              /* Scroll horizontal si trop étroit */
-  white-space: nowrap;          /* Empêche coupure de texte */
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 nav a {
@@ -58,53 +58,15 @@ nav a:hover {
   color: var(--texte-secondaire);
 }
 
-/* === Section principale === */
-main {
-  padding: 2em;
-  text-align: center;
-}
-
-main h2 {
-  color: var(--fond-principal);
-  margin-bottom: 1em;
-}
-
-main p {
-  max-width: 600px;
-  margin: 0 auto 2em;
-  line-height: 1.6;
-  font-size: 1.1em;
-}
-
-/* === Boutons principaux === */
-button,
-a.button {
-  background-color: var(--fond-principal);
+/* === Section Hero avec image principale === */
+.hero {
+  background-image: url('../Image fond.jpg'); /* Mets à jour le chemin si besoin */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--texte-principal);
-  border: none;
-  padding: 12px 20px;
-  margin: 10px;
-  border-radius: 8px;
-  font-size: 1em;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s;
-}
-
-button:hover,
-a.button:hover {
-  background-color: var(--accent);
-  color: var(--texte-secondaire);
-}
-
-/* === Responsive (mobile) === */
-@media (max-width: 480px) {
-  nav a {
-    font-size: 0.9em;
-    padding: 8px 12px;
-  }
-
-  header h1 {
-    font-size: 1.6em;
-  }
-}
+  text-sh
