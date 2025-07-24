@@ -1,45 +1,110 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Famille Sakho</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+/* === Variables de couleur === */
+:root {
+  --fond-principal: #a68c5a;       /* Beige doré noble */
+  --fond-clair: #f8f5f0;           /* Blanc cassé */
+  --texte-principal: #ffffff;      /* Blanc pour titres */
+  --texte-secondaire: #333333;     /* Gris foncé */
+  --accent: #d1b280;               /* Taupe doré */
+}
 
-  <header>
-    <h1>Famille Sakho</h1>
-    <nav>
-      <a href="index.html" class="active">Accueil</a>
-      <a href="arbre.html">Arbre généalogique</a>
-      <a href="pourquoi.html">Pourquoi ce site</a>
-    </nav>
-  </header>
+/* === Style général === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--fond-clair);
+  color: var(--texte-secondaire);
+}
 
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Bienvenue sur le site de la famille Sakho</h2>
-      <p>Préserver nos racines. Transmettre notre histoire. Rassembler les générations.</p>
-      <div class="buttons">
-        <a href="arbre.html"><button>Voir l’arbre généalogique</button></a>
-        <a href="pourquoi.html"><button>Pourquoi ce site</button></a>
-      </div>
-    </div>
-  </section>
+/* === Header / Titre principal === */
+header {
+  background-color: var(--fond-principal);
+  padding: 2em 1em;
+  text-align: center;
+  color: var(--texte-principal);
+}
 
-  <main class="container">
-    <h2>Notre descendance</h2>
-    <p>À travers cet arbre, c’est l’histoire d’une famille, de ses origines à ses descendants, que nous racontons. Une mémoire vivante portée par chacun de ses membres.</p>
-  </main>
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
 
-  <footer>
-    <p style="font-size: 0.9rem; color: #666;">
-      Site réalisé par Karamba Sakho Sila Koto (par médiation) à partir des souvenirs et récits transmis par nos anciens.<br>
-      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
-    </p>
-    <p style="margin-top: 1rem; font-style: italic;">« Connaître ses racines, c’est éclairer son avenir. »</p>
-  </footer>
+/* === Barre de navigation === */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fond-principal);
+  padding: 1em 0;
+  flex-wrap: nowrap;             /* Empêche les retours à la ligne */
+  gap: 20px;                     /* Espace entre les liens */
+  overflow-x: auto;              /* Scroll horizontal si trop étroit */
+  white-space: nowrap;          /* Empêche coupure de texte */
+}
 
-</body>
-</html>
+nav a {
+  color: var(--texte-principal);
+  background-color: transparent;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+nav a.active,
+nav a:hover {
+  background-color: var(--accent);
+  color: var(--texte-secondaire);
+}
+
+/* === Section principale === */
+main {
+  padding: 2em;
+  text-align: center;
+}
+
+main h2 {
+  color: var(--fond-principal);
+  margin-bottom: 1em;
+}
+
+main p {
+  max-width: 600px;
+  margin: 0 auto 2em;
+  line-height: 1.6;
+  font-size: 1.1em;
+}
+
+/* === Boutons principaux === */
+button,
+a.button {
+  background-color: var(--fond-principal);
+  color: var(--texte-principal);
+  border: none;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 1em;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+button:hover,
+a.button:hover {
+  background-color: var(--accent);
+  color: var(--texte-secondaire);
+}
+
+/* === Responsive (mobile) === */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 0.9em;
+    padding: 8px 12px;
+  }
+
+  header h1 {
+    font-size: 1.6em;
+  }
+}
