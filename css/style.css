@@ -1,72 +1,88 @@
-/* === Variables de couleur === */
-:root {
-  --fond-principal: #a68c5a;       /* Beige doré noble */
-  --fond-clair: #f8f5f0;           /* Blanc cassé */
-  --texte-principal: #ffffff;      /* Blanc pour titres */
-  --texte-secondaire: #333333;     /* Gris foncé */
-  --accent: #d1b280;               /* Taupe doré */
-}
-
-/* === Style général === */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: var(--fond-clair);
-  color: var(--texte-secondaire);
+  background: #f8f5f0;
+  color: #333;
 }
 
-/* === Header / Titre principal === */
 header {
-  background-color: var(--fond-principal);
-  padding: 2em 1em;
-  text-align: center;
-  color: var(--texte-principal);
+  background-color: #a68c5a; /* beige doré */
+  color: white;
+  padding: 10px 0;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2em;
-}
-
-/* === Barre de navigation === */
-nav {
+.container {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: var(--fond-principal);
-  padding: 1em 0;
-  flex-wrap: nowrap;
-  gap: 20px;
-  overflow-x: auto;
-  white-space: nowrap;
 }
 
-nav a {
-  color: var(--texte-principal);
-  background-color: transparent;
-  padding: 10px 16px;
-  border-radius: 6px;
+h1 {
+  margin: 5px 0;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu li a {
   text-decoration: none;
-  font-weight: bold;
-  font-size: 1em;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-nav a.active,
-nav a:hover {
-  background-color: var(--accent);
-  color: var(--texte-secondaire);
+.menu li a:hover,
+.menu li a.active {
+  background-color: #876c3a;
 }
 
-/* === Section Hero avec image principale === */
-.hero {
-  background-image: url('../Image fond.jpg'); /* Mets à jour le chemin si besoin */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--texte-principal);
-  text-sh
+.intro {
+  text-align: center;
+  padding: 40px 20px;
+  background: url('background.jpg') no-repeat center center / cover;
+  color: white;
+}
+
+.intro h2 {
+  font-size: 2em;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #a68c5a;
+  color: white;
+  padding: 12px 20px;
+  margin: 10px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #876c3a;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0ebe3;
+  font-size: 0.9em;
+}
