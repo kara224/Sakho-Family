@@ -2,7 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #fefcf7; /* blanc cassé */
+  background: #fdf8f2; /* blanc cassé très clair */
   color: #333;
   line-height: 1.5;
 }
@@ -12,140 +12,36 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
-  background-color: #fffefb; /* ivoire très clair */
+  background: #fffefc; /* ivoire très doux */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
 }
 
 /* En-tête */
 header {
-  background: #eae6db; /* ivoire doux */
-  color: #5a4a2d; /* brun doux, couleur noble */
+  background: #e6dfd6; /* ivoire clair */
+  color: #5a4b3b; /* brun doux */
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(90, 74, 45, 0.2);
-  font-weight: 700;
-  letter-spacing: 1.2px;
+  box-shadow: 0 2px 4px rgba(90, 75, 59, 0.2);
 }
 
 header h1 {
-  margin: 0 0 0.2rem 1.5rem;
-  font-weight: 900;
-  font-size: 1.9rem;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-size: 2rem;
+  font-family: 'Georgia', serif;
 }
 
-/* Menu de navigation */
 nav {
-  display: flex;
-  justify-content: center;
-  gap: 1.8rem;
+  text-align: center;
 }
 
 nav a {
-  color: #5a4a2d;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-nav a.active,
-nav a:hover {
-  background-color: #a68c5a; /* beige doré noble */
-  color: #fff;
-}
-
-/* Section Hero */
-.hero {
-  background-image: url('../images/famille-sakho.jpg');
-  background-position: center;
-  background-size: cover;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5a4a2d;
-  text-shadow: 1px 1px 3px #fff;
-  font-weight: 700;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-/* Boutons sous Hero */
-.buttons {
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.buttons button {
-  background-color: #a68c5a;
-  border: none;
-  color: white;
-  font-weight: 700;
-  padding: 0.8rem 1.6rem;
-  margin: 0 0.8rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.25s;
-}
-
-.buttons button:hover {
-  background-color: #887544;
-}
-
-/* Arbre généalogique (exemple simple) */
-.tree {
-  list-style-type: none;
-  padding-left: 1rem;
-}
-
-.tree li {
-  margin: 0.3rem 0;
-  cursor: default;
-}
-
-.tree .toggle {
-  cursor: pointer;
-  font-weight: 700;
-  color: #5a4a2d;
-  user-select: none;
-}
-
-.tree .toggle.open::after {
-  content: " ▼";
-  font-weight: normal;
-}
-
-.tree .toggle::after {
-  content: " ▶";
-  font-weight: normal;
-}
-
-/* Footer */
-footer {
-  background-color: #eae6db;
-  color: #5a4a2d;
-  font-size: 0.9rem;
-  text-align: center;
-  padding: 1rem 1rem 2rem 1rem;
-  margin-top: 3rem;
-}
-
-.footer-note {
-  max-width: 900px;
-  margin: 0 auto 1rem auto;
-  font-style: italic;
-  font-weight: 500;
-  opacity: 0.7;
-}
-
-/* Responsive pour le menu */
-@media screen and (max-width: 480px) {
-  nav {
-    flex-wrap: wrap;
-    gap: 0.7rem;
-  }
-}
+  color: #5a4b3b;
+  margin: 0 1rem;
+  font-weight: 600
