@@ -2,42 +2,146 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Famille Sakho</title>
-  <base href="/sakho.family/" />
-  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://sakhofamily.github.io/sakho.family/images/background.jpg') center/cover no-repeat fixed;
+      color: #333;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #a68c5a;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: #a68c5a;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        background: rgba(255,255,255,0.95);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    main {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #a68c5a;
+      font-size: 2.5rem;
+    }
+
+    p {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px 10px;
+      padding: 10px 25px;
+      background-color: #a68c5a;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #8a7447;
+    }
+
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Famille Sakho</h1>
-    <nav>
-      <a href="index.html" class="active">Accueil</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="navMenu">
+      <a href="index.html">Accueil</a>
       <a href="arbre.html">Arbre généalogique</a>
       <a href="pourquoi.html">Pourquoi ce site</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h2>Bienvenue dans notre histoire familiale</h2>
-      <p>Connaître nos origines, préserver la mémoire de nos aînés, transmettre notre histoire aux générations futures.</p>
-      <div class="buttons">
-        <button onclick="window.location.href='arbre.html'">Voir l’arbre généalogique</button>
-        <button onclick="window.location.href='pourquoi.html'">Pourquoi ce site</button>
-      </div>
-    </div>
-  </section>
+  <main>
+    <h1>Bienvenue sur le site de la Famille Sakho</h1>
+    <p>Ce site a été conçu pour retracer l’histoire, les origines et les descendants de la famille Sakho, afin de préserver nos racines et de tisser des liens entre les générations.</p>
+    <a href="arbre.html" class="btn">Voir l'arbre généalogique</a>
+    <a href="pourquoi.html" class="btn">Pourquoi ce site</a>
+  </main>
 
   <footer>
-    <p>
-      « Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »
-    </p>
-    <p class="discret">
-      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.
-      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
-    </p>
+    &copy; 2025 Famille Sakho. Tous droits réservés.
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navMenu');
+      nav.classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
