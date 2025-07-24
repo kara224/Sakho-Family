@@ -1,182 +1,110 @@
-/* Police et structure générale */
+/* === Variables de couleur === */
+:root {
+  --fond-principal: #a68c5a;       /* Beige doré noble */
+  --fond-clair: #f8f5f0;           /* Blanc cassé */
+  --texte-principal: #ffffff;      /* Blanc pour titres */
+  --texte-secondaire: #333333;     /* Gris foncé */
+  --accent: #d1b280;               /* Taupe doré */
+}
+
+/* === Style général === */
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
-  background-color: #f9f7f1; /* Ivoire */
-  color: #333;
-  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--fond-clair);
+  color: var(--texte-secondaire);
 }
 
-/* Container central */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-}
-
-/* En-tête */
+/* === Header / Titre principal === */
 header {
-  background: #f2efe8; /* Blanc cassé */
-  color: #333;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--fond-principal);
+  padding: 2em 1em;
+  text-align: center;
+  color: var(--texte-principal);
 }
 
 header h1 {
-  margin: 0 0 0.5rem 0;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  font-size: 2rem;
+  margin: 0;
+  font-size: 2em;
 }
 
+/* === Barre de navigation === */
 nav {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fond-principal);
+  padding: 1em 0;
+  flex-wrap: nowrap;             /* Empêche les retours à la ligne */
+  gap: 20px;                     /* Espace entre les liens */
+  overflow-x: auto;              /* Scroll horizontal si trop étroit */
+  white-space: nowrap;          /* Empêche coupure de texte */
 }
 
 nav a {
-  color: #333;
-  margin: 0 1rem;
-  font-weight: 600;
+  color: var(--texte-principal);
+  background-color: transparent;
+  padding: 10px 16px;
+  border-radius: 6px;
   text-decoration: none;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1em;
   transition: background-color 0.3s;
 }
 
-nav a:hover, nav a.active {
-  background-color: #e0d8c8;
-  color: #000;
+nav a.active,
+nav a:hover {
+  background-color: var(--accent);
+  color: var(--texte-secondaire);
 }
 
-/* Section Hero avec image de fond */
-.hero {
-  background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
-    url('https://raw.githubusercontent.com/sakhofamily/sakho.family/main/Image%20fond.jpg') no-repeat center center/cover;
-  color: #333;
-  padding: 6rem 1rem 5rem;
+/* === Section principale === */
+main {
+  padding: 2em;
   text-align: center;
 }
 
-.hero-content h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-shadow: 1px 1px 4px rgba(255,255,255,0.6);
+main h2 {
+  color: var(--fond-principal);
+  margin-bottom: 1em;
 }
 
-.hero-content p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
+main p {
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
+  margin: 0 auto 2em;
+  line-height: 1.6;
+  font-size: 1.1em;
 }
 
-/* Boutons */
-.buttons button {
-  background-color: #d1bfa3;
+/* === Boutons principaux === */
+button,
+a.button {
+  background-color: var(--fond-principal);
+  color: var(--texte-principal);
   border: none;
-  color: #fff;
-  padding: 0.7rem 1.8rem;
-  margin: 0 0.5rem;
-  font-size: 1.1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.buttons button:hover {
-  background-color: #bba98f;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-}
-
-/* Section principale */
-main.container {
-  background: #fffefc;
-  padding: 2rem 2.5rem;
-  margin-top: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-/* Arbre généalogique */
-.tree {
-  list-style-type: none;
-  padding-left: 1rem;
-  font-weight: 600;
-}
-
-.tree ul {
-  list-style-type: none;
-  padding-left: 1.2rem;
-  border-left: 2px solid #bba98f;
-  margin-top: 0.4rem;
-}
-
-.tree li {
-  margin: 0.5rem 0;
-  cursor: default;
-}
-
-.tree .toggle {
-  cursor: pointer;
-  color: #8c785d;
-  position: relative;
-  user-select: none;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 1em;
+  text-decoration: none;
   display: inline-block;
+  transition: background-color 0.3s;
 }
 
-.tree .toggle::before {
-  content: "▶";
-  display: inline-block;
-  margin-right: 6px;
-  transition: transform 0.3s ease;
-  font-weight: bold;
+button:hover,
+a.button:hover {
+  background-color: var(--accent);
+  color: var(--texte-secondaire);
 }
 
-.tree .toggle.open::before {
-  transform: rotate(90deg);
-}
-
-/* Pied de page */
-footer {
-  text-align: center;
-  font-style: italic;
-  padding: 1.5rem 1rem;
-  color: #666;
-  margin-top: 3rem;
-  border-top: 1px solid #ddd;
-  font-size: 0.95rem;
-}
-
-/* Mentions personnelles discrètes */
-.footer-note {
-  font-size: 0.85rem;
-  color: #999;
-  margin-top: 1rem;
-  font-style: normal;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .hero-content h2 {
-    font-size: 2rem;
-  }
-
-  .buttons button {
-    width: 100%;
-    margin: 0.5rem 0;
-  }
-
+/* === Responsive (mobile) === */
+@media (max-width: 480px) {
   nav a {
-    display: inline-block;
-    margin: 0 0.4rem;
-    font-size: 0.9rem;
+    font-size: 0.9em;
+    padding: 8px 12px;
+  }
+
+  header h1 {
+    font-size: 1.6em;
   }
 }
