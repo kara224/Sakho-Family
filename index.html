@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Famille Sakho – Accueil</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Famille Sakho</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <header>
     <h1>Famille Sakho</h1>
     <nav>
-      <a href="index.html">Accueil</a>
-      <a href="arbre.html">Arbre Généalogique</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="active">Accueil</a>
+      <a href="arbre.html">Arbre généalogique</a>
+      <a href="pourquoi.html">Pourquoi ce site</a>
     </nav>
   </header>
 
-  <main>
-    <h2>Bienvenue sur le site de la famille Sakho</h2>
-    <p>
-      Ce site a été conçu pour préserver la mémoire et les racines de la grande famille Sakho.
-      Vous y trouverez un arbre généalogique interactif, des informations sur nos ancêtres, et un moyen de rester connectés à notre histoire commune.
-    </p>
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Bienvenue sur le site de la famille Sakho</h2>
+      <p>Préserver nos racines. Transmettre notre histoire. Rassembler les générations.</p>
+      <div class="buttons">
+        <a href="arbre.html"><button>Voir l’arbre généalogique</button></a>
+        <a href="pourquoi.html"><button>Pourquoi ce site</button></a>
+      </div>
+    </div>
+  </section>
 
-    <a class="button-link" href="arbre.html">Voir l’arbre généalogique</a>
-    <a class="button-link" href="contact.html">Nous contacter</a>
+  <main class="container">
+    <h2>Notre descendance</h2>
+    <p>À travers cet arbre, c’est l’histoire d’une famille, de ses origines à ses descendants, que nous racontons. Une mémoire vivante portée par chacun de ses membres.</p>
   </main>
 
   <footer>
-    <p>« Connaître ses racines, c’est éclairer son avenir. »</p>
-    <p>© 2025 Famille Sakho</p>
+    <p style="font-size: 0.9rem; color: #666;">
+      Site réalisé par Karamba Sakho Sila Koto (par médiation) à partir des souvenirs et récits transmis par nos anciens.<br>
+      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
+    </p>
+    <p style="margin-top: 1rem; font-style: italic;">« Connaître ses racines, c’est éclairer son avenir. »</p>
   </footer>
 
 </body>
