@@ -13,34 +13,42 @@
       background-color: #fdfcf7;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: 'Roboto', sans-serif;
     }
 
-    .generation {
-      margin-bottom: 20px;
-    }
-
-    .generation h3 {
-      background-color: #e9e6da;
-      padding: 10px;
+    .personne {
+      margin: 10px 0;
+      padding-left: 20px;
+      position: relative;
       cursor: pointer;
-      border-radius: 5px;
-      margin: 0;
+    }
+
+    .personne::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #a68c5a;
+    }
+
+    .personne.active::before {
+      content: "▾";
     }
 
     .descendants {
       display: none;
-      padding-left: 20px;
-      margin-top: 10px;
+      margin-left: 20px;
+      padding-left: 10px;
+      border-left: 2px solid #e3d8bc;
     }
 
     .descendants ul {
       list-style: none;
-      padding-left: 15px;
+      padding-left: 0;
+      margin: 5px 0;
     }
 
-    .descendants ul li::before {
-      content: "• ";
-      color: #a68c5a;
+    .descendants li {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -57,36 +65,39 @@
 
   <main>
     <div class="arbre-container">
-      <h2>Arbre généalogique de la famille Sakho</h2>
+      <h2>Arbre généalogique</h2>
 
-      <div class="generation">
-        <h3 onclick="toggle('gen1')">1ère génération : Djeninkaba Sakho</h3>
-        <div class="descendants" id="gen1">
-          <p><strong>De son vrai nom :</strong> Cheikh Mawla Idrissa Sakho</p>
-          <ul>
-            <li onclick="toggle('gen2')">Muhamed Khalifa Sakho (fils)</li>
-          </ul>
-        </div>
+      <!-- 1ère génération -->
+      <div class="personne" onclick="toggle('g1')">
+        Djeninkaba Sakho (Cheikh Mawla Idrissa Sakho)
+      </div>
+      <div class="descendants" id="g1">
+        <ul>
+          <li>
+            <div class="personne" onclick="toggle('g2'); event.stopPropagation();">
+              Muhamed Khalifa Sakho (fils)
+            </div>
+            <div class="descendants" id="g2">
+              <ul>
+                <li>
+                  <div class="personne" onclick="toggle('g3'); event.stopPropagation();">
+                    Sidy Muhamed Sakho (fils)
+                  </div>
+                  <div class="descendants" id="g3">
+                    <ul>
+                      <li>Ba Salim Sakho (fils)</li>
+                      <li>Ba Sanoussy Sakho (fils)</li>
+                      <li>Idrissa Sakho (fils)</li>
+                      <li>Karamba Sakho (fils)</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <div class="generation">
-        <div class="descendants" id="gen2">
-          <ul>
-            <li onclick="toggle('gen3')">Sidy Muhamed Sakho (fils de Muhamed Khalifa)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="generation">
-        <div class="descendants" id="gen3">
-          <ul>
-            <li>Ba Salim Sakho (fils de Sidy Muhamed)</li>
-            <li>Ba Sanoussy Sakho (fils de Sidy Muhamed)</li>
-            <li>Idrissa Sakho (fils de Sidy Muhamed)</li>
-            <li>Karamba Sakho (fils de Sidy Muhamed)</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -102,16 +113,16 @@
 
   <script>
     function toggle(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      const section = document.getElementById(id);
+      const parent = event.currentTarget;
+      if (section.style.display === "block") {
+        section.style.display = "none";
+        parent.classList.remove("active");
+      } else {
+        section.style.display = "block";
+        parent.classList.add("active");
       }
     }
-
-    // Par défaut on masque tout sauf la 1ère
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('gen1').style.display = 'block';
-    });
   </script>
 </body>
 </html>
