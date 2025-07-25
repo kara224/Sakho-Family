@@ -16,11 +16,17 @@
       font-family: 'Roboto', sans-serif;
     }
 
+    h3 {
+      margin-top: 30px;
+      color: #a68c5a;
+    }
+
     .personne {
-      margin: 10px 0;
+      margin: 8px 0;
       padding-left: 20px;
       position: relative;
       cursor: pointer;
+      font-weight: bold;
     }
 
     .personne::before {
@@ -50,6 +56,16 @@
     .descendants li {
       margin: 5px 0;
     }
+
+    .nom {
+      font-weight: normal;
+    }
+
+    .alias {
+      font-style: italic;
+      font-size: 0.95em;
+      color: #444;
+    }
   </style>
 </head>
 <body>
@@ -68,36 +84,46 @@
       <h2>Arbre généalogique</h2>
 
       <!-- 1ère génération -->
+      <h3>1ère génération</h3>
       <div class="personne" onclick="toggle('g1')">
-        Djeninkaba Sakho (Cheikh Mawla Idrissa Sakho)
+        Djeninkaba Sakho <div class="alias">De son vrai nom : Cheikh Mawla Idrissa Sakho</div>
       </div>
+
+      <!-- 2ème génération -->
       <div class="descendants" id="g1">
+        <h3>2ème génération</h3>
         <ul>
           <li>
             <div class="personne" onclick="toggle('g2'); event.stopPropagation();">
-              Mohamed Khalifa Sakho (fils de Cheikh Mawla Idrissa Sakho)
+              Muhamed Khalifa Sakho <div class="alias">Fils de Cheikh Mawla Idrissa Sakho</div>
             </div>
+
+            <!-- 3ème génération -->
             <div class="descendants" id="g2">
+              <h3>3ème génération</h3>
               <ul>
                 <li>
                   <div class="personne" onclick="toggle('g3'); event.stopPropagation();">
-                    Sidy Mohamed Sakho (fils de Mohamed Khalifa)
+                    Sidy Muhamed Sakho <div class="alias">Fils de Muhamed Khalifa</div>
                   </div>
+
+                  <!-- 4ème génération -->
                   <div class="descendants" id="g3">
+                    <h3>4ème génération</h3>
                     <ul>
-                      <li>Ba Salim Sakho (fils Sidy Mohamed)</li>
-                      <li>Ba Sanoussy Sakho (fils Sidy Mohamed)</li>
-                      <li>Idrissa Sakho (fils Sidy Mohamed)</li>
-                      <li>Karamba Sakho (fils Sidy Mohamed)</li>
+                      <li>Ba Salim Sakho <span class="alias">(fils de Sidy Muhamed)</span></li>
+                      <li>Ba Sanoussy Sakho <span class="alias">(fils de Sidy Muhamed)</span></li>
+                      <li>Idrissa Sakho <span class="alias">(fils de Sidy Muhamed)</span></li>
+                      <li>Karamba Sakho <span class="alias">(fils de Sidy Muhamed)</span></li>
                     </ul>
                   </div>
+
                 </li>
               </ul>
             </div>
           </li>
         </ul>
       </div>
-
     </div>
   </main>
 
@@ -107,7 +133,7 @@
     </p>
     <p class="discret">
       Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.
-      Ce site est une œuvre humaine des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
+      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
     </p>
   </footer>
 
@@ -115,14 +141,4 @@
     function toggle(id) {
       const section = document.getElementById(id);
       const parent = event.currentTarget;
-      if (section.style.display === "block") {
-        section.style.display = "none";
-        parent.classList.remove("active");
-      } else {
-        section.style.display = "block";
-        parent.classList.add("active");
-      }
-    }
-  </script>
-</body>
-</html>
+      if (section.style.display === "blo
