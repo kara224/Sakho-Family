@@ -141,4 +141,14 @@
     function toggle(id) {
       const section = document.getElementById(id);
       const parent = event.currentTarget;
-      if (section.style.display === "blo
+      if (section.style.display === "block") {
+        section.style.display = "none";
+        parent.classList.remove("active");
+      } else {
+        section.style.display = "block";
+        parent.classList.add("active");
+      }
+    }
+  </script>
+</body>
+</html>
