@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arbre généalogique</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arbre généalogique - Famille Sakho</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .tree-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .person {
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #f9f9f6;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .person:hover {
+      background-color: #f0ede5;
+    }
+
+    .children {
+      margin-top: 15px;
+      margin-left: 20px;
+      display: none;
+    }
+
+    .children.visible {
+      display: block;
+    }
+
+    .line {
+      width: 2px;
+      height: 20px;
+      background-color: #ccc;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,82 +55,77 @@
     </nav>
   </header>
 
-  <main class="tree-container">
-    <ul class="generation">
-      <li>
-        <button class="toggle">1. Djeninkaba Sakho</button>
-        <ul class="children">
-          <li>
-            <button class="toggle">2. Muhamed Khalifa Sakho</button>
-            <ul class="children">
-              <li>
-                <button class="toggle">3. Sidy Mohamed Sakho</button>
-                <ul class="children">
-                  <li>
-                    <button class="toggle">4. Ba Salim Sakho</button>
-                    <ul class="children">
-                      <li>B1. Bakasso Sakho</li>
-                      <li>B2. Bo Lassana Sakho</li>
-                      <li>B3. Sankoun Sakho</li>
-                      <li>B4. Bambo Sakho</li>
-                      <li>B5. Moukhtar Sakho</li>
-                      <li>B6. Ban Fakary Sakho</li>
-                      <li>B7. Bakodaye Sakho</li>
-                      <li>B8. Kanjoura Sakho</li>
-                      <li>B9. Bakoutoubo Sakho</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <button class="toggle">4. Ba Sanoussy Sakho</button>
-                    <ul class="children">
-                      <li>B10. Balamine Sakho</li>
-                      <li>B11. Kalifa Sakho</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <button class="toggle">4. Idrissa Sakho</button>
-                    <ul class="children">
-                      <li>B12. Ta Ba Sakho</li>
-                      <li>B13. Madiba Sakho</li>
-                      <li>B14. Famady Sakho</li>
-                      <li>B15. Cheikhou / Serhou Sakho</li>
-                      <li>B16. Karamba Sakho</li>
-                      <li>B17. Soriba Sakho</li>
-                      <li>B18. Baba Sakho</li>
-                      <li>B19. Bemba Sakho</li>
-                      <li>B20. Sankoun Sakho</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <button class="toggle">4. Karamba Sakho</button>
-                    <ul class="children">
-                      <li>B21. Muhamadou Sakho</li>
-                      <li>B22. Bemba Sakho</li>
-                      <li>B23. Tigui Mady Sakho</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </main>
+  <section class="tree-container">
+    <div class="person" onclick="toggle('gen2')">1. Djeninkaba Sakho<br><small>(Cheikh Mawla Idrissa Sakho)</small></div>
+    <div class="line"></div>
+    <div class="children" id="gen2">
+      <div class="person" onclick="toggle('gen3')">2. Mohamed Khalifa Sakho</div>
+      <div class="line"></div>
+      <div class="children" id="gen3">
+        <div class="person" onclick="toggle('gen4')">3. Sidy Mohamed Sakho</div>
+        <div class="line"></div>
+        <div class="children" id="gen4">
+          <div class="person" onclick="toggle('gen5_salim')">4. Ba Salim Sakho</div>
+          <div class="person" onclick="toggle('gen5_sanoussy')">4. Ba Sanoussy Sakho</div>
+          <div class="person" onclick="toggle('gen5_idrissa')">4. Idrissa Sakho</div>
+          <div class="person" onclick="toggle('gen5_karamba')">4. Karamba Sakho</div>
+
+          <div class="children" id="gen5_salim">
+            <div class="person">5. Bakasso Sakho</div>
+            <div class="person">5. Bo Lassana Sakho</div>
+            <div class="person">5. Sankoun Sakho</div>
+            <div class="person">5. Bambo Sakho</div>
+            <div class="person">5. Moukhtar Sakho</div>
+            <div class="person">5. Ban Fakary Sakho</div>
+            <div class="person">5. Bakodaye Sakho</div>
+            <div class="person">5. Kanjoura Sakho</div>
+            <div class="person">5. Bakoutoubo Sakho</div>
+          </div>
+
+          <div class="children" id="gen5_sanoussy">
+            <div class="person">5. Balamine Sakho</div>
+            <div class="person">5. Kalifa Sakho</div>
+          </div>
+
+          <div class="children" id="gen5_idrissa">
+            <div class="person">5. Ta Ba Sakho</div>
+            <div class="person">5. Madiba Sakho</div>
+            <div class="person">5. Famady Sakho</div>
+            <div class="person">5. Cheikhou / Serhou Sakho</div>
+            <div class="person">5. Karamba Sakho</div>
+            <div class="person">5. Soriba Sakho</div>
+            <div class="person">5. Baba Sakho</div>
+            <div class="person">5. Bemba Sakho</div>
+            <div class="person">5. Sankoun Sakho</div>
+          </div>
+
+          <div class="children" id="gen5_karamba">
+            <div class="person">5. Muhamadou Sakho</div>
+            <div class="person">5. Bemba Sakho</div>
+            <div class="person">5. Tigui Mady Sakho</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>« Connaître ses racines, c’est éclairer son avenir. »</p>
+    <p>
+      « Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »
+    </p>
+    <p class="discret">
+      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.
+      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
+    </p>
   </footer>
 
   <script>
-    document.querySelectorAll('.toggle').forEach(button => {
-      button.addEventListener('click', () => {
-        const children = button.nextElementSibling;
-        if (children) {
-          children.classList.toggle('visible');
-        }
-      });
-    });
+    function toggle(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('visible');
+      }
+    }
   </script>
 </body>
 </html>
