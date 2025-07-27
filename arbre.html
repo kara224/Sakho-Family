@@ -1,69 +1,172 @@
-<section class="tree">
-  <div class="person" data-has-children="true">
-    Djeninkaba Sakho<br><span style="font-size: 14px;">(Cheikh Mawla Idrissa Sakho)</span>
-    <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-      
-      <div class="person" data-has-children="true">
-        Muhamed Khalifa Sakho
-        <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-          
-          <div class="person" data-has-children="true">
-            Sidy Muhamed Sakho
-            <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-              
-              <div class="person" data-has-children="true">
-                Ba Salim Sakho
-                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-                  <div class="person">Bakasso Sakho</div>
-                  <div class="person">Bo Lassana Sakho</div>
-                  <div class="person">Sankoun Sakho</div>
-                  <div class="person">Bambo Sakho</div>
-                  <div class="person">Moukhtar Sakho</div>
-                  <div class="person">Ban Fakary Sakho</div>
-                  <div class="person">Bakodaye Sakho</div>
-                  <div class="person">Kanjoura Sakho</div>
-                  <div class="person">Bakoutoubo Sakho</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arbre Généalogique - Famille Sakho</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f7f1;
+      color: #3c3c3c;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #a68c5a;
+      font-weight: 600;
+    }
+    nav a.active {
+      text-decoration: underline;
+    }
+    .tree {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .person {
+      margin: 4px 0;
+    }
+    .person[data-has-children="true"] {
+      cursor: pointer;
+      font-weight: bold;
+      position: relative;
+      user-select: none;
+      padding-right: 20px;
+    }
+    .person[data-has-children="true"]::after {
+      content: " ▶";
+      font-size: 0.8em;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+      color: #a68c5a;
+    }
+    .person[data-has-children="true"].open::after {
+      transform: translateY(-50%) rotate(90deg);
+    }
+    .generation-children {
+      margin-left: 20px;
+      margin-top: 8px;
+      display: none;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+    }
+    footer .discret {
+      font-size: 0.8em;
+      color: #999;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Famille Sakho</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="arbre.html" class="active">Arbre généalogique</a>
+      <a href="biographie.html">Biographie</a>
+      <a href="pourquoi.html">Pourquoi ce site</a>
+    </nav>
+  </header>
+
+  <section class="tree">
+    <div class="person" data-has-children="true">
+      Djeninkaba Sakho<br><span style="font-size: 14px;">(Cheikh Mawla Idrissa Sakho)</span>
+      <div class="generation-children">
+        <div class="person" data-has-children="true">
+          Muhamed Khalifa Sakho
+          <div class="generation-children">
+            <div class="person" data-has-children="true">
+              Sidy Muhamed Sakho
+              <div class="generation-children">
+                <div class="person" data-has-children="true">
+                  Ba Salim Sakho
+                  <div class="generation-children">
+                    <div class="person">Bakasso Sakho</div>
+                    <div class="person">Bo Lassana Sakho</div>
+                    <div class="person">Sankoun Sakho</div>
+                    <div class="person">Bambo Sakho</div>
+                    <div class="person">Moukhtar Sakho</div>
+                    <div class="person">Ban Fakary Sakho</div>
+                    <div class="person">Bakodaye Sakho</div>
+                    <div class="person">Kanjoura Sakho</div>
+                    <div class="person">Bakoutoubo Sakho</div>
+                  </div>
                 </div>
-              </div>
-              
-              <div class="person" data-has-children="true">
-                Ba Sanoussy Sakho
-                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-                  <div class="person">Balamine Sakho</div>
-                  <div class="person">Kalifa Sakho</div>
+
+                <div class="person" data-has-children="true">
+                  Ba Sanoussy Sakho
+                  <div class="generation-children">
+                    <div class="person">Balamine Sakho</div>
+                    <div class="person">Kalifa Sakho</div>
+                  </div>
                 </div>
-              </div>
-              
-              <div class="person" data-has-children="true">
-                Idrissa Sakho
-                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-                  <div class="person">Ta Ba Sakho</div>
-                  <div class="person">Madiba Sakho</div>
-                  <div class="person">Famady Sakho</div>
-                  <div class="person">Cheikhou / Serhou Sakho</div>
-                  <div class="person">Karamba Sakho</div>
-                  <div class="person">Soriba Sakho</div>
-                  <div class="person">Baba Sakho</div>
-                  <div class="person">Bemba Sakho (fils d’Idrissa)</div>
-                  <div class="person">Sankoun Sakho (fils d’Idrissa)</div>
+
+                <div class="person" data-has-children="true">
+                  Idrissa Sakho
+                  <div class="generation-children">
+                    <div class="person">Ta Ba Sakho</div>
+                    <div class="person">Madiba Sakho</div>
+                    <div class="person">Famady Sakho</div>
+                    <div class="person">Cheikhou / Serhou Sakho</div>
+                    <div class="person">Karamba Sakho</div>
+                    <div class="person">Soriba Sakho</div>
+                    <div class="person">Baba Sakho</div>
+                    <div class="person">Bemba Sakho (fils d’Idrissa)</div>
+                    <div class="person">Sankoun Sakho (fils d’Idrissa)</div>
+                  </div>
                 </div>
-              </div>
-              
-              <div class="person" data-has-children="true">
-                Karamba Sakho
-                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
-                  <div class="person">Muhamadou Sakho</div>
-                  <div class="person">Bemba Sakho (fils de Karamba)</div>
-                  <div class="person">Tigui Mady Sakho</div>
+
+                <div class="person" data-has-children="true">
+                  Karamba Sakho
+                  <div class="generation-children">
+                    <div class="person">Muhamadou Sakho</div>
+                    <div class="person">Bemba Sakho (fils de Karamba)</div>
+                    <div class="person">Tigui Mady Sakho</div>
+                  </div>
                 </div>
+
               </div>
-              
             </div>
           </div>
-          
         </div>
       </div>
-      
     </div>
-  </div>
-</section>
+  </section>
+
+  <footer>
+    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes. »</p>
+    <p class="discret">
+      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.<br>
+      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.person[data-has-children="true"]').forEach(person => {
+      person.addEventListener('click', e => {
+        e.stopPropagation();
+        const children = person.querySelector('.generation-children');
+        if (!children) return;
+        if (children.style.display === 'block') {
+          children.style.display = 'none';
+          person.classList.remove('open');
+        } else {
+          children.style.display = 'block';
+          person.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
