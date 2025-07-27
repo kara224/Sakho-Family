@@ -3,68 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arbre Généalogique - Famille Sakho</title>
+  <title>Arbre généalogique - Famille Sakho</title>
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    .arbre-container {
+      max-width: 800px;
+      margin: 40px auto;
       padding: 20px;
-      background: #f9f7f1;
-      color: #3c3c3c;
+      background-color: #fdfcf7;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: 'Roboto', sans-serif;
     }
-    header {
-      margin-bottom: 20px;
-    }
-    nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: #a68c5a;
-      font-weight: 600;
-    }
-    nav a.active {
-      text-decoration: underline;
-    }
-    .tree {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .person {
-      margin: 4px 0;
-    }
-    .person[data-has-children="true"] {
-      cursor: pointer;
-      font-weight: bold;
+
+    .personne {
+      margin: 10px 0;
+      padding-left: 20px;
       position: relative;
-      user-select: none;
-      padding-right: 20px;
+      cursor: pointer;
     }
-    .person[data-has-children="true"]::after {
-      content: " ▶";
-      font-size: 0.8em;
+
+    .personne::before {
+      content: "▸";
       position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease;
+      left: 0;
       color: #a68c5a;
     }
-    .person[data-has-children="true"].open::after {
-      transform: translateY(-50%) rotate(90deg);
+
+    .personne.active::before {
+      content: "▾";
     }
-    .generation-children {
-      margin-left: 20px;
-      margin-top: 8px;
+
+    .descendants {
       display: none;
+      margin-left: 20px;
+      padding-left: 10px;
+      border-left: 2px solid #e3d8bc;
     }
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #666;
-      text-align: center;
+
+    .descendants ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 5px 0;
     }
-    footer .discret {
-      font-size: 0.8em;
-      color: #999;
-      margin-top: 8px;
+
+    .descendants li {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -79,94 +63,66 @@
     </nav>
   </header>
 
-  <section class="tree">
-    <div class="person" data-has-children="true">
-      Djeninkaba Sakho<br><span style="font-size: 14px;">(Cheikh Mawla Idrissa Sakho)</span>
-      <div class="generation-children">
-        <div class="person" data-has-children="true">
-          Muhamed Khalifa Sakho
-          <div class="generation-children">
-            <div class="person" data-has-children="true">
-              Sidy Muhamed Sakho
-              <div class="generation-children">
-                <div class="person" data-has-children="true">
-                  Ba Salim Sakho
-                  <div class="generation-children">
-                    <div class="person">Bakasso Sakho</div>
-                    <div class="person">Bo Lassana Sakho</div>
-                    <div class="person">Sankoun Sakho</div>
-                    <div class="person">Bambo Sakho</div>
-                    <div class="person">Moukhtar Sakho</div>
-                    <div class="person">Ban Fakary Sakho</div>
-                    <div class="person">Bakodaye Sakho</div>
-                    <div class="person">Kanjoura Sakho</div>
-                    <div class="person">Bakoutoubo Sakho</div>
-                  </div>
-                </div>
+  <main>
+    <div class="arbre-container">
+      <h2>Arbre généalogique</h2>
 
-                <div class="person" data-has-children="true">
-                  Ba Sanoussy Sakho
-                  <div class="generation-children">
-                    <div class="person">Balamine Sakho</div>
-                    <div class="person">Kalifa Sakho</div>
-                  </div>
-                </div>
-
-                <div class="person" data-has-children="true">
-                  Idrissa Sakho
-                  <div class="generation-children">
-                    <div class="person">Ta Ba Sakho</div>
-                    <div class="person">Madiba Sakho</div>
-                    <div class="person">Famady Sakho</div>
-                    <div class="person">Cheikhou / Serhou Sakho</div>
-                    <div class="person">Karamba Sakho</div>
-                    <div class="person">Soriba Sakho</div>
-                    <div class="person">Baba Sakho</div>
-                    <div class="person">Bemba Sakho (fils d’Idrissa)</div>
-                    <div class="person">Sankoun Sakho (fils d’Idrissa)</div>
-                  </div>
-                </div>
-
-                <div class="person" data-has-children="true">
-                  Karamba Sakho
-                  <div class="generation-children">
-                    <div class="person">Muhamadou Sakho</div>
-                    <div class="person">Bemba Sakho (fils de Karamba)</div>
-                    <div class="person">Tigui Mady Sakho</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- 1ère génération -->
+      <div class="personne" onclick="toggle('g1')">
+        Djeninkaba Sakho (Cheikh Mawla Idrissa Sakho)
       </div>
+      <div class="descendants" id="g1">
+        <ul>
+          <li>
+            <div class="personne" onclick="toggle('g2'); event.stopPropagation();">
+              Muhamed Khalifa Sakho (fils)
+            </div>
+            <div class="descendants" id="g2">
+              <ul>
+                <li>
+                  <div class="personne" onclick="toggle('g3'); event.stopPropagation();">
+                    Sidy Muhamed Sakho (fils)
+                  </div>
+                  <div class="descendants" id="g3">
+                    <ul>
+                      <li>Ba Salim Sakho (fils)</li>
+                      <li>Ba Sanoussy Sakho (fils)</li>
+                      <li>Idrissa Sakho (fils)</li>
+                      <li>Karamba Sakho (fils)</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
-  </section>
+  </main>
 
   <footer>
-    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes. »</p>
+    <p>
+      « Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »
+    </p>
     <p class="discret">
-      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.<br>
+      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.
       Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
     </p>
   </footer>
 
   <script>
-    document.querySelectorAll('.person[data-has-children="true"]').forEach(person => {
-      person.addEventListener('click', e => {
-        e.stopPropagation();
-        const children = person.querySelector('.generation-children');
-        if (!children) return;
-        if (children.style.display === 'block') {
-          children.style.display = 'none';
-          person.classList.remove('open');
-        } else {
-          children.style.display = 'block';
-          person.classList.add('open');
-        }
-      });
-    });
+    function toggle(id) {
+      const section = document.getElementById(id);
+      const parent = event.currentTarget;
+      if (section.style.display === "block") {
+        section.style.display = "none";
+        parent.classList.remove("active");
+      } else {
+        section.style.display = "block";
+        parent.classList.add("active");
+      }
+    }
   </script>
 </body>
 </html>
