@@ -1,89 +1,69 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arbre Généalogique - Famille Sakho</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <header>
-    <h1>Famille Sakho</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="arbre.html" class="active">Arbre généalogique</a>
-      <a href="biographie.html">Biographie</a>
-      <a href="pourquoi.html">Pourquoi ce site</a>
-    </nav>
-  </header>
-
-  <section class="tree">
-    <h2 class="generation">1ère génération</h2>
-    <div class="person">Djeninkaba Sakho<br><span style="font-size: 14px;">(Cheikh Mawla Idrissa Sakho)</span></div>
-    <div class="line"></div>
-
-    <h2 class="generation">2ème génération</h2>
-    <div class="generation-children">
-      <div class="person">Muhamed Khalifa Sakho</div>
+<section class="tree">
+  <div class="person" data-has-children="true">
+    Djeninkaba Sakho<br><span style="font-size: 14px;">(Cheikh Mawla Idrissa Sakho)</span>
+    <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+      
+      <div class="person" data-has-children="true">
+        Muhamed Khalifa Sakho
+        <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+          
+          <div class="person" data-has-children="true">
+            Sidy Muhamed Sakho
+            <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+              
+              <div class="person" data-has-children="true">
+                Ba Salim Sakho
+                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+                  <div class="person">Bakasso Sakho</div>
+                  <div class="person">Bo Lassana Sakho</div>
+                  <div class="person">Sankoun Sakho</div>
+                  <div class="person">Bambo Sakho</div>
+                  <div class="person">Moukhtar Sakho</div>
+                  <div class="person">Ban Fakary Sakho</div>
+                  <div class="person">Bakodaye Sakho</div>
+                  <div class="person">Kanjoura Sakho</div>
+                  <div class="person">Bakoutoubo Sakho</div>
+                </div>
+              </div>
+              
+              <div class="person" data-has-children="true">
+                Ba Sanoussy Sakho
+                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+                  <div class="person">Balamine Sakho</div>
+                  <div class="person">Kalifa Sakho</div>
+                </div>
+              </div>
+              
+              <div class="person" data-has-children="true">
+                Idrissa Sakho
+                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+                  <div class="person">Ta Ba Sakho</div>
+                  <div class="person">Madiba Sakho</div>
+                  <div class="person">Famady Sakho</div>
+                  <div class="person">Cheikhou / Serhou Sakho</div>
+                  <div class="person">Karamba Sakho</div>
+                  <div class="person">Soriba Sakho</div>
+                  <div class="person">Baba Sakho</div>
+                  <div class="person">Bemba Sakho (fils d’Idrissa)</div>
+                  <div class="person">Sankoun Sakho (fils d’Idrissa)</div>
+                </div>
+              </div>
+              
+              <div class="person" data-has-children="true">
+                Karamba Sakho
+                <div class="generation-children" style="display:none; margin-left: 20px; margin-top: 8px;">
+                  <div class="person">Muhamadou Sakho</div>
+                  <div class="person">Bemba Sakho (fils de Karamba)</div>
+                  <div class="person">Tigui Mady Sakho</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
     </div>
-    <div class="line"></div>
-
-    <h2 class="generation">3ème génération</h2>
-    <div class="generation-children">
-      <div class="person">Sidy Muhamed Sakho</div>
-    </div>
-    <div class="line"></div>
-
-    <h2 class="generation">4ème génération</h2>
-    <div class="generation-children">
-      <div class="person">Ba Salim Sakho</div>
-      <div class="person">Ba Sanoussy Sakho</div>
-      <div class="person">Idrissa Sakho</div>
-      <div class="person">Karamba Sakho</div>
-    </div>
-    <div class="line"></div>
-
-    <h2 class="generation">5ème génération</h2>
-    <div class="generation-children">
-      <!-- Fils de Ba Salim -->
-      <div class="person">Bakasso Sakho</div>
-      <div class="person">Bo Lassana Sakho</div>
-      <div class="person">Sankoun Sakho</div>
-      <div class="person">Bambo Sakho</div>
-      <div class="person">Moukhtar Sakho</div>
-      <div class="person">Ban Fakary Sakho</div>
-      <div class="person">Bakodaye Sakho</div>
-      <div class="person">Kanjoura Sakho</div>
-      <div class="person">Bakoutoubo Sakho</div>
-
-      <!-- Fils de Ba Sanoussy -->
-      <div class="person">Balamine Sakho</div>
-      <div class="person">Kalifa Sakho</div>
-
-      <!-- Fils de Idrissa -->
-      <div class="person">Ta Ba Sakho</div>
-      <div class="person">Madiba Sakho</div>
-      <div class="person">Famady Sakho</div>
-      <div class="person">Cheikhou / Serhou Sakho</div>
-      <div class="person">Karamba Sakho</div>
-      <div class="person">Soriba Sakho</div>
-      <div class="person">Baba Sakho</div>
-      <div class="person">Bemba Sakho (fils d’Idrissa)</div>
-      <div class="person">Sankoun Sakho (fils d’Idrissa)</div>
-
-      <!-- Fils de Karamba -->
-      <div class="person">Muhamadou Sakho</div>
-      <div class="person">Bemba Sakho (fils de Karamba)</div>
-      <div class="person">Tigui Mady Sakho</div>
-    </div>
-  </section>
-
-  <footer>
-    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes. »</p>
-    <p class="discret">
-      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.<br>
-      Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
-    </p>
-  </footer>
-</body>
-</html>
+  </div>
+</section>
