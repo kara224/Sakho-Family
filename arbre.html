@@ -2,69 +2,80 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arbre généalogique - Famille Sakho</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arbre Généalogique - Famille Sakho</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .arbre-container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fdfcf7;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    body {
       font-family: 'Roboto', sans-serif;
+      background-color: #f8f6f1;
+      margin: 0;
+      padding: 0;
+      color: #333;
     }
 
-    h3 {
-      margin-top: 30px;
-      color: #a68c5a;
+    header {
+      background-color: #eae6da;
+      padding: 20px 0;
+      text-align: center;
     }
 
-    .personne {
-      margin: 8px 0;
-      padding-left: 20px;
-      position: relative;
-      cursor: pointer;
+    header h1 {
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #5a4e3c;
       font-weight: bold;
     }
 
-    .personne::before {
-      content: "▸";
-      position: absolute;
-      left: 0;
-      color: #a68c5a;
+    nav a:hover {
+      text-decoration: underline;
     }
 
-    .personne.active::before {
-      content: "▾";
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
     }
 
-    .descendants {
+    ul.tree, ul.tree ul {
+      list-style-type: none;
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    ul.tree ul {
       display: none;
       margin-left: 20px;
-      padding-left: 10px;
-      border-left: 2px solid #e3d8bc;
+      border-left: 1px solid #ccc;
+      padding-left: 20px;
     }
 
-    .descendants ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 5px 0;
+    ul.tree li {
+      cursor: pointer;
+      margin: 8px 0;
+      font-weight: 500;
     }
 
-    .descendants li {
-      margin: 5px 0;
+    ul.tree li:hover {
+      color: #7d6c4d;
     }
 
-    .nom {
-      font-weight: normal;
+    ul.tree li.open > ul {
+      display: block;
     }
 
-    .alias {
-      font-style: italic;
-      font-size: 0.95em;
-      color: #444;
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      text-align: center;
+      background-color: #eae6da;
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
@@ -79,76 +90,74 @@
     </nav>
   </header>
 
-  <main>
-    <div class="arbre-container">
-      <h2>Arbre généalogique</h2>
-
-      <!-- 1ère génération -->
-      <h3>1ère génération</h3>
-      <div class="personne" onclick="toggle('g1')">
-        Djeninkaba Sakho <div class="alias">De son vrai nom : Cheikh Mawla Idrissa Sakho</div>
-      </div>
-
-      <!-- 2ème génération -->
-      <div class="descendants" id="g1">
-        <h3>2ème génération</h3>
+  <div class="container">
+    <h2>Arbre Généalogique</h2>
+    <ul class="tree">
+      <li>Djeninkaba Sakho
         <ul>
-          <li>
-            <div class="personne" onclick="toggle('g2'); event.stopPropagation();">
-              Mohamed Khalifa Sakho <div class="alias">(Fils de Cheikh Mawla Idrissa Sakho)</div>
-            </div>
-
-            <!-- 3ème génération -->
-            <div class="descendants" id="g2">
-              <h3>3ème génération</h3>
-              <ul>
-                <li>
-                  <div class="personne" onclick="toggle('g3'); event.stopPropagation();">
-                    Sidy Mohamed Sakho <div class="alias">(Fils de Mohamed Khalifa)</div>
-                  </div>
-
-                  <!-- 4ème génération -->
-                  <div class="descendants" id="g3">
-                    <h3>4ème génération</h3>
+          <li>Muhamed Khalifa Sakho
+            <ul>
+              <li>Sidy Muhamed Sakho
+                <ul>
+                  <li>Ba Salim Sakho
                     <ul>
-                      <li>Ba Salim Sakho <span class="alias">(fils de Sidy Mohamed)</span></li>
-                      <li>Ba Sanoussy Sakho <span class="alias">(fils de Sidy Mohamed)</span></li>
-                      <li>Idrissa Sakho <span class="alias">(fils de Sidy Mohamed)</span></li>
-                      <li>Karamba Sakho <span class="alias">(fils de Sidy Mohamed)</span></li>
+                      <li>Bakasso Sakho</li>
+                      <li>Bo Lassana Sakho</li>
+                      <li>Sankoun Sakho</li>
+                      <li>Bambo Sakho</li>
+                      <li>Moukhtar Sakho</li>
+                      <li>Ban Fakary Sakho</li>
+                      <li>Bakodaye Sakho</li>
+                      <li>Kanjoura Sakho</li>
+                      <li>Bakoutoubo Sakho</li>
                     </ul>
-                  </div>
-
-                </li>
-              </ul>
-            </div>
+                  </li>
+                  <li>Ba Sanoussy Sakho
+                    <ul>
+                      <li>Balamine Sakho</li>
+                      <li>Kalifa Sakho</li>
+                    </ul>
+                  </li>
+                  <li>Idrissa Sakho
+                    <ul>
+                      <li>Ta Ba Sakho</li>
+                      <li>Madiba Sakho</li>
+                      <li>Famady Sakho</li>
+                      <li>Cheikhou / Serhou Sakho</li>
+                      <li>Karamba Sakho</li>
+                      <li>Soriba Sakho</li>
+                      <li>Baba Sakho</li>
+                      <li>Bemba Sakho</li>
+                      <li>Sankoun Sakho</li>
+                    </ul>
+                  </li>
+                  <li>Karamba Sakho
+                    <ul>
+                      <li>Muhamadou Sakho</li>
+                      <li>Bemba Sakho</li>
+                      <li>Tigui Mady Sakho</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
-      </div>
-    </div>
-  </main>
+      </li>
+    </ul>
+  </div>
 
   <footer>
-    <p>
-      « Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »
-    </p>
-    <p class="discret">
-      Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens.
-      Ce site est une œuvre humaine des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
-    </p>
+    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes. »</p>
   </footer>
 
   <script>
-    function toggle(id) {
-      const section = document.getElementById(id);
-      const parent = event.currentTarget;
-      if (section.style.display === "block") {
-        section.style.display = "none";
-        parent.classList.remove("active");
-      } else {
-        section.style.display = "block";
-        parent.classList.add("active");
-      }
-    }
+    document.querySelectorAll(".tree li").forEach(function(li) {
+      li.addEventListener("click", function(e) {
+        e.stopPropagation();
+        this.classList.toggle("open");
+      });
+    });
   </script>
 </body>
 </html>
