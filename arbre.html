@@ -1,83 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arbre Généalogique - Famille Sakho</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f8f6f1;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    header {
-      background-color: #eae6da;
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-    }
-
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #5a4e3c;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    ul.tree, ul.tree ul {
-      list-style-type: none;
-      padding-left: 20px;
-      text-align: left;
-    }
-
-    ul.tree ul {
-      display: none;
-      margin-left: 20px;
-      border-left: 1px solid #ccc;
-      padding-left: 20px;
-    }
-
-    ul.tree li {
-      cursor: pointer;
-      margin: 8px 0;
-      font-weight: 500;
-    }
-
-    ul.tree li:hover {
-      color: #7d6c4d;
-    }
-
-    ul.tree li.open > ul {
-      display: block;
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      text-align: center;
-      background-color: #eae6da;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbre généalogique</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
@@ -90,52 +17,58 @@
     </nav>
   </header>
 
-  <div class="container">
-    <h2>Arbre Généalogique</h2>
-    <ul class="tree">
-      <li>Djeninkaba Sakho
-        <ul>
-          <li>Muhamed Khalifa Sakho
-            <ul>
-              <li>Sidy Muhamed Sakho
-                <ul>
-                  <li>Ba Salim Sakho
-                    <ul>
-                      <li>Bakasso Sakho</li>
-                      <li>Bo Lassana Sakho</li>
-                      <li>Sankoun Sakho</li>
-                      <li>Bambo Sakho</li>
-                      <li>Moukhtar Sakho</li>
-                      <li>Ban Fakary Sakho</li>
-                      <li>Bakodaye Sakho</li>
-                      <li>Kanjoura Sakho</li>
-                      <li>Bakoutoubo Sakho</li>
+  <main class="tree-container">
+    <ul class="generation">
+      <li>
+        <button class="toggle">1. Djeninkaba Sakho</button>
+        <ul class="children">
+          <li>
+            <button class="toggle">2. Muhamed Khalifa Sakho</button>
+            <ul class="children">
+              <li>
+                <button class="toggle">3. Sidy Mohamed Sakho</button>
+                <ul class="children">
+                  <li>
+                    <button class="toggle">4. Ba Salim Sakho</button>
+                    <ul class="children">
+                      <li>B1. Bakasso Sakho</li>
+                      <li>B2. Bo Lassana Sakho</li>
+                      <li>B3. Sankoun Sakho</li>
+                      <li>B4. Bambo Sakho</li>
+                      <li>B5. Moukhtar Sakho</li>
+                      <li>B6. Ban Fakary Sakho</li>
+                      <li>B7. Bakodaye Sakho</li>
+                      <li>B8. Kanjoura Sakho</li>
+                      <li>B9. Bakoutoubo Sakho</li>
                     </ul>
                   </li>
-                  <li>Ba Sanoussy Sakho
-                    <ul>
-                      <li>Balamine Sakho</li>
-                      <li>Kalifa Sakho</li>
+                  <li>
+                    <button class="toggle">4. Ba Sanoussy Sakho</button>
+                    <ul class="children">
+                      <li>B10. Balamine Sakho</li>
+                      <li>B11. Kalifa Sakho</li>
                     </ul>
                   </li>
-                  <li>Idrissa Sakho
-                    <ul>
-                      <li>Ta Ba Sakho</li>
-                      <li>Madiba Sakho</li>
-                      <li>Famady Sakho</li>
-                      <li>Cheikhou / Serhou Sakho</li>
-                      <li>Karamba Sakho</li>
-                      <li>Soriba Sakho</li>
-                      <li>Baba Sakho</li>
-                      <li>Bemba Sakho</li>
-                      <li>Sankoun Sakho</li>
+                  <li>
+                    <button class="toggle">4. Idrissa Sakho</button>
+                    <ul class="children">
+                      <li>B12. Ta Ba Sakho</li>
+                      <li>B13. Madiba Sakho</li>
+                      <li>B14. Famady Sakho</li>
+                      <li>B15. Cheikhou / Serhou Sakho</li>
+                      <li>B16. Karamba Sakho</li>
+                      <li>B17. Soriba Sakho</li>
+                      <li>B18. Baba Sakho</li>
+                      <li>B19. Bemba Sakho</li>
+                      <li>B20. Sankoun Sakho</li>
                     </ul>
                   </li>
-                  <li>Karamba Sakho
-                    <ul>
-                      <li>Muhamadou Sakho</li>
-                      <li>Bemba Sakho</li>
-                      <li>Tigui Mady Sakho</li>
+                  <li>
+                    <button class="toggle">4. Karamba Sakho</button>
+                    <ul class="children">
+                      <li>B21. Muhamadou Sakho</li>
+                      <li>B22. Bemba Sakho</li>
+                      <li>B23. Tigui Mady Sakho</li>
                     </ul>
                   </li>
                 </ul>
@@ -145,17 +78,19 @@
         </ul>
       </li>
     </ul>
-  </div>
+  </main>
 
   <footer>
-    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes. »</p>
+    <p>« Connaître ses racines, c’est éclairer son avenir. »</p>
   </footer>
 
   <script>
-    document.querySelectorAll(".tree li").forEach(function(li) {
-      li.addEventListener("click", function(e) {
-        e.stopPropagation();
-        this.classList.toggle("open");
+    document.querySelectorAll('.toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const children = button.nextElementSibling;
+        if (children) {
+          children.classList.toggle('visible');
+        }
       });
     });
   </script>
