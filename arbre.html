@@ -6,49 +6,80 @@
   <title>Arbre généalogique - Famille Sakho</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .arbre-container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fdfcf7;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .tree {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
       font-family: 'Roboto', sans-serif;
     }
 
-    .personne {
-      margin: 10px 0;
-      padding-left: 20px;
+    .tree ul {
+      padding-top: 20px;
       position: relative;
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
     }
 
-    .personne::before {
-      content: "▸";
+    .tree li {
+      list-style-type: none;
+      text-align: center;
+      margin: 0 20px;
+      position: relative;
+      padding: 20px 5px 0 5px;
+    }
+
+    .tree li::before, .tree li::after {
+      content: '';
       position: absolute;
-      left: 0;
-      color: #a68c5a;
+      top: 0;
+      border-top: 2px solid #a68c5a;
+      width: 50%;
+      height: 20px;
     }
 
-    .personne.active::before {
-      content: "▾";
+    .tree li::before {
+      right: 50%;
+      border-right: 2px solid #a68c5a;
     }
 
-    .descendants {
+    .tree li::after {
+      left: 50%;
+      border-left: 2px solid #a68c5a;
+    }
+
+    .tree li:only-child::before,
+    .tree li:only-child::after {
       display: none;
-      margin-left: 20px;
-      padding-left: 10px;
-      border-left: 2px solid #e3d8bc;
     }
 
-    .descendants ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 5px 0;
+    .tree li:only-child {
+      padding-top: 0;
     }
 
-    .descendants li {
-      margin: 5px 0;
+    .tree li > ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid #a68c5a;
+      width: 0;
+      height: 20px;
+    }
+
+    .tree .person {
+      padding: 10px 15px;
+      background: #fdfcf7;
+      display: inline-block;
+      border: 1px solid #d4c4a3;
+      border-radius: 6px;
+      color: #333;
+      font-size: 14px;
+      min-width: 140px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
     }
   </style>
 </head>
@@ -64,40 +95,37 @@
   </header>
 
   <main>
-    <div class="arbre-container">
-      <h2>Arbre généalogique</h2>
-
-      <!-- 1ère génération -->
-      <div class="personne" onclick="toggle('g1')">
-        Djeninkaba Sakho (Cheikh Mawla Idrissa Sakho)
-      </div>
-      <div class="descendants" id="g1">
-        <ul>
-          <li>
-            <div class="personne" onclick="toggle('g2'); event.stopPropagation();">
-              Muhamed Khalifa Sakho (fils)
-            </div>
-            <div class="descendants" id="g2">
+    <h2>Arbre généalogique</h2>
+    <div class="tree">
+      <ul>
+        <li>
+          <div class="person"><strong>1ère Génération</strong><br>Cheikh Mawla Idrissa Sakho<br>(Djeninkaba Sakho)</div>
+          <ul>
+            <li>
+              <div class="person"><strong>2e Génération</strong><br>Mohamed Khalifa Sakho<br>Fils de : Djeninkaba Sakho</div>
               <ul>
                 <li>
-                  <div class="personne" onclick="toggle('g3'); event.stopPropagation();">
-                    Sidy Muhamed Sakho (fils)
-                  </div>
-                  <div class="descendants" id="g3">
-                    <ul>
-                      <li>Ba Salim Sakho (fils)</li>
-                      <li>Ba Sanoussy Sakho (fils)</li>
-                      <li>Idrissa Sakho (fils)</li>
-                      <li>Karamba Sakho (fils)</li>
-                    </ul>
-                  </div>
+                  <div class="person"><strong>3e Génération</strong><br>Sidy Mohamed Sakho<br>Fils de : Mohamed Khalifa Sakho</div>
+                  <ul>
+                    <li>
+                      <div class="person"><strong>4e Génération</strong><br>Ba Salim Sakho<br>Fils de : Sidy Mohamed Sakho</div>
+                    </li>
+                    <li>
+                      <div class="person"><strong>4e Génération</strong><br>Ba Sanoussy Sakho<br>Fils de : Sidy Mohamed Sakho</div>
+                    </li>
+                    <li>
+                      <div class="person"><strong>4e Génération</strong><br>Idrissa Sakho<br>Fils de : Sidy Mohamed Sakho</div>
+                    </li>
+                    <li>
+                      <div class="person"><strong>4e Génération</strong><br>Karamba Sakho<br>Fils de : Sidy Mohamed Sakho</div>
+                    </li>
+                  </ul>
                 </li>
               </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </main>
 
@@ -110,19 +138,5 @@
       Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.
     </p>
   </footer>
-
-  <script>
-    function toggle(id) {
-      const section = document.getElementById(id);
-      const parent = event.currentTarget;
-      if (section.style.display === "block") {
-        section.style.display = "none";
-        parent.classList.remove("active");
-      } else {
-        section.style.display = "block";
-        parent.classList.add("active");
-      }
-    }
-  </script>
 </body>
 </html>
