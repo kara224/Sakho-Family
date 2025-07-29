@@ -1,283 +1,295 @@
-/* Couleurs de base */
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f5f0; /* Blanc cassé */
-  color: #333;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arbre généalogique - Famille Sakho</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdfcf7;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      color: #333;
+    }
 
-/* En-tête */
-header {
-  background-color: #f2ede3; /* Ivoire */
-  padding: 20px;
-  text-align: center;
-}
+    /* Structure de l’arbre */
+    .tree ul {
+      padding-top: 20px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+      max-width: 100%;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 2em;
-  color: #333;
-}
+    /* Générations 1 à 3 : colonne verticale */
+    .tree > ul,
+    .tree > ul > li > ul,
+    .tree > ul > li > ul > li > ul {
+      flex-direction: column;
+      align-items: center;
+      width: 220px; /* ajusté */
+      margin: 0 auto;
+    }
 
-nav {
-  margin-top: 10px;
-}
+    /* Alignement pour chaque item des 3 premières générations */
+    .tree > ul > li,
+    .tree > ul > li > ul > li,
+    .tree > ul > li > ul > li > ul > li {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
 
-nav a {
-  text-decoration: none;
-  color: #333;
-  margin: 0 10px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
+    /* À partir de la 4e génération : ligne horizontale */
+    .tree > ul > li > ul > li > ul > li > ul {
+      flex-direction: row;
+      width: auto;
+      justify-content: center;
+      margin-top: 10px;
+    }
 
-nav a:hover,
-nav a.active {
-  color: #a68c5a; /* Beige doré noble */
-}
+    /* Chaque item (personne) */
+    .tree li {
+      list-style-type: none;
+      position: relative;
+      padding: 0 10px;
+      text-align: center;
+    }
 
-/* Section principale */
-.hero {
-  background: url('../Image fond.jpg') center/cover no-repeat;
-  padding: 80px 20px;
-  text-align: center;
-  color: #fff;
-}
+    /* Connexions verticales */
+    .tree ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid #a68c5a;
+      width: 0;
+      height: 20px;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
 
-.hero-content {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 40px;
-  border-radius: 12px;
-}
+    /* Connexions horizontales entre frères/sœurs */
+    .tree li::before,
+    .tree li::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      border-top: 2px solid #a68c5a;
+      width: 50%;
+      height: 20px;
+      z-index: 0;
+    }
 
-.hero h2 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
+    .tree li::before {
+      left: 0;
+      border-right: 2px solid #a68c5a;
+      border-top: none;
+      height: 0;
+      width: 0;
+    }
 
-.hero p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
+    .tree li::after {
+      right: 0;
+      border-left: 2px solid #a68c5a;
+      border-top: none;
+      height: 0;
+      width: 0;
+    }
 
-.buttons button {
-  margin: 10px;
-  padding: 12px 24px;
-  font-size: 1em;
-  background-color: #a68c5a;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    /* Suppression des traits pour enfant unique */
+    .tree li:only-child::before,
+    .tree li:only-child::after {
+      display: none;
+    }
 
-.buttons button:hover {
-  background-color: #8f7747;
-}
+    /* Suppression des traits pour premier et dernier enfant */
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+      display: none;
+    }
 
-/* Section biographie */
-.biographie-links {
-  padding: 40px 20px;
-  max-width: 800px;
-  margin: auto;
-}
+    /* Boîte personne */
+    .person {
+      display: inline-block;
+      border: 2px solid #a68c5a;
+      border-radius: 12px;
+      padding: 12px 20px;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(166, 140, 90, 0.3);
+      transition: background-color 0.3s ease;
+      max-width: 180px;
+      font-weight: 600;
+      color: #4a4024;
+      user-select: none;
+      position: relative;
+      z-index: 2;
+    }
 
-.biographie-links h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #333;
-}
+    .person:hover {
+      background-color: #f9f5e7;
+    }
 
-.biographie-links ul {
-  list-style: none;
-  padding: 0;
-}
+    /* Ul cachés par défaut */
+    .tree ul ul {
+      display: none;
+      margin-top: 10px;
+    }
 
-.biographie-links li {
-  margin-bottom: 15px;
-}
+    /* Ul affichés quand actif */
+    .person.active + ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
 
-/* Lien vers les biographies : noir, non souligné */
-.biographie-links a {
-  color: #000;
-  text-decoration: none;
-  font-weight: normal;
-  font-size: 1.1em;
-}
+    /* Styles texte Génération */
+    .person strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9em;
+      color: #a68c5a;
+      font-weight: 700;
+    }
 
-.biographie-links a:hover {
-  color: #a68c5a;
-  text-decoration: underline;
-}
+    /* Responsive simplifié */
+    @media (max-width: 768px) {
+      .tree ul {
+        flex-wrap: wrap;
+      }
+      .tree > ul,
+      .tree > ul > li > ul,
+      .tree > ul > li > ul > li > ul {
+        width: 100%;
+        flex-direction: column !important;
+      }
+      .tree ul ul {
+        justify-content: center !important;
+      }
+      .person {
+        max-width: 100%;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-/* Footer */
-footer {
-  background-color: #f2ede3;
-  color: #333;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
+  <h1>Arbre Généalogique de la Famille Sakho</h1>
 
-footer .discret {
-  font-size: 0.8em;
-  opacity: 0.8;
-  margin-top: 10px;
-}
+  <div class="tree">
+    <ul>
+      <li>
+        <div class="person" onclick="toggle(this)">
+          <strong>1ère Génération</strong>
+          Cheikh Mawla Idrissa Sakho<br>
+          (Djeninkaba Sakho)
+        </div>
+        <ul>
+          <li>
+            <div class="person" onclick="toggle(this)">
+              <strong>2e Génération</strong>
+              Mohamed Khalifa Sakho<br>
+              Fils de : Djeninkaba Sakho
+            </div>
+            <ul>
+              <li>
+                <div class="person" onclick="toggle(this)">
+                  <strong>3e Génération</strong>
+                  Sidy Mohamed Sakho<br>
+                  Fils de : Mohamed Khalifa Sakho
+                </div>
+                <ul>
+                  <!-- 4e Génération -->
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong>
+                      Ba Salim Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Bakasso Sakho</div></li>
+                      <li><div class="person">Bo Lassana Sakho</div></li>
+                      <li><div class="person">Sankoun Sakho</div></li>
+                      <li><div class="person">Bambo Sakho</div></li>
+                      <li><div class="person">Moukhtar Sakho</div></li>
+                      <li><div class="person">Ban Fakary Sakho</div></li>
+                      <li><div class="person">Bakodaye Sakho</div></li>
+                      <li><div class="person">Kanjoura Sakho</div></li>
+                      <li><div class="person">Bakoutoubo Sakho</div></li>
+                    </ul>
+                  </li>
 
-/* Responsive */
-@media (max-width: 600px) {
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong>
+                      Ba Sanoussy Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Balamine Sakho</div></li>
+                      <li><div class="person">Kalifa Sakho</div></li>
+                    </ul>
+                  </li>
 
-  nav a {
-    margin: 5px 10px;
-  }
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong>
+                      Idrissa Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Ta Ba Sakho</div></li>
+                      <li><div class="person">Madiba Sakho</div></li>
+                      <li><div class="person">Famady Sakho</div></li>
+                      <li><div class="person">Cheikhou / Serhou Sakho</div></li>
+                      <li><div class="person">Karamba Sakho</div></li>
+                      <li><div class="person">Soriba Sakho</div></li>
+                      <li><div class="person">Baba Sakho</div></li>
+                      <li><div class="person">Bemba Sakho</div></li>
+                      <li><div class="person">Sankoun Sakho</div></li>
+                    </ul>
+                  </li>
 
-  .hero h2 {
-    font-size: 2em;
-  }
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong>
+                      Karamba Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Muhamadou Sakho</div></li>
+                      <li><div class="person">Bemba Sakho</div></li>
+                      <li><div class="person">Tigui Mady Sakho</div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-  .hero p {
-    font-size: 1em;
-  }
+  <script>
+    function toggle(el) {
+      el.classList.toggle("active");
+      let nextUl = el.nextElementSibling;
+      if (!nextUl) return;
 
-  .buttons button {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-.centered-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
-  line-height: 1.6;
-  color: #333;
-}
-/* ===== Style pour l'arbre généalogique vertical ===== */
-/* ===== Style spécifique Arbre Généalogique ===== */
+      if (nextUl.style.display === "flex") {
+        nextUl.style.display = "none";
+      } else {
+        nextUl.style.display = "flex";
+      }
+    }
+  </script>
 
-.arbre-container {
-  background-color: #fdfcf7; /* Beige très clair pour la section */
-  padding: 30px 20px;
-  max-width: 900px;
-  margin: 40px auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2); /* ombre beige douce */
-  font-size: 1rem;
-  color: #4a4a4a;
-  user-select: none;
-}
-
-.arbre-container ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: nowrap;
-}
-
-.arbre-container ul.gen-1,
-.arbre-container ul.gen-2,
-.arbre-container ul.gen-3 {
-  flex-direction: column;
-  align-items: center;
-}
-
-.arbre-container ul.gen-4,
-.arbre-container ul.gen-5 {
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-}
-
-.arbre-container li {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Boîte représentant une personne */
-.personne {
-  background-color: #a68c5a20; /* beige doré très transparent */
-  border: 2px solid #a68c5a;
-  border-radius: 12px;
-  padding: 12px 20px;
-  min-width: 140px;
-  max-width: 180px;
-  box-shadow: 1px 1px 6px rgba(166, 140, 90, 0.3);
-  text-align: center;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.personne:hover {
-  background-color: #a68c5a40;
-}
-
-/* Traits verticaux entre générations */
-.arbre-container li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 2px;
-  height: 30px;
-  background-color: #a68c5a;
-  transform: translateX(-50%);
-  z-index: -1;
-}
-
-/* Traits horizontaux pour branches génération 4+ */
-.arbre-container ul.gen-4 > li:not(:first-child)::before,
-.arbre-container ul.gen-5 > li:not(:first-child)::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -40px;
-  width: 40px;
-  height: 2px;
-  background-color: #a68c5a;
-  transform: translateY(-50%);
-  z-index: -1;
-}
-
-/* Cacher par défaut les descendants */
-.arbre-container ul ul {
-  display: none;
-  margin-top: 30px;
-  gap: 40px;
-}
-
-/* Afficher descendants quand li actif */
-.arbre-container li.active > ul {
-  display: flex;
-}
-
-/* Responsive - adaptabilité */
-@media (max-width: 700px) {
-  .arbre-container ul {
-    gap: 20px;
-  }
-  .arbre-container .personne {
-    min-width: 110px;
-    max-width: 140px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-}
+</body>
+</html>
