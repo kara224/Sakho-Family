@@ -1,283 +1,116 @@
-/* Couleurs de base */
 body {
-  margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #f8f5f0; /* Blanc cassé */
+  background-color: #fdfcf7; /* beige clair */
   color: #333;
-}
-
-/* En-tête */
-header {
-  background-color: #f2ede3; /* Ivoire */
-  padding: 20px;
+  padding: 30px;
   text-align: center;
-}
-
-header h1 {
   margin: 0;
-  font-size: 2em;
-  color: #333;
 }
 
-nav {
-  margin-top: 10px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  margin: 0 10px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-nav a:hover,
-nav a.active {
-  color: #a68c5a; /* Beige doré noble */
-}
-
-/* Section principale */
-.hero {
-  background: url('../Image fond.jpg') center/cover no-repeat;
-  padding: 80px 20px;
-  text-align: center;
-  color: #fff;
-}
-
-.hero-content {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 40px;
-  border-radius: 12px;
-}
-
-.hero h2 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-.buttons button {
-  margin: 10px;
-  padding: 12px 24px;
-  font-size: 1em;
-  background-color: #a68c5a;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.buttons button:hover {
-  background-color: #8f7747;
-}
-
-/* Section biographie */
-.biographie-links {
-  padding: 40px 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.biographie-links h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.biographie-links ul {
-  list-style: none;
+/* Reset */
+.tree * {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.biographie-links li {
-  margin-bottom: 15px;
-}
-
-/* Lien vers les biographies : noir, non souligné */
-.biographie-links a {
-  color: #000;
-  text-decoration: none;
-  font-weight: normal;
-  font-size: 1.1em;
-}
-
-.biographie-links a:hover {
-  color: #a68c5a;
-  text-decoration: underline;
-}
-
-/* Footer */
-footer {
-  background-color: #f2ede3;
-  color: #333;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-footer .discret {
-  font-size: 0.8em;
-  opacity: 0.8;
-  margin-top: 10px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav a {
-    margin: 5px 10px;
-  }
-
-  .hero h2 {
-    font-size: 2em;
-  }
-
-  .hero p {
-    font-size: 1em;
-  }
-
-  .buttons button {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-.centered-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
-  line-height: 1.6;
-  color: #333;
-}
-/* ===== Style pour l'arbre généalogique vertical ===== */
-/* ===== Style spécifique Arbre Généalogique ===== */
-
-.arbre-container {
-  background-color: #fdfcf7; /* Beige très clair pour la section */
-  padding: 30px 20px;
-  max-width: 900px;
-  margin: 40px auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2); /* ombre beige douce */
-  font-size: 1rem;
-  color: #4a4a4a;
-  user-select: none;
-}
-
-.arbre-container ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: nowrap;
-}
-
-.arbre-container ul.gen-1,
-.arbre-container ul.gen-2,
-.arbre-container ul.gen-3 {
-  flex-direction: column;
-  align-items: center;
-}
-
-.arbre-container ul.gen-4,
-.arbre-container ul.gen-5 {
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-}
-
-.arbre-container li {
+.tree ul {
   position: relative;
+  padding-top: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  /* Plus de flex-wrap pour éviter le décalage */
+  flex-wrap: nowrap;
 }
 
-/* Boîte représentant une personne */
-.personne {
-  background-color: #a68c5a20; /* beige doré très transparent */
-  border: 2px solid #a68c5a;
-  border-radius: 12px;
-  padding: 12px 20px;
+.tree ul ul {
+  position: relative;
+  padding-top: 20px;
+  display: none; /* caché par défaut */
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.tree li {
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  flex-shrink: 0;
+}
+
+/* Lignes horizontales entre frères */
+.tree li::before, .tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 20px;
+  border-top: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+.tree li::before {
+  left: -50%;
+  border-right: 1px solid #ccc;
+}
+
+.tree li::after {
+  right: -50%;
+  border-left: 1px solid #ccc;
+}
+
+/* Pas de lignes si enfant unique */
+.tree li:only-child::before,
+.tree li:only-child::after {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+/* Pas de ligne à l’extrémité */
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: none;
+}
+
+/* Ligne verticale entre parent et enfants */
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+  box-sizing: content-box;
+}
+
+/* Boîte personne */
+.tree .person {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background 0.3s;
   min-width: 140px;
   max-width: 180px;
-  box-shadow: 1px 1px 6px rgba(166, 140, 90, 0.3);
-  text-align: center;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  word-wrap: break-word;
 }
 
-.personne:hover {
-  background-color: #a68c5a40;
+.tree .person:hover {
+  background: #f5f5f5;
 }
 
-/* Traits verticaux entre générations */
-.arbre-container li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 2px;
-  height: 30px;
-  background-color: #a68c5a;
-  transform: translateX(-50%);
-  z-index: -1;
-}
-
-/* Traits horizontaux pour branches génération 4+ */
-.arbre-container ul.gen-4 > li:not(:first-child)::before,
-.arbre-container ul.gen-5 > li:not(:first-child)::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -40px;
-  width: 40px;
-  height: 2px;
-  background-color: #a68c5a;
-  transform: translateY(-50%);
-  z-index: -1;
-}
-
-/* Cacher par défaut les descendants */
-.arbre-container ul ul {
-  display: none;
-  margin-top: 30px;
-  gap: 40px;
-}
-
-/* Afficher descendants quand li actif */
-.arbre-container li.active > ul {
+/* Affichage des sous-listes dépliées */
+.tree .person.active + ul {
   display: flex;
-}
-
-/* Responsive - adaptabilité */
-@media (max-width: 700px) {
-  .arbre-container ul {
-    gap: 20px;
-  }
-  .arbre-container .personne {
-    min-width: 110px;
-    max-width: 140px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
+  justify-content: center;
+  flex-wrap: nowrap;
 }
