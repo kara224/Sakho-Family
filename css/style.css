@@ -281,3 +281,30 @@ footer .discret {
     font-size: 0.9rem;
   }
 }
+/* ========================== */
+/* AFFICHAGE CONSTANT DU MENU */
+/* ========================== */
+
+/* Permet de garder le menu en haut sur toutes les pages */
+header.header-fixe {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #f2ede3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* S'assurer que le menu nav est bien visible */
+header nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Empêche un bloc arbre de masquer le menu */
+.arbre-container {
+  z-index: 1;
+  position: relative;
+}
