@@ -1,219 +1,128 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Arbre généalogique - Famille Sakho</title>
   <style>
-    /* Garde la police Roboto et fond beige clair ailleurs */
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #fdfcf7; /* beige clair */
-      color: #333;
-      padding: 20px;
-      margin: 0;
+      background: #fdfcf7;
+      padding: 30px;
       text-align: center;
     }
-    h1 {
-      margin-bottom: 2rem;
-      font-weight: 700;
-      color: #333;
-    }
 
-    /* Structure de l’arbre */
     .tree ul {
       padding-top: 20px;
       position: relative;
       display: flex;
       justify-content: center;
-      flex-wrap: nowrap; /* pas de retour à la ligne horizontal */
-      margin: 0 auto;
-      max-width: 100%;
+      flex-wrap: wrap;
     }
 
-    /* Fixe largeur et centrage pour les 3 premières générations */
-    .tree > ul,
-    .tree > ul > li > ul,
-    .tree > ul > li > ul > li > ul {
-      flex-direction: column !important;
-      align-items: center !important;
-      width: 220px;  /* largeur fixe identique */
-      margin: 0 auto !important;
-    }
-
-    /* Chaque personne en 1ère à 3e gen */
-    .tree > ul > li,
-    .tree > ul > li > ul > li,
-    .tree > ul > li > ul > li > ul > li {
-      width: 100% !important;
-      display: flex !important;
-      justify-content: center !important;
-    }
-
-    /* À partir de la 4e génération : ligne horizontale */
-    .tree > ul > li > ul > li > ul > li > ul {
-      flex-direction: row;
-      width: auto;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    /* Chaque item (personne) */
     .tree li {
       list-style-type: none;
-      position: relative;
-      padding: 0 10px;
       text-align: center;
+      position: relative;
+      padding: 20px 5px 0 5px;
     }
 
-    /* Connexions verticales */
-    .tree ul::before {
+    .tree li::before, .tree li::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 50%;
-      border-left: 2px solid #a68c5a;
-      width: 0;
-      height: 20px;
-      transform: translateX(-50%);
-      z-index: 0;
-    }
-
-    /* Connexions horizontales entre frères/sœurs */
-    .tree li::before,
-    .tree li::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      border-top: 2px solid #a68c5a;
       width: 50%;
       height: 20px;
-      z-index: 0;
+      border-top: 1px solid #ccc;
     }
 
     .tree li::before {
-      left: 0;
-      border-right: 2px solid #a68c5a;
-      border-top: none;
-      height: 0;
-      width: 0;
+      left: -50%;
+      border-right: 1px solid #ccc;
     }
 
     .tree li::after {
-      right: 0;
-      border-left: 2px solid #a68c5a;
-      border-top: none;
-      height: 0;
-      width: 0;
+      right: -50%;
+      border-left: 1px solid #ccc;
     }
 
-    /* Suppression des traits pour enfant unique */
     .tree li:only-child::before,
     .tree li:only-child::after {
       display: none;
     }
 
-    /* Suppression des traits pour premier et dernier enfant */
-    .tree li:first-child::before,
-    .tree li:last-child::after {
-      display: none;
+    .tree li:only-child {
+      padding-top: 0;
     }
 
-    /* Boîte personne */
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+      border: none;
+    }
+
+    .tree ul ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 1px solid #ccc;
+      width: 0;
+      height: 20px;
+    }
+
     .person {
       display: inline-block;
-      border: 2px solid #a68c5a;
-      border-radius: 12px;
-      padding: 12px 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 15px;
       background: #fff;
+      font-size: 14px;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(166, 140, 90, 0.3);
-      transition: background-color 0.3s ease;
-      max-width: 180px;
-      font-weight: 600;
-      color: #4a4024;
-      user-select: none;
-      position: relative;
-      z-index: 2;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
     }
 
     .person:hover {
-      background-color: #f9f5e7;
+      background: #f5f5f5;
     }
 
-    /* Ul cachés par défaut */
     .tree ul ul {
       display: none;
-      margin-top: 10px;
     }
 
-    /* Ul affichés quand actif */
     .person.active + ul {
-      display: flex;
+      display: flex !important;
+      flex-wrap: wrap;
       justify-content: center;
-      flex-wrap: nowrap;
-    }
-
-    /* Styles texte Génération */
-    .person strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.9em;
-      color: #a68c5a;
-      font-weight: 700;
-    }
-
-    /* Responsive simplifié */
-    @media (max-width: 768px) {
-      .tree ul {
-        flex-wrap: wrap;
-      }
-      .tree > ul,
-      .tree > ul > li > ul,
-      .tree > ul > li > ul > li > ul {
-        width: 100%;
-        flex-direction: column !important;
-      }
-      .tree ul ul {
-        justify-content: center !important;
-      }
-      .person {
-        max-width: 100%;
-        padding: 10px;
-      }
     }
   </style>
 </head>
 <body>
-
   <h1>Arbre Généalogique de la Famille Sakho</h1>
 
   <div class="tree">
     <ul>
       <li>
         <div class="person" onclick="toggle(this)">
-          <strong>1ère Génération</strong>
+          <strong>1ère Génération</strong><br>
           Cheikh Mawla Idrissa Sakho<br>
           (Djeninkaba Sakho)
         </div>
         <ul>
           <li>
             <div class="person" onclick="toggle(this)">
-              <strong>2e Génération</strong>
-              Mohamed Khalifa Sakho<br>
-              Fils de : Djeninkaba Sakho
+              <strong>2e Génération</strong><br>
+              Mohamed Khalifa Sakho
             </div>
             <ul>
               <li>
                 <div class="person" onclick="toggle(this)">
-                  <strong>3e Génération</strong>
-                  Sidy Mohamed Sakho<br>
-                  Fils de : Mohamed Khalifa Sakho
+                  <strong>3e Génération</strong><br>
+                  Sidy Mohamed Sakho
                 </div>
                 <ul>
-                  <!-- 4e Génération -->
                   <li>
                     <div class="person" onclick="toggle(this)">
-                      <strong>4e Génération</strong>
+                      <strong>4e Génération</strong><br>
                       Ba Salim Sakho
                     </div>
                     <ul>
@@ -228,10 +137,9 @@
                       <li><div class="person">Bakoutoubo Sakho</div></li>
                     </ul>
                   </li>
-
                   <li>
                     <div class="person" onclick="toggle(this)">
-                      <strong>4e Génération</strong>
+                      <strong>4e Génération</strong><br>
                       Ba Sanoussy Sakho
                     </div>
                     <ul>
@@ -239,10 +147,9 @@
                       <li><div class="person">Kalifa Sakho</div></li>
                     </ul>
                   </li>
-
                   <li>
                     <div class="person" onclick="toggle(this)">
-                      <strong>4e Génération</strong>
+                      <strong>4e Génération</strong><br>
                       Idrissa Sakho
                     </div>
                     <ul>
@@ -257,10 +164,9 @@
                       <li><div class="person">Sankoun Sakho</div></li>
                     </ul>
                   </li>
-
                   <li>
                     <div class="person" onclick="toggle(this)">
-                      <strong>4e Génération</strong>
+                      <strong>4e Génération</strong><br>
                       Karamba Sakho
                     </div>
                     <ul>
@@ -281,16 +187,11 @@
   <script>
     function toggle(el) {
       el.classList.toggle("active");
-      let nextUl = el.nextElementSibling;
-      if (!nextUl) return;
-
-      if (nextUl.style.display === "flex") {
-        nextUl.style.display = "none";
-      } else {
-        nextUl.style.display = "flex";
+      let next = el.nextElementSibling;
+      if (next && next.tagName.toLowerCase() === 'ul') {
+        next.style.display = next.style.display === "flex" ? "none" : "flex";
       }
     }
   </script>
-
 </body>
 </html>
