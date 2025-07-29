@@ -1,116 +1,115 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #fdfcf7; /* beige clair */
-  color: #333;
-  padding: 30px;
-  text-align: center;
-  margin: 0;
+/* ===== Style spécifique Arbre Généalogique ===== */
+
+.arbre-container {
+  background-color: #fdfcf7; /* Beige très clair pour la section */
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2); /* ombre beige douce */
+  font-size: 1rem;
+  color: #4a4a4a;
+  user-select: none;
 }
 
-/* Reset */
-.tree * {
+.arbre-container ul {
+  list-style: none;
+  padding-left: 0;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.tree ul {
-  position: relative;
-  padding-top: 20px;
   display: flex;
   justify-content: center;
-  /* Plus de flex-wrap pour éviter le décalage */
+  gap: 40px;
   flex-wrap: nowrap;
 }
 
-.tree ul ul {
-  position: relative;
-  padding-top: 20px;
-  display: none; /* caché par défaut */
-  justify-content: center;
+.arbre-container ul.gen-1,
+.arbre-container ul.gen-2,
+.arbre-container ul.gen-3 {
+  flex-direction: column;
+  align-items: center;
+}
+
+.arbre-container ul.gen-4,
+.arbre-container ul.gen-5 {
+  flex-direction: row;
+  align-items: flex-start;
   flex-wrap: nowrap;
 }
 
-.tree li {
-  list-style-type: none;
-  text-align: center;
+.arbre-container li {
   position: relative;
-  padding: 20px 5px 0 5px;
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Lignes horizontales entre frères */
-.tree li::before, .tree li::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 20px;
-  border-top: 1px solid #ccc;
-  box-sizing: content-box;
-}
-
-.tree li::before {
-  left: -50%;
-  border-right: 1px solid #ccc;
-}
-
-.tree li::after {
-  right: -50%;
-  border-left: 1px solid #ccc;
-}
-
-/* Pas de lignes si enfant unique */
-.tree li:only-child::before,
-.tree li:only-child::after {
-  display: none;
-}
-
-.tree li:only-child {
-  padding-top: 0;
-}
-
-/* Pas de ligne à l’extrémité */
-.tree li:first-child::before,
-.tree li:last-child::after {
-  border: none;
-}
-
-/* Ligne verticale entre parent et enfants */
-.tree ul ul::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  border-left: 1px solid #ccc;
-  width: 0;
-  height: 20px;
-  box-sizing: content-box;
-}
-
-/* Boîte personne */
-.tree .person {
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 15px;
-  background: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background 0.3s;
+/* Boîte représentant une personne */
+.personne {
+  background-color: #a68c5a20; /* beige doré très transparent */
+  border: 2px solid #a68c5a;
+  border-radius: 12px;
+  padding: 12px 20px;
   min-width: 140px;
   max-width: 180px;
-  word-wrap: break-word;
+  box-shadow: 1px 1px 6px rgba(166, 140, 90, 0.3);
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.tree .person:hover {
-  background: #f5f5f5;
+.personne:hover {
+  background-color: #a68c5a40;
 }
 
-/* Affichage des sous-listes dépliées */
-.tree .person.active + ul {
+/* Traits verticaux entre générations */
+.arbre-container li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background-color: #a68c5a;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* Traits horizontaux pour branches génération 4+ */
+.arbre-container ul.gen-4 > li:not(:first-child)::before,
+.arbre-container ul.gen-5 > li:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  width: 40px;
+  height: 2px;
+  background-color: #a68c5a;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+/* Cacher par défaut les descendants */
+.arbre-container ul ul {
+  display: none;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+/* Afficher descendants quand li actif */
+.arbre-container li.active > ul {
   display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
+}
+
+/* Responsive - adaptabilité */
+@media (max-width: 700px) {
+  .arbre-container ul {
+    gap: 20px;
+  }
+  .arbre-container .personne {
+    min-width: 110px;
+    max-width: 140px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
