@@ -308,3 +308,16 @@ header nav {
   z-index: 1;
   position: relative;
 }
+/* Scroll horizontal sur mobile pour les générations larges */
+@media (max-width: 768px) {
+  .arbre-scrollable {
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .arbre-scrollable ul.gen-4,
+  .arbre-scrollable ul.gen-5 {
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+}
