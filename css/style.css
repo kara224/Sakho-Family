@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <title>Arbre généalogique - Famille Sakho</title>
   <style>
+    /* Garde la police Roboto et fond beige clair ailleurs */
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #fdfcf7;
+      background-color: #fdfcf7; /* beige clair */
       color: #333;
       padding: 20px;
       margin: 0;
@@ -24,28 +25,28 @@
       position: relative;
       display: flex;
       justify-content: center;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap; /* pas de retour à la ligne horizontal */
       margin: 0 auto;
       max-width: 100%;
     }
 
-    /* Générations 1 à 3 : colonne verticale */
+    /* Fixe largeur et centrage pour les 3 premières générations */
     .tree > ul,
     .tree > ul > li > ul,
     .tree > ul > li > ul > li > ul {
-      flex-direction: column;
-      align-items: center;
-      width: 220px; /* ajusté */
-      margin: 0 auto;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 220px;  /* largeur fixe identique */
+      margin: 0 auto !important;
     }
 
-    /* Alignement pour chaque item des 3 premières générations */
+    /* Chaque personne en 1ère à 3e gen */
     .tree > ul > li,
     .tree > ul > li > ul > li,
     .tree > ul > li > ul > li > ul > li {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
     }
 
     /* À partir de la 4e génération : ligne horizontale */
