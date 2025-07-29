@@ -4,43 +4,69 @@
   <meta charset="UTF-8" />
   <title>Arbre généalogique - Famille Sakho</title>
   <style>
-    /* Garde la police Roboto et fond beige clair ailleurs */
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #fdfcf7; /* beige clair */
+      background-color: #fdfcf7;
       color: #333;
-      padding: 20px;
+      padding: 0;
       margin: 0;
-      text-align: center;
     }
+
+    header {
+      background-color: #fdfcf7;
+      border-bottom: 1px solid #a68c5a;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+
+    nav a[href="arbre.html"] {
+      color: #a68c5a;
+      font-weight: 700;
+    }
+
     h1 {
-      margin-bottom: 2rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
       font-weight: 700;
       color: #333;
     }
 
-    /* Structure de l’arbre */
+    .tree {
+      text-align: center;
+      padding-bottom: 40px;
+    }
+
     .tree ul {
       padding-top: 20px;
       position: relative;
       display: flex;
       justify-content: center;
-      flex-wrap: nowrap; /* pas de retour à la ligne horizontal */
+      flex-wrap: nowrap;
       margin: 0 auto;
       max-width: 100%;
     }
 
-    /* Générations 1 à 3 : colonne verticale */
     .tree > ul,
     .tree > ul > li > ul,
     .tree > ul > li > ul > li > ul {
       flex-direction: column;
       align-items: center;
-      width: 200px; /* largeur fixe pour la colonne centrale */
-      margin: 0 auto;
+      width: 200px;
     }
 
-    /* À partir de la 4e génération : ligne horizontale */
     .tree > ul > li > ul > li > ul > li > ul {
       flex-direction: row;
       width: auto;
@@ -48,7 +74,6 @@
       margin-top: 10px;
     }
 
-    /* Chaque item (personne) */
     .tree li {
       list-style-type: none;
       position: relative;
@@ -56,7 +81,6 @@
       text-align: center;
     }
 
-    /* Connexions verticales */
     .tree ul::before {
       content: '';
       position: absolute;
@@ -69,7 +93,6 @@
       z-index: 0;
     }
 
-    /* Connexions horizontales entre frères/sœurs */
     .tree li::before,
     .tree li::after {
       content: '';
@@ -97,19 +120,13 @@
       width: 0;
     }
 
-    /* Suppression des traits pour enfant unique */
     .tree li:only-child::before,
-    .tree li:only-child::after {
-      display: none;
-    }
-
-    /* Suppression des traits pour premier et dernier enfant */
+    .tree li:only-child::after,
     .tree li:first-child::before,
     .tree li:last-child::after {
       display: none;
     }
 
-    /* Boîte personne */
     .person {
       display: inline-block;
       border: 2px solid #a68c5a;
@@ -131,20 +148,17 @@
       background-color: #f9f5e7;
     }
 
-    /* Ul cachés par défaut */
     .tree ul ul {
       display: none;
       margin-top: 10px;
     }
 
-    /* Ul affichés quand actif */
     .person.active + ul {
       display: flex;
       justify-content: center;
       flex-wrap: nowrap;
     }
 
-    /* Styles texte Génération */
     .person strong {
       display: block;
       margin-bottom: 6px;
@@ -153,7 +167,6 @@
       font-weight: 700;
     }
 
-    /* Responsive simplifié */
     @media (max-width: 768px) {
       .tree ul {
         flex-wrap: wrap;
@@ -175,6 +188,17 @@
   </style>
 </head>
 <body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="arbre.html">Arbre</a></li>
+        <li><a href="biographie.html">Biographie</a></li>
+        <li><a href="pourquoi.html">Pourquoi ce site</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <h1>Arbre Généalogique de la Famille Sakho</h1>
 
@@ -201,7 +225,6 @@
                   Fils de : Mohamed Khalifa Sakho
                 </div>
                 <ul>
-                  <!-- 4e Génération -->
                   <li>
                     <div class="person" onclick="toggle(this)">
                       <strong>4e Génération</strong>
