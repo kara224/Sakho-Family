@@ -102,6 +102,46 @@
       background-color: #a68c5a;
       margin: 0 auto;
     }
+
+    .arbre-scrollable {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      overflow-x: auto;
+      padding: 10px 0;
+      max-width: 100%;
+    }
+
+    .arbre-scrollable::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .arbre-scrollable::-webkit-scrollbar-thumb {
+      background-color: #a68c5a;
+      border-radius: 10px;
+    }
+
+    header nav a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    header nav a.active {
+      font-weight: bold;
+      color: #a68c5a;
+    }
+
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      background-color: #fdfcf7;
+    }
+
+    .discret {
+      font-style: italic;
+      color: #777;
+    }
   </style>
 </head>
 <body>
@@ -151,31 +191,33 @@
 
       <!-- Génération 4 -->
       <div class="generation enfants" id="g3">
-        <div class="connecteurs">
-          <div class="branche"></div>
-          <div class="branche"></div>
-          <div class="branche"></div>
-          <div class="branche"></div>
-        </div>
-        <div class="personne">
-          <div class="titre-generation">4e Génération</div>
-          Ba Salim Sakho<br/>
-          Fils de : Sidy Mohamed Sakho
-        </div>
-        <div class="personne">
-          <div class="titre-generation">4e Génération</div>
-          Ba Sanoussy Sakho<br/>
-          Fils de : Sidy Mohamed Sakho
-        </div>
-        <div class="personne">
-          <div class="titre-generation">4e Génération</div>
-          Idrissa Sakho<br/>
-          Fils de : Sidy Mohamed Sakho
-        </div>
-        <div class="personne">
-          <div class="titre-generation">4e Génération</div>
-          Karamba Sakho<br/>
-          Fils de : Sidy Mohamed Sakho
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
+          <div class="personne">
+            <div class="titre-generation">4e Génération</div>
+            Ba Salim Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne">
+            <div class="titre-generation">4e Génération</div>
+            Ba Sanoussy Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne">
+            <div class="titre-generation">4e Génération</div>
+            Idrissa Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne">
+            <div class="titre-generation">4e Génération</div>
+            Karamba Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
         </div>
       </div>
     </div>
