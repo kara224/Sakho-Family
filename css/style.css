@@ -166,3 +166,118 @@ footer .discret {
   color: #333;
 }
 /* ===== Style pour l'arbre généalogique vertical ===== */
+/* ===== Style spécifique Arbre Généalogique ===== */
+
+.arbre-container {
+  background-color: #fdfcf7; /* Beige très clair pour la section */
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2); /* ombre beige douce */
+  font-size: 1rem;
+  color: #4a4a4a;
+  user-select: none;
+}
+
+.arbre-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+.arbre-container ul.gen-1,
+.arbre-container ul.gen-2,
+.arbre-container ul.gen-3 {
+  flex-direction: column;
+  align-items: center;
+}
+
+.arbre-container ul.gen-4,
+.arbre-container ul.gen-5 {
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.arbre-container li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Boîte représentant une personne */
+.personne {
+  background-color: #a68c5a20; /* beige doré très transparent */
+  border: 2px solid #a68c5a;
+  border-radius: 12px;
+  padding: 12px 20px;
+  min-width: 140px;
+  max-width: 180px;
+  box-shadow: 1px 1px 6px rgba(166, 140, 90, 0.3);
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.personne:hover {
+  background-color: #a68c5a40;
+}
+
+/* Traits verticaux entre générations */
+.arbre-container li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background-color: #a68c5a;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* Traits horizontaux pour branches génération 4+ */
+.arbre-container ul.gen-4 > li:not(:first-child)::before,
+.arbre-container ul.gen-5 > li:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  width: 40px;
+  height: 2px;
+  background-color: #a68c5a;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+/* Cacher par défaut les descendants */
+.arbre-container ul ul {
+  display: none;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+/* Afficher descendants quand li actif */
+.arbre-container li.active > ul {
+  display: flex;
+}
+
+/* Responsive - adaptabilité */
+@media (max-width: 700px) {
+  .arbre-container ul {
+    gap: 20px;
+  }
+  .arbre-container .personne {
+    min-width: 110px;
+    max-width: 140px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
