@@ -1,205 +1,229 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<title>Arbre généalogique aligné - Famille Sakho</title>
-<style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff;
-    padding: 30px;
-    text-align: center;
-  }
+  <meta charset="UTF-8" />
+  <title>Arbre généalogique - Famille Sakho</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdfcf7; /* beige clair */
+      color: #333;
+      padding: 30px;
+      text-align: center;
+      margin: 0;
+    }
 
-  .tree ul {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-  }
+    /* Reset */
+    .tree * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .tree li {
-    list-style-type: none;
-    text-align: center;
-    position: relative;
-    padding: 20px 10px 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .tree ul {
+      position: relative;
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap; /* plus de wrap */
+    }
 
-  /* Conteneur des enfants */
-  .tree ul ul {
-    padding-top: 40px;
-    position: relative;
-  }
+    .tree ul ul {
+      position: relative;
+      padding-top: 20px;
+      display: none; /* caché par défaut */
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
 
-  /* Lignes verticales qui relient parent-enfant */
-  .tree ul ul::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    border-left: 2px solid #ccc;
-    height: 40px;
-    transform: translateX(-50%);
-  }
+    .tree li {
+      list-style-type: none;
+      text-align: center;
+      position: relative;
+      padding: 20px 5px 0 5px;
+      flex-shrink: 0;
+    }
 
-  /* Boîte personne */
-  .person {
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px 15px;
-    background: #fff;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background 0.3s;
-    position: relative;
-  }
-  .person:hover {
-    background: #f5f5f5;
-  }
+    /* Lignes horizontales entre frères */
+    .tree li::before, .tree li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 20px;
+      border-top: 1px solid #ccc;
+      box-sizing: content-box;
+    }
 
-  /* Ligne horizontale entre frères */
-  .tree ul > li:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 25px;
-    right: 0;
-    width: 20px;
-    height: 2px;
-    background: #ccc;
-  }
+    .tree li::before {
+      left: -50%;
+      border-right: 1px solid #ccc;
+    }
 
-  /* Ligne verticale au-dessus de chaque personne sauf 1ère génération */
-  .tree ul ul > li::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    border-left: 2px solid #ccc;
-    height: 20px;
-    transform: translateX(-50%);
-  }
-  /* Supprimer la ligne verticale si le li est seul enfant */
-  .tree ul ul > li:only-child::before {
-    display: none;
-  }
+    .tree li::after {
+      right: -50%;
+      border-left: 1px solid #ccc;
+    }
 
-  /* Gestion affichage descendants au clic */
-  .tree ul ul {
-    display: none;
-    flex-wrap: nowrap;
-    justify-content: center;
-  }
-  .person.active + ul {
-    display: flex;
-  }
-</style>
+    /* Pas de lignes si enfant unique */
+    .tree li:only-child::before,
+    .tree li:only-child::after {
+      display: none;
+    }
+
+    .tree li:only-child {
+      padding-top: 0;
+    }
+
+    /* Pas de ligne à l’extrémité */
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+      border: none;
+    }
+
+    /* Ligne verticale entre parent et enfants */
+    .tree ul ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 1px solid #ccc;
+      width: 0;
+      height: 20px;
+      box-sizing: content-box;
+    }
+
+    /* Boîte personne */
+    .tree .person {
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 15px;
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+      min-width: 140px;
+      max-width: 180px;
+      word-wrap: break-word;
+      user-select: none;
+    }
+
+    .tree .person:hover {
+      background: #f5f5f5;
+    }
+
+    /* Affichage des sous-listes dépliées */
+    .tree .person.active + ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+  </style>
 </head>
 <body>
-<h1>Arbre Généalogique de la Famille Sakho</h1>
+  <h1>Arbre Généalogique de la Famille Sakho</h1>
 
-<div class="tree">
-  <ul>
-    <li>
-      <div class="person" onclick="toggle(this)">
-        <strong>1ère Génération</strong><br>
-        Cheikh Mawla Idrissa Sakho<br>
-        (Djeninkaba Sakho)
-      </div>
-      <ul>
-        <li>
-          <div class="person" onclick="toggle(this)">
-            <strong>2e Génération</strong><br>
-            Mohamed Khalifa Sakho<br>
-            Fils de : Djeninkaba Sakho
-          </div>
-          <ul>
-            <li>
-              <div class="person" onclick="toggle(this)">
-                <strong>3e Génération</strong><br>
-                Sidy Mohamed Sakho<br>
-                Fils de : Mohamed Khalifa Sakho
-              </div>
-              <ul>
-                <li>
-                  <div class="person" onclick="toggle(this)">
-                    <strong>4e Génération</strong><br>
-                    Ba Salim Sakho
-                  </div>
-                  <ul>
-                    <li><div class="person">Bakasso Sakho</div></li>
-                    <li><div class="person">Bo Lassana Sakho</div></li>
-                    <li><div class="person">Sankoun Sakho</div></li>
-                    <li><div class="person">Bambo Sakho</div></li>
-                    <li><div class="person">Moukhtar Sakho</div></li>
-                    <li><div class="person">Ban Fakary Sakho</div></li>
-                    <li><div class="person">Bakodaye Sakho</div></li>
-                    <li><div class="person">Kanjoura Sakho</div></li>
-                    <li><div class="person">Bakoutoubo Sakho</div></li>
-                  </ul>
-                </li>
-                <li>
-                  <div class="person" onclick="toggle(this)">
-                    <strong>4e Génération</strong><br>
-                    Ba Sanoussy Sakho
-                  </div>
-                  <ul>
-                    <li><div class="person">Balamine Sakho</div></li>
-                    <li><div class="person">Kalifa Sakho</div></li>
-                  </ul>
-                </li>
-                <li>
-                  <div class="person" onclick="toggle(this)">
-                    <strong>4e Génération</strong><br>
-                    Idrissa Sakho
-                  </div>
-                  <ul>
-                    <li><div class="person">Ta Ba Sakho</div></li>
-                    <li><div class="person">Madiba Sakho</div></li>
-                    <li><div class="person">Famady Sakho</div></li>
-                    <li><div class="person">Cheikhou / Serhou Sakho</div></li>
-                    <li><div class="person">Karamba Sakho</div></li>
-                    <li><div class="person">Soriba Sakho</div></li>
-                    <li><div class="person">Baba Sakho</div></li>
-                    <li><div class="person">Bemba Sakho</div></li>
-                    <li><div class="person">Sankoun Sakho</div></li>
-                  </ul>
-                </li>
-                <li>
-                  <div class="person" onclick="toggle(this)">
-                    <strong>4e Génération</strong><br>
-                    Karamba Sakho
-                  </div>
-                  <ul>
-                    <li><div class="person">Muhamadou Sakho</div></li>
-                    <li><div class="person">Bemba Sakho</div></li>
-                    <li><div class="person">Tigui Mady Sakho</div></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
+  <div class="tree">
+    <ul>
+      <li>
+        <div class="person" onclick="toggle(this)">
+          <strong>1ère Génération</strong><br>
+          Cheikh Mawla Idrissa Sakho<br>
+          (Djeninkaba Sakho)
+        </div>
+        <ul>
+          <li>
+            <div class="person" onclick="toggle(this)">
+              <strong>2e Génération</strong><br>
+              Mohamed Khalifa Sakho<br>
+              Fils de : Djeninkaba Sakho
+            </div>
+            <ul>
+              <li>
+                <div class="person" onclick="toggle(this)">
+                  <strong>3e Génération</strong><br>
+                  Sidy Mohamed Sakho<br>
+                  Fils de : Mohamed Khalifa Sakho
+                </div>
+                <ul>
+                  <!-- Ba Salim -->
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong><br>
+                      Ba Salim Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Bakasso Sakho</div></li>
+                      <li><div class="person">Bo Lassana Sakho</div></li>
+                      <li><div class="person">Sankoun Sakho</div></li>
+                      <li><div class="person">Bambo Sakho</div></li>
+                      <li><div class="person">Moukhtar Sakho</div></li>
+                      <li><div class="person">Ban Fakary Sakho</div></li>
+                      <li><div class="person">Bakodaye Sakho</div></li>
+                      <li><div class="person">Kanjoura Sakho</div></li>
+                      <li><div class="person">Bakoutoubo Sakho</div></li>
+                    </ul>
+                  </li>
+                  <!-- Ba Sanoussy -->
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong><br>
+                      Ba Sanoussy Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Balamine Sakho</div></li>
+                      <li><div class="person">Kalifa Sakho</div></li>
+                    </ul>
+                  </li>
+                  <!-- Idrissa -->
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong><br>
+                      Idrissa Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Ta Ba Sakho</div></li>
+                      <li><div class="person">Madiba Sakho</div></li>
+                      <li><div class="person">Famady Sakho</div></li>
+                      <li><div class="person">Cheikhou / Serhou Sakho</div></li>
+                      <li><div class="person">Karamba Sakho</div></li>
+                      <li><div class="person">Soriba Sakho</div></li>
+                      <li><div class="person">Baba Sakho</div></li>
+                      <li><div class="person">Bemba Sakho</div></li>
+                      <li><div class="person">Sankoun Sakho</div></li>
+                    </ul>
+                  </li>
+                  <!-- Karamba -->
+                  <li>
+                    <div class="person" onclick="toggle(this)">
+                      <strong>4e Génération</strong><br>
+                      Karamba Sakho
+                    </div>
+                    <ul>
+                      <li><div class="person">Muhamadou Sakho</div></li>
+                      <li><div class="person">Bemba Sakho</div></li>
+                      <li><div class="person">Tigui Mady Sakho</div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-<script>
-  function toggle(el) {
-    el.classList.toggle("active");
-    let next = el.nextElementSibling;
-    if (next && next.tagName.toLowerCase() === 'ul') {
-      next.style.display = next.style.display === "flex" ? "none" : "flex";
+  <script>
+    function toggle(el) {
+      el.classList.toggle("active");
+      let next = el.nextElementSibling;
+      if (next && next.tagName.toLowerCase() === 'ul') {
+        next.style.display = next.style.display === "flex" ? "none" : "flex";
+      }
     }
-  }
-</script>
-</body>
-</html>
   </script>
-
 </body>
 </html>
