@@ -152,6 +152,7 @@ footer .discret {
     max-width: 300px;
   }
 }
+
 .centered-content {
   display: flex;
   flex-direction: column;
@@ -165,19 +166,21 @@ footer .discret {
   line-height: 1.6;
   color: #333;
 }
-/* ===== Style pour l'arbre généalogique vertical ===== */
+
 /* ===== Style spécifique Arbre Généalogique ===== */
 
 .arbre-container {
-  background-color: #fdfcf7; /* Beige très clair pour la section */
+  background-color: #fdfcf7;
   padding: 30px 20px;
   max-width: 900px;
   margin: 40px auto;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2); /* ombre beige douce */
+  box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2);
   font-size: 1rem;
   color: #4a4a4a;
   user-select: none;
+  position: relative;
+  z-index: 1;
 }
 
 .arbre-container ul {
@@ -213,7 +216,7 @@ footer .discret {
 
 /* Boîte représentant une personne */
 .personne {
-  background-color: #a68c5a20; /* beige doré très transparent */
+  background-color: #a68c5a20;
   border: 2px solid #a68c5a;
   border-radius: 12px;
   padding: 12px 20px;
@@ -243,7 +246,7 @@ footer .discret {
   z-index: -1;
 }
 
-/* Traits horizontaux pour branches génération 4+ */
+/* Traits horizontaux pour générations 4+ */
 .arbre-container ul.gen-4 > li:not(:first-child)::before,
 .arbre-container ul.gen-5 > li:not(:first-child)::before {
   content: "";
@@ -257,35 +260,22 @@ footer .discret {
   z-index: -1;
 }
 
-/* Cacher par défaut les descendants */
+/* Cacher les descendants par défaut */
 .arbre-container ul ul {
   display: none;
   margin-top: 30px;
   gap: 40px;
 }
 
-/* Afficher descendants quand li actif */
+/* Afficher descendants quand li est actif */
 .arbre-container li.active > ul {
   display: flex;
 }
 
-/* Responsive - adaptabilité */
-@media (max-width: 700px) {
-  .arbre-container ul {
-    gap: 20px;
-  }
-  .arbre-container .personne {
-    min-width: 110px;
-    max-width: 140px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-}
 /* ========================== */
 /* AFFICHAGE CONSTANT DU MENU */
 /* ========================== */
 
-/* Permet de garder le menu en haut sur toutes les pages */
 header.header-fixe {
   position: sticky;
   top: 0;
@@ -294,7 +284,6 @@ header.header-fixe {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* S'assurer que le menu nav est bien visible */
 header nav {
   display: flex;
   justify-content: center;
@@ -303,21 +292,34 @@ header nav {
   margin-top: 15px;
 }
 
-/* Empêche un bloc arbre de masquer le menu */
-.arbre-container {
-  z-index: 1;
-  position: relative;
+/* ================ */
+/* SCROLL ARBRE GEN */
+/* ================ */
+
+.scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
 }
-/* Scroll horizontal sur mobile pour les générations larges */
+
+.arbre-scrollable ul.gen-4,
+.arbre-scrollable ul.gen-5 {
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .arbre-scrollable {
-    overflow-x: auto;
+  .scroll-wrapper {
     padding-bottom: 20px;
   }
 
   .arbre-scrollable ul.gen-4,
   .arbre-scrollable ul.gen-5 {
-    flex-wrap: nowrap;
-    width: max-content;
+    gap: 20px;
+  }
+
+  .arbre-container .personne {
+    min-width: 110px;
+    max-width: 140px;
   }
 }
