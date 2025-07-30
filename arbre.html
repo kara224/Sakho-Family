@@ -198,26 +198,83 @@
             <div class="branche"></div>
             <div class="branche"></div>
           </div>
-          <div class="personne">
+          <div class="personne" onclick="toggle('g4-salim')">
             <div class="titre-generation">4e Génération</div>
             Ba Salim Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
-          <div class="personne">
+          <div class="personne" onclick="toggle('g4-sanoussy')">
             <div class="titre-generation">4e Génération</div>
             Ba Sanoussy Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
-          <div class="personne">
+          <div class="personne" onclick="toggle('g4-idrissa')">
             <div class="titre-generation">4e Génération</div>
             Idrissa Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
-          <div class="personne">
+          <div class="personne" onclick="toggle('g4-karamba')">
             <div class="titre-generation">4e Génération</div>
             Karamba Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
+        </div>
+      </div>
+
+      <!-- 5e Génération - Fils de Ba Sanoussy -->
+      <div class="generation enfants" id="g4-sanoussy">
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
+          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy Sakho</div>
+          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy Sakho</div>
+        </div>
+      </div>
+
+      <!-- 5e Génération - Fils de Idrissa -->
+      <div class="generation enfants" id="g4-idrissa">
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
+          <div class="personne">Ta Ba Sakho</div>
+          <div class="personne">Madiba Sakho</div>
+          <div class="personne">Famady Sakho</div>
+          <div class="personne">Cheikhou / Serhou Sakho</div>
+          <div class="personne">Karamba Sakho</div>
+          <div class="personne">Soriba Sakho</div>
+          <div class="personne">Baba Sakho</div>
+          <div class="personne">Bemba Sakho</div>
+          <div class="personne">Sankoun Sakho</div>
+        </div>
+      </div>
+
+      <!-- 5e Génération - Fils de Karamba -->
+      <div class="generation enfants" id="g4-karamba">
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
+          <div class="personne">Muhamadou Sakho</div>
+          <div class="personne">Bemba Sakho</div>
+          <div class="personne">Tigui Mady Sakho</div>
         </div>
       </div>
     </div>
@@ -231,11 +288,7 @@
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
-      if (el.classList.contains('visible')) {
-        el.classList.remove('visible');
-      } else {
-        el.classList.add('visible');
-      }
+      el.classList.toggle('visible');
     }
   </script>
 </body>
