@@ -323,3 +323,16 @@ header nav {
     max-width: 140px;
   }
 }
+.arbre-container {
+  width: 100vw;
+  overflow-x: auto;
+}
+
+.generation {
+  width: max-content;
+  min-width: 100%;
+}
+
+body {
+  overflow-x: auto;
+}
