@@ -4,6 +4,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #f8f5f0; /* Blanc cassé */
   color: #333;
+  overflow-x: auto; /* Permet le scroll horizontal */
 }
 
 /* En-tête */
@@ -98,7 +99,6 @@ nav a.active {
   margin-bottom: 15px;
 }
 
-/* Lien vers les biographies : noir, non souligné */
 .biographie-links a {
   color: #000;
   text-decoration: none;
@@ -169,10 +169,15 @@ footer .discret {
 
 /* ===== Style spécifique Arbre Généalogique ===== */
 
+.scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
 .arbre-container {
   background-color: #fdfcf7;
   padding: 30px 20px;
-  max-width: 900px;
+  min-width: max-content;
   margin: 40px auto;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(166, 140, 90, 0.2);
@@ -181,6 +186,12 @@ footer .discret {
   user-select: none;
   position: relative;
   z-index: 1;
+}
+
+.arbre-scrollable ul.gen-4,
+.arbre-scrollable ul.gen-5 {
+  flex-wrap: nowrap;
+  width: max-content;
 }
 
 .arbre-container ul {
@@ -204,7 +215,6 @@ footer .discret {
 .arbre-container ul.gen-5 {
   flex-direction: row;
   align-items: flex-start;
-  flex-wrap: nowrap;
 }
 
 .arbre-container li {
@@ -272,10 +282,7 @@ footer .discret {
   display: flex;
 }
 
-/* ========================== */
-/* AFFICHAGE CONSTANT DU MENU */
-/* ========================== */
-
+/* Fix position sticky menu */
 header.header-fixe {
   position: sticky;
   top: 0;
@@ -292,22 +299,7 @@ header nav {
   margin-top: 15px;
 }
 
-/* ================ */
-/* SCROLL ARBRE GEN */
-/* ================ */
-
-.scroll-wrapper {
-  overflow-x: auto;
-  width: 100%;
-}
-
-.arbre-scrollable ul.gen-4,
-.arbre-scrollable ul.gen-5 {
-  flex-wrap: nowrap;
-  width: max-content;
-}
-
-/* Responsive */
+/* Responsive généalogie */
 @media (max-width: 768px) {
   .scroll-wrapper {
     padding-bottom: 20px;
@@ -322,17 +314,4 @@ header nav {
     min-width: 110px;
     max-width: 140px;
   }
-}
-.arbre-container {
-  width: 100vw;
-  overflow-x: auto;
-}
-
-.generation {
-  width: max-content;
-  min-width: 100%;
-}
-
-body {
-  overflow-x: auto;
 }
