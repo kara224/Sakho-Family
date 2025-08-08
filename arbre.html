@@ -8,9 +8,13 @@
   <style>
     html, body {
       overflow-x: auto;
-      margin: 0; padding: 0;
+    }
+
+    body {
       font-family: 'Roboto', sans-serif;
       background-color: #fdfcf7;
+      margin: 0;
+      padding: 0;
     }
 
     .arbre-container {
@@ -22,134 +26,89 @@
       overflow-x: auto;
     }
 
-    /* Générations 1 à 3 centrées en colonne verticale */
     .generation {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 30px 0 60px 0;
+      margin: 30px 0;
       position: relative;
-      gap: 40px;
-      flex-wrap: nowrap;
-      flex-direction: column; /* colonne pour g1,g2,g3 */
-      min-width: 220px;
-    }
-
-    /* Sauf génération 4 et suivantes */
-    .generation.multiple {
-      flex-direction: row; /* ligne pour génération multiple */
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 40px;
-      min-width: auto;
     }
 
     .personne {
       background-color: #fff;
-      border: 2px solid #a68c5a; /* beige doré */
-      padding: 12px 24px;
+      border: 2px solid #e3d8bc;
+      padding: 10px 20px;
       border-radius: 8px;
       text-align: center;
       cursor: pointer;
       position: relative;
       min-width: 200px;
-      box-sizing: border-box;
-      transition: background-color 0.3s ease;
-      user-select: none;
     }
 
     .personne:hover {
       background-color: #f6f1e3;
     }
 
-    /* Ligne verticale sous chaque personne pour connexion aux enfants */
     .ligne-verticale {
       width: 2px;
-      height: 30px;
+      height: 20px;
       background-color: #a68c5a;
       position: absolute;
-      bottom: -30px;
+      top: -20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
     }
 
-    /* Ligne horizontale qui relie les parents (génération 4) */
-    .connecteurs {
-      position: relative;
-      height: 30px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 40px;
-      flex-wrap: nowrap;
-    }
-
-    .connecteurs::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      right: 5%;
+    .ligne-horizontale {
       height: 2px;
       background-color: #a68c5a;
-      transform: translateY(-50%);
-      z-index: 1;
-      border-radius: 1px;
+      position: absolute;
+      top: 0;
     }
 
-    /* Lignes verticales individuelles sous chaque parent dans .connecteurs */
-    .connecteurs > .branche {
-      width: 2px;
-      height: 30px;
-      background-color: #a68c5a;
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      border-radius: 1px;
-    }
-
-    /* Container enfants, affichage horizontal scrollable */
     .enfants {
       display: none;
       flex-direction: row;
       justify-content: center;
       gap: 40px;
-      margin-top: 20px;
-      position: relative;
-      padding-top: 40px; /* espace pour ligne horizontale */
-      overflow-x: auto;
-      max-width: 100%;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+      margin-top: 40px;
     }
 
     .visible {
       display: flex !important;
     }
 
-    /* Ligne horizontale au-dessus des enfants */
-    .ligne-horizontale {
+    .titre-generation {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .connecteurs {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .connecteurs::before {
+      content: '';
       position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
       height: 2px;
       background-color: #a68c5a;
-      top: 20px;
-      left: 40px;
-      right: 40px;
-      margin: auto;
-      border-radius: 1px;
-      z-index: 5;
     }
 
-    .titre-generation {
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 6px;
-      color: #5a4a1a;
+    .branche {
+      width: 2px;
+      height: 20px;
+      background-color: #a68c5a;
+      margin: 0 auto;
     }
 
-    /* Scrollbar personnalisée pour les zones scrollables */
     .arbre-scrollable {
       display: flex;
       flex-direction: row;
@@ -168,16 +127,14 @@
       border-radius: 10px;
     }
 
-    /* Styles liens nav */
     header nav a {
       color: #333;
       text-decoration: none;
       margin: 0 10px;
-      font-weight: 500;
     }
 
     header nav a.active {
-      font-weight: 700;
+      font-weight: bold;
       color: #a68c5a;
     }
 
@@ -185,8 +142,6 @@
       padding: 20px;
       font-size: 14px;
       background-color: #fdfcf7;
-      text-align: center;
-      color: #777;
     }
 
     .discret {
@@ -241,23 +196,97 @@
       </div>
 
       <!-- Génération 4 -->
-      <div class="generation enfants" id="g3" style="flex-direction: column; align-items: center;">
-        <div class="connecteurs">
-          <div class="branche"></div>
-          <div class="branche"></div>
-          <div class="branche"></div>
-          <div class="branche"></div>
-        </div>
-        <div class="generation multiple">
+      <div class="generation enfants" id="g3">
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
           <div class="personne" onclick="toggle('g4a')">
             <div class="titre-generation">4e Génération</div>
             Ba Salim Sakho<br/>
             Fils de : Sidy Mohamed Sakho
-            <div class="ligne-verticale"></div>
           </div>
           <div class="personne" onclick="toggle('g4b')">
             <div class="titre-generation">4e Génération</div>
             Ba Sanoussy Sakho<br/>
             Fils de : Sidy Mohamed Sakho
-            <div class="ligne-verticale"></div>
           </div>
+          <div class="personne" onclick="toggle('g4c')">
+            <div class="titre-generation">4e Génération</div>
+            Idrissa Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne" onclick="toggle('g4d')">
+            <div class="titre-generation">4e Génération</div>
+            Karamba Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+        </div>
+      </div>
+
+      <!-- Génération 5 - Fils de Ba Salim -->
+      <div class="generation enfants" id="g4a">
+        <div class="arbre-scrollable">
+          <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Sankoun Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bambo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Moukhtar Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Ban Fakary Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bakodaye Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Kanjoura Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bakoutoubo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+      <!-- Génération 5 - Fils de Ba Sanoussy -->
+      <div class="generation enfants" id="g4b">
+        <div class="arbre-scrollable">
+          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+      <!-- Génération 5 - Fils de Idrissa -->
+      <div class="generation enfants" id="g4c">
+        <div class="arbre-scrollable">
+          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Famady Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Cheikhou / Serhou Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Karamba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Soriba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Baba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Sankoun Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+      <!-- Génération 5 - Fils de Karamba -->
+      <div class="generation enfants" id="g4d">
+        <div class="arbre-scrollable">
+          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Tigui Mady Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="text-align: center; margin-top: 40px;">
+    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »</p>
+    <p class="discret">Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens. Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.</p>
+  </footer>
+
+  <script>
+    function toggle(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('visible');
+    }
+  </script>
+</body>
+</html>
