@@ -8,13 +8,9 @@
   <style>
     html, body {
       overflow-x: auto;
-    }
-
-    body {
+      margin: 0; padding: 0;
       font-family: 'Roboto', sans-serif;
       background-color: #fdfcf7;
-      margin: 0;
-      padding: 0;
     }
 
     .arbre-container {
@@ -26,7 +22,7 @@
       overflow-x: auto;
     }
 
-    /* Générations centrées horizontalement en colonne */
+    /* Générations 1 à 3 centrées en colonne verticale */
     .generation {
       display: flex;
       justify-content: center;
@@ -35,30 +31,38 @@
       position: relative;
       gap: 40px;
       flex-wrap: nowrap;
+      flex-direction: column; /* colonne pour g1,g2,g3 */
+      min-width: 220px;
     }
 
-    /* Pour les générations à plusieurs parents, on utilise une classe spéciale */
+    /* Sauf génération 4 et suivantes */
     .generation.multiple {
+      flex-direction: row; /* ligne pour génération multiple */
       justify-content: center;
+      flex-wrap: nowrap;
+      gap: 40px;
+      min-width: auto;
     }
 
     .personne {
       background-color: #fff;
-      border: 2px solid #e3d8bc;
-      padding: 10px 20px;
+      border: 2px solid #a68c5a; /* beige doré */
+      padding: 12px 24px;
       border-radius: 8px;
       text-align: center;
       cursor: pointer;
       position: relative;
       min-width: 200px;
       box-sizing: border-box;
+      transition: background-color 0.3s ease;
+      user-select: none;
     }
 
     .personne:hover {
       background-color: #f6f1e3;
     }
 
-    /* Lignes verticales sous chaque personne pour connecter aux enfants */
+    /* Ligne verticale sous chaque personne pour connexion aux enfants */
     .ligne-verticale {
       width: 2px;
       height: 30px;
@@ -70,43 +74,7 @@
       z-index: 10;
     }
 
-    /* Ligne horizontale qui relie les lignes verticales de tous les enfants */
-    .ligne-horizontale {
-      position: absolute;
-      height: 2px;
-      background-color: #a68c5a;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      z-index: 5;
-    }
-
-    /* Container des enfants : affichage en flex horizontal avec scroll si besoin */
-    .enfants {
-      display: none;
-      flex-direction: row;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 20px;
-      position: relative;
-      padding-top: 40px; /* espace pour la ligne horizontale */
-      overflow-x: auto;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    .visible {
-      display: flex !important;
-    }
-
-    .titre-generation {
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
-
-    /* Connecteurs horizontaux entre parents (pour générations avec plusieurs personnes) */
+    /* Ligne horizontale qui relie les parents (génération 4) */
     .connecteurs {
       position: relative;
       height: 30px;
@@ -115,22 +83,23 @@
       justify-content: center;
       gap: 40px;
       margin-bottom: 40px;
+      flex-wrap: nowrap;
     }
 
-    /* Ligne horizontale entre parents */
     .connecteurs::before {
       content: '';
       position: absolute;
       top: 50%;
-      left: 10%;
-      right: 10%;
+      left: 5%;
+      right: 5%;
       height: 2px;
       background-color: #a68c5a;
       transform: translateY(-50%);
       z-index: 1;
+      border-radius: 1px;
     }
 
-    /* Lignes verticales sous chaque parent dans .connecteurs */
+    /* Lignes verticales individuelles sous chaque parent dans .connecteurs */
     .connecteurs > .branche {
       width: 2px;
       height: 30px;
@@ -138,9 +107,49 @@
       position: relative;
       z-index: 2;
       margin: 0;
+      border-radius: 1px;
     }
 
-    /* Scrollbar custom */
+    /* Container enfants, affichage horizontal scrollable */
+    .enfants {
+      display: none;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      position: relative;
+      padding-top: 40px; /* espace pour ligne horizontale */
+      overflow-x: auto;
+      max-width: 100%;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    .visible {
+      display: flex !important;
+    }
+
+    /* Ligne horizontale au-dessus des enfants */
+    .ligne-horizontale {
+      position: absolute;
+      height: 2px;
+      background-color: #a68c5a;
+      top: 20px;
+      left: 40px;
+      right: 40px;
+      margin: auto;
+      border-radius: 1px;
+      z-index: 5;
+    }
+
+    .titre-generation {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #5a4a1a;
+    }
+
+    /* Scrollbar personnalisée pour les zones scrollables */
     .arbre-scrollable {
       display: flex;
       flex-direction: row;
@@ -159,14 +168,16 @@
       border-radius: 10px;
     }
 
+    /* Styles liens nav */
     header nav a {
       color: #333;
       text-decoration: none;
       margin: 0 10px;
+      font-weight: 500;
     }
 
     header nav a.active {
-      font-weight: bold;
+      font-weight: 700;
       color: #a68c5a;
     }
 
@@ -174,13 +185,14 @@
       padding: 20px;
       font-size: 14px;
       background-color: #fdfcf7;
+      text-align: center;
+      color: #777;
     }
 
     .discret {
       font-style: italic;
       color: #777;
     }
-
   </style>
 </head>
 <body>
@@ -229,7 +241,7 @@
       </div>
 
       <!-- Génération 4 -->
-      <div class="generation enfants" id="g3">
+      <div class="generation enfants" id="g3" style="flex-direction: column; align-items: center;">
         <div class="connecteurs">
           <div class="branche"></div>
           <div class="branche"></div>
@@ -249,89 +261,3 @@
             Fils de : Sidy Mohamed Sakho
             <div class="ligne-verticale"></div>
           </div>
-          <div class="personne" onclick="toggle('g4c')">
-            <div class="titre-generation">4e Génération</div>
-            Idrissa Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-            <div class="ligne-verticale"></div>
-          </div>
-          <div class="personne" onclick="toggle('g4d')">
-            <div class="titre-generation">4e Génération</div>
-            Karamba Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-            <div class="ligne-verticale"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Génération 5 - Fils de Ba Salim -->
-      <div class="generation enfants" id="g4a">
-        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
-        <div class="arbre-scrollable">
-          <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Sankoun Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bambo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Moukhtar Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Ban Fakary Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bakodaye Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Kanjoura Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bakoutoubo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <!-- Génération 5 - Fils de Ba Sanoussy -->
-      <div class="generation enfants" id="g4b">
-        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
-        <div class="arbre-scrollable">
-          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <!-- Génération 5 - Fils de Idrissa -->
-      <div class="generation enfants" id="g4c">
-        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
-        <div class="arbre-scrollable">
-          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Famady Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Cheikhou / Serhou Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Karamba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Soriba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Baba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bemba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Sankoun Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <!-- Génération 5 - Fils de Karamba -->
-      <div class="generation enfants" id="g4d">
-        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
-        <div class="arbre-scrollable">
-          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Tigui Mady Sakho<br/>Fille de : Karamba<br/>Petite-fille de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Famille Sakho. Tous droits réservés.
-  </footer>
-
-  <script>
-    function toggle(id) {
-      const elem = document.getElementById(id);
-      if (!elem) return;
-      if (elem.classList.contains('visible')) {
-        elem.classList.remove('visible');
-      } else {
-        elem.classList.add('visible');
-      }
-    }
-  </script>
-</body>
-</html>
