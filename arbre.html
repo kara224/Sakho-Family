@@ -26,12 +26,20 @@
       overflow-x: auto;
     }
 
+    /* Générations centrées horizontalement en colonne */
     .generation {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 30px 0;
+      margin: 30px 0 60px 0;
       position: relative;
+      gap: 40px;
+      flex-wrap: nowrap;
+    }
+
+    /* Pour les générations à plusieurs parents, on utilise une classe spéciale */
+    .generation.multiple {
+      justify-content: center;
     }
 
     .personne {
@@ -43,35 +51,49 @@
       cursor: pointer;
       position: relative;
       min-width: 200px;
+      box-sizing: border-box;
     }
 
     .personne:hover {
       background-color: #f6f1e3;
     }
 
+    /* Lignes verticales sous chaque personne pour connecter aux enfants */
     .ligne-verticale {
       width: 2px;
-      height: 20px;
+      height: 30px;
       background-color: #a68c5a;
       position: absolute;
-      top: -20px;
+      bottom: -30px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 10;
     }
 
+    /* Ligne horizontale qui relie les lignes verticales de tous les enfants */
     .ligne-horizontale {
+      position: absolute;
       height: 2px;
       background-color: #a68c5a;
-      position: absolute;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 5;
     }
 
+    /* Container des enfants : affichage en flex horizontal avec scroll si besoin */
     .enfants {
       display: none;
       flex-direction: row;
       justify-content: center;
       gap: 40px;
-      margin-top: 40px;
+      margin-top: 20px;
+      position: relative;
+      padding-top: 40px; /* espace pour la ligne horizontale */
+      overflow-x: auto;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .visible {
@@ -84,31 +106,41 @@
       margin-bottom: 4px;
     }
 
+    /* Connecteurs horizontaux entre parents (pour générations avec plusieurs personnes) */
     .connecteurs {
-      display: flex;
-      justify-content: space-between;
       position: relative;
+      height: 30px;
       width: 100%;
-      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
     }
 
+    /* Ligne horizontale entre parents */
     .connecteurs::before {
       content: '';
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 10%;
       right: 10%;
       height: 2px;
       background-color: #a68c5a;
+      transform: translateY(-50%);
+      z-index: 1;
     }
 
-    .branche {
+    /* Lignes verticales sous chaque parent dans .connecteurs */
+    .connecteurs > .branche {
       width: 2px;
-      height: 20px;
+      height: 30px;
       background-color: #a68c5a;
-      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      margin: 0;
     }
 
+    /* Scrollbar custom */
     .arbre-scrollable {
       display: flex;
       flex-direction: row;
@@ -148,6 +180,7 @@
       font-style: italic;
       color: #777;
     }
+
   </style>
 </head>
 <body>
@@ -197,38 +230,43 @@
 
       <!-- Génération 4 -->
       <div class="generation enfants" id="g3">
-        <div class="arbre-scrollable">
-          <div class="connecteurs">
-            <div class="branche"></div>
-            <div class="branche"></div>
-            <div class="branche"></div>
-            <div class="branche"></div>
-          </div>
+        <div class="connecteurs">
+          <div class="branche"></div>
+          <div class="branche"></div>
+          <div class="branche"></div>
+          <div class="branche"></div>
+        </div>
+        <div class="generation multiple">
           <div class="personne" onclick="toggle('g4a')">
             <div class="titre-generation">4e Génération</div>
             Ba Salim Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
           <div class="personne" onclick="toggle('g4b')">
             <div class="titre-generation">4e Génération</div>
             Ba Sanoussy Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
           <div class="personne" onclick="toggle('g4c')">
             <div class="titre-generation">4e Génération</div>
             Idrissa Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
           <div class="personne" onclick="toggle('g4d')">
             <div class="titre-generation">4e Génération</div>
             Karamba Sakho<br/>
             Fils de : Sidy Mohamed Sakho
+            <div class="ligne-verticale"></div>
           </div>
         </div>
       </div>
 
       <!-- Génération 5 - Fils de Ba Salim -->
       <div class="generation enfants" id="g4a">
+        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
         <div class="arbre-scrollable">
           <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
@@ -244,6 +282,7 @@
 
       <!-- Génération 5 - Fils de Ba Sanoussy -->
       <div class="generation enfants" id="g4b">
+        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
         <div class="arbre-scrollable">
           <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
@@ -252,6 +291,7 @@
 
       <!-- Génération 5 - Fils de Idrissa -->
       <div class="generation enfants" id="g4c">
+        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
         <div class="arbre-scrollable">
           <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
@@ -267,25 +307,30 @@
 
       <!-- Génération 5 - Fils de Karamba -->
       <div class="generation enfants" id="g4d">
+        <div class="ligne-horizontale" style="width: calc(100% - 80px); top: 20px; left: 40px;"></div>
         <div class="arbre-scrollable">
           <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Tigui Mady Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Tigui Mady Sakho<br/>Fille de : Karamba<br/>Petite-fille de : Sidy Mohamed</div>
         </div>
       </div>
 
     </div>
   </main>
 
-  <footer style="text-align: center; margin-top: 40px;">
-    <p>« Nos racines, invisibles mais puissantes, portent tout ce que nous sommes et en honorant ceux qui nous ont précédés, nous devenons pleinement nous-mêmes. »</p>
-    <p class="discret">Site réalisé par Karamba Sakho Sila Koto à partir des souvenirs et récits transmis par nos anciens. Ce site est une œuvre humaine : des erreurs peuvent subsister. N'hésite pas à contribuer pour l’améliorer.</p>
+  <footer>
+    &copy; 2025 Famille Sakho. Tous droits réservés.
   </footer>
 
   <script>
     function toggle(id) {
-      const el = document.getElementById(id);
-      el.classList.toggle('visible');
+      const elem = document.getElementById(id);
+      if (!elem) return;
+      if (elem.classList.contains('visible')) {
+        elem.classList.remove('visible');
+      } else {
+        elem.classList.add('visible');
+      }
     }
   </script>
 </body>
