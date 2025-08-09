@@ -44,6 +44,8 @@
       position: relative;
       min-width: 200px;
       user-select: none;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
     }
 
     .personne:hover {
@@ -73,10 +75,10 @@
       justify-content: center;
       gap: 40px;
       margin-top: 40px;
-      /* For smooth horizontal scroll on large content */
       overflow-x: auto;
       max-width: 100%;
       padding-bottom: 10px;
+      box-sizing: border-box;
     }
 
     .visible {
@@ -96,6 +98,7 @@
       position: relative;
       width: 100%;
       margin-top: 20px;
+      box-sizing: border-box;
     }
 
     .connecteurs::before {
@@ -122,6 +125,7 @@
       overflow-x: auto;
       padding: 10px 0;
       max-width: 100%;
+      box-sizing: border-box;
     }
 
     .arbre-scrollable::-webkit-scrollbar {
@@ -148,6 +152,7 @@
       padding: 20px;
       font-size: 14px;
       background-color: #fdfcf7;
+      text-align: center;
     }
 
     .discret {
@@ -279,22 +284,19 @@
           <div class="personne">Tigui Mady Sakho<br/>Fille de : Karamba<br/>Petite-fille de : Sidy Mohamed</div>
         </div>
       </div>
+
     </div>
   </main>
 
   <footer>
-    <p class="discret" style="text-align:center;">© 2025 Famille Sakho</p>
+    <p class="discret">© 2025 Famille Sakho</p>
   </footer>
 
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
       if (el) {
-        if (el.classList.contains('visible')) {
-          el.classList.remove('visible');
-        } else {
-          el.classList.add('visible');
-        }
+        el.classList.toggle('visible');
       }
     }
   </script>
