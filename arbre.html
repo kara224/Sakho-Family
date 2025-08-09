@@ -3,248 +3,300 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Famille Sakho - Arbre généalogique</title>
-  <meta name="description" content="Arbre généalogique complet de la famille Sakho avec 5 générations." />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Arbre généalogique - Famille Sakho</title>
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* Section spécifique arbre */
-    .tree-container {
-      max-width: 95vw;
-      margin: 2rem auto;
+    html, body {
       overflow-x: auto;
-      padding-bottom: 1rem;
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid #a68c5a;
-      background: #fff8e1;
-      border-radius: 8px;
     }
-    .tree {
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdfcf7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .arbre-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 900px;
-      font-family: 'Open Sans', sans-serif;
-      color: #4a4031;
-      user-select: none;
+      padding: 40px 20px;
+      width: 100%;
+      overflow-x: auto;
     }
+
     .generation {
       display: flex;
       justify-content: center;
-      margin: 1rem 0;
-      gap: 1rem;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-    }
-    /* Générations 1 à 4 en colonnes centrées */
-    .generation.g1,
-    .generation.g2,
-    .generation.g3 {
-      flex-wrap: nowrap;
-    }
-    /* 5e génération scroll horizontal */
-    .generation.g5 {
-      overflow-x: auto;
-      padding: 0.5rem 0;
-      max-width: 100%;
-      gap: 1.2rem;
-    }
-    .node {
-      background: #a68c5a;
-      color: #fff;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      min-width: 140px;
-      text-align: center;
-      font-weight: 600;
-      box-shadow: 0 2px 5px rgb(121 102 58 / 0.5);
-      transition: background-color 0.3s ease;
-    }
-    .node:hover {
-      background: #7b6b42;
-    }
-    .node.active {
-      background: #574b2b;
-    }
-    /* Lignes de liaison */
-    .connector {
-      width: 2px;
-      background: #a68c5a;
-      margin: 0 auto;
-    }
-    .vertical-line {
-      height: 20px;
-    }
-    .horizontal-line {
-      height: 2px;
-      width: 40px;
-      margin: 10px 0;
-      background: #a68c5a;
-    }
-    /* Conteneur toggle caché */
-    .children {
-      display: none;
-      margin-top: 1rem;
-      flex-wrap: nowrap;
-    }
-    .children.active {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
+      align-items: center;
+      margin: 30px 0;
+      position: relative;
     }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      .node {
-        min-width: 110px;
-        font-size: 0.9rem;
-        padding: 0.5rem 0.8rem;
-      }
-      .generation {
-        gap: 0.7rem;
-      }
-      .horizontal-line {
-        width: 25px;
-      }
+    .personne {
+      background-color: #fff;
+      border: 2px solid #e3d8bc;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      min-width: 200px;
+      user-select: none;
+    }
+
+    .personne:hover {
+      background-color: #f6f1e3;
+    }
+
+    .ligne-verticale {
+      width: 2px;
+      height: 20px;
+      background-color: #a68c5a;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .ligne-horizontale {
+      height: 2px;
+      background-color: #a68c5a;
+      position: absolute;
+      top: 0;
+    }
+
+    .enfants {
+      display: none;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      /* For smooth horizontal scroll on large content */
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 10px;
+    }
+
+    .visible {
+      display: flex !important;
+    }
+
+    .titre-generation {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+      user-select: none;
+    }
+
+    .connecteurs {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .connecteurs::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background-color: #a68c5a;
+    }
+
+    .branche {
+      width: 2px;
+      height: 20px;
+      background-color: #a68c5a;
+      margin: 0 auto;
+    }
+
+    .arbre-scrollable {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      overflow-x: auto;
+      padding: 10px 0;
+      max-width: 100%;
+    }
+
+    .arbre-scrollable::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .arbre-scrollable::-webkit-scrollbar-thumb {
+      background-color: #a68c5a;
+      border-radius: 10px;
+    }
+
+    header nav a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    header nav a.active {
+      font-weight: bold;
+      color: #a68c5a;
+    }
+
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      background-color: #fdfcf7;
+    }
+
+    .discret {
+      font-style: italic;
+      color: #777;
     }
   </style>
 </head>
 <body>
-<header>
-  <nav class="nav-bar">
-    <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="arbre.html" class="active">Arbre généalogique</a></li>
-      <li><a href="histoire.html">Histoire</a></li>
-      <li><a href="galerie.html">Galerie</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <h1 style="text-align: center;">Famille Sakho</h1>
+    <nav style="text-align: center;">
+      <a href="index.html">Accueil</a> |
+      <a href="arbre.html" class="active">Arbre généalogique</a> |
+      <a href="biographie.html">Biographie</a> |
+      <a href="pourquoi.html">Pourquoi ce site</a>
+    </nav>
+  </header>
 
-<main class="container">
-  <h1>Arbre généalogique de la famille Sakho</h1>
-
-  <div class="tree-container" aria-label="Arbre généalogique descendant">
-    <div class="tree" role="tree">
+  <main>
+    <div class="arbre-container">
+      <h2>Arbre généalogique</h2>
 
       <!-- Génération 1 -->
-      <div class="generation g1" role="group" aria-label="Génération 1">
-        <div class="node" role="treeitem" tabindex="0" aria-expanded="false" data-id="g1-1">Karamoko Ba Sakho</div>
+      <div class="generation">
+        <div class="personne" onclick="toggle('g1')" title="Cliquer pour afficher la 2e génération">
+          <div class="titre-generation">1ère Génération</div>
+          Cheikh Mawla Idrissa Sakho<br/>
+          (Djeninkaba Sakho)
+          <div class="ligne-verticale"></div>
+        </div>
       </div>
-
-      <div class="connector vertical-line"></div>
 
       <!-- Génération 2 -->
-      <div class="generation g2" role="group" aria-label="Génération 2">
-        <div class="node" role="treeitem" tabindex="0" aria-expanded="false" data-id="g2-1">Ba Salim Sakho</div>
-        <div class="node" role="treeitem" tabindex="0" aria-expanded="false" data-id="g2-2">Ba Sanoussy Sakho</div>
-        <div class="node" role="treeitem" tabindex="0" aria-expanded="false" data-id="g2-3">Idrissa Sakho</div>
-        <div class="node" role="treeitem" tabindex="0" aria-expanded="false" data-id="g2-4">Karamba Sakho</div>
+      <div class="generation enfants" id="g1">
+        <div class="personne" onclick="toggle('g2')" title="Cliquer pour afficher la 3e génération">
+          <div class="titre-generation">2e Génération</div>
+          Mohamed Khalifa Sakho<br/>
+          Fils de : Djeninkaba Sakho
+          <div class="ligne-verticale"></div>
+        </div>
       </div>
-
-      <div class="connector vertical-line"></div>
 
       <!-- Génération 3 -->
-      <div class="generation g3" role="group" aria-label="Génération 3">
-        <!-- Descendants de Ba Salim -->
-        <div class="node toggle-parent" role="treeitem" tabindex="0" aria-expanded="false" data-id="g3-1">Enfants Ba Salim</div>
-        <!-- Descendants de Ba Sanoussy -->
-        <div class="node toggle-parent" role="treeitem" tabindex="0" aria-expanded="false" data-id="g3-2">Enfants Ba Sanoussy</div>
-        <!-- Descendants de Idrissa -->
-        <div class="node toggle-parent" role="treeitem" tabindex="0" aria-expanded="false" data-id="g3-3">Enfants Idrissa</div>
-        <!-- Descendants de Karamba -->
-        <div class="node toggle-parent" role="treeitem" tabindex="0" aria-expanded="false" data-id="g3-4">Enfants Karamba</div>
+      <div class="generation enfants" id="g2">
+        <div class="personne" onclick="toggle('g3')" title="Cliquer pour afficher la 4e génération">
+          <div class="titre-generation">3e Génération</div>
+          Sidy Mohamed Sakho<br/>
+          Fils de : Mohamed Khalifa Sakho
+          <div class="ligne-verticale"></div>
+        </div>
       </div>
 
-      <div class="connector vertical-line"></div>
-
-      <!-- Génération 4 (toggle enfants de G3) -->
-      <!-- Ba Salim -->
-      <div class="children" data-parent="g3-1" role="group" aria-label="Enfants Ba Salim">
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-1">Bakasso Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-2">Bo Lassana Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-3">Sankoun Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-4">Bambo Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-5">Moukhtar Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-6">Ban Fakary Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-7">Bakodaye Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-8">Kanjoura Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-9">Bakoutoubo Sakho</div>
+      <!-- Génération 4 -->
+      <div class="generation enfants" id="g3">
+        <div class="arbre-scrollable">
+          <div class="connecteurs">
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+            <div class="branche"></div>
+          </div>
+          <div class="personne" onclick="toggle('g4a')" title="Cliquer pour afficher les enfants de Ba Salim Sakho">
+            <div class="titre-generation">4e Génération</div>
+            Ba Salim Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne" onclick="toggle('g4b')" title="Cliquer pour afficher les enfants de Ba Sanoussy Sakho">
+            <div class="titre-generation">4e Génération</div>
+            Ba Sanoussy Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne" onclick="toggle('g4c')" title="Cliquer pour afficher les enfants d'Idrissa Sakho">
+            <div class="titre-generation">4e Génération</div>
+            Idrissa Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+          <div class="personne" onclick="toggle('g4d')" title="Cliquer pour afficher les enfants de Karamba Sakho">
+            <div class="titre-generation">4e Génération</div>
+            Karamba Sakho<br/>
+            Fils de : Sidy Mohamed Sakho
+          </div>
+        </div>
       </div>
 
-      <!-- Ba Sanoussy -->
-      <div class="children" data-parent="g3-2" role="group" aria-label="Enfants Ba Sanoussy">
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-10">Balamine Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-11">Kalifa Sakho</div>
+      <!-- Génération 5 - Fils de Ba Salim -->
+      <div class="generation enfants" id="g4a">
+        <div class="arbre-scrollable">
+          <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Sankoun Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bambo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Moukhtar Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Ban Fakary Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bakodaye Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Kanjoura Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bakoutoubo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
       </div>
 
-      <!-- Idrissa -->
-      <div class="children" data-parent="g3-3" role="group" aria-label="Enfants Idrissa">
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-12">Ta Ba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-13">Madiba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-14">Famady Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-15">Cheikhou / Serhou Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-16">Karamba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-17">Soriba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-18">Baba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-19">Bemba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-20">Sankoun Sakho</div>
+      <!-- Génération 5 - Fils de Ba Sanoussy -->
+      <div class="generation enfants" id="g4b">
+        <div class="arbre-scrollable">
+          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
       </div>
 
-      <!-- Karamba -->
-      <div class="children" data-parent="g3-4" role="group" aria-label="Enfants Karamba">
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-21">Muhamadou Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-22">Bemba Sakho</div>
-        <div class="node toggle-parent" tabindex="0" aria-expanded="false" data-id="g4-23">Tigui Mady Sakho</div>
+      <!-- Génération 5 - Fils d'Idrissa -->
+      <div class="generation enfants" id="g4c">
+        <div class="arbre-scrollable">
+          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Famady Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Cheikhou / Serhou Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Karamba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Soriba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Baba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Sankoun Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
       </div>
 
-      <div class="connector vertical-line"></div>
-
-      <!-- Génération 5 (enfants des G4, affichage scroll horizontal) -->
-      <div class="generation g5" role="group" aria-label="Génération 5">
-        <!-- Exemple : ici on affiche vide car pas de descendants précisés dans l'exemple -->
-        <!-- Tu pourras ajouter ici les descendants quand tu les auras -->
-        <div class="node">Voir descendants des générations précédentes</div>
+      <!-- Génération 5 - Fils de Karamba -->
+      <div class="generation enfants" id="g4d">
+        <div class="arbre-scrollable">
+          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Tigui Mady Sakho<br/>Fille de : Karamba<br/>Petite-fille de : Sidy Mohamed</div>
+        </div>
       </div>
-
     </div>
-  </div>
-</main>
+  </main>
 
-<footer>
-  <p>© 2025 Famille Sakho - Tous droits réservés</p>
-</footer>
+  <footer>
+    <p class="discret" style="text-align:center;">© 2025 Famille Sakho</p>
+  </footer>
 
-<script>
-  // Toggle enfants au clic + gestion aria-expanded et focus keyboard
-  document.querySelectorAll('.toggle-parent').forEach(node => {
-    node.addEventListener('click', () => {
-      toggleChildren(node);
-    });
-    node.addEventListener('keydown', e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleChildren(node);
+  <script>
+    function toggle(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (el.classList.contains('visible')) {
+          el.classList.remove('visible');
+        } else {
+          el.classList.add('visible');
+        }
       }
-    });
-  });
-
-  function toggleChildren(node) {
-    const id = node.dataset.id;
-    const parentContainer = document.querySelector(`.children[data-parent="${id}"]`);
-    if (!parentContainer) return;
-
-    const expanded = node.getAttribute('aria-expanded') === 'true';
-    node.setAttribute('aria-expanded', !expanded);
-    node.classList.toggle('active', !expanded);
-
-    if (expanded) {
-      parentContainer.classList.remove('active');
-    } else {
-      parentContainer.classList.add('active');
     }
-  }
-</script>
+  </script>
 </body>
 </html>
