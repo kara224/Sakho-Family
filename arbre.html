@@ -20,29 +20,16 @@
       overflow-x: auto;
     }
 
-    /* Générations verticales et horizontales */
-    .generation {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 30px 0;
-      position: relative;
-    }
-
-    .generation.horizontal {
-      flex-direction: column; /* container parent vertical, enfants horizontaux gérés via .arbre-scrollable */
-    }
-
-    /* Arbre scrollable horizontal pour 4e et 5e générations */
-    .arbre-scrollable {
+    /* Générations horizontales (4e et 5e) */
+    .generation.horizontal .arbre-scrollable {
       display: flex;
       flex-direction: row;
+      justify-content: center;
       gap: 40px;
       overflow-x: auto;
       max-width: 100%;
       padding: 10px 0;
       box-sizing: border-box;
-      transition: all 0.3s ease;
     }
 
     .arbre-scrollable::-webkit-scrollbar {
@@ -54,7 +41,7 @@
       border-radius: 10px;
     }
 
-    /* Animation déroulement */
+    /* Animation déroulement des sous-générations */
     .enfants {
       max-height: 0;             /* collapsed */
       overflow: hidden;
@@ -64,13 +51,6 @@
 
     .enfants.visible {
       max-height: 2000px;       /* assez grand pour tout afficher */
-    }
-
-    /* Layout horizontal pour enfants de la génération 4 et 5 */
-    .generation.horizontal .enfants {
-      flex-direction: row;
-      justify-content: center;
-      gap: 40px;
     }
   </style>
 </head>
@@ -122,7 +102,7 @@
 
       <!-- Génération 4 (horizontal) -->
       <div class="generation enfants horizontal" id="g3">
-        <div class="arbre-scrollable enfants">
+        <div class="arbre-scrollable">
           <div class="personne" onclick="toggle('g4a')" title="Cliquer pour afficher les enfants de Ba Salim Sakho">
             <div class="titre-generation">4e Génération</div>
             Ba Salim Sakho<br/>
@@ -148,16 +128,30 @@
 
       <!-- Génération 5 (horizontal) -->
       <div class="generation enfants horizontal" id="g4a">
-        <div class="arbre-scrollable enfants">
+        <div class="arbre-scrollable">
           <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
         </div>
       </div>
 
       <div class="generation enfants horizontal" id="g4b">
-        <div class="arbre-scrollable enfants">
+        <div class="arbre-scrollable">
           <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+      <div class="generation enfants horizontal" id="g4c">
+        <div class="arbre-scrollable">
+          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
+        </div>
+      </div>
+
+      <div class="generation enfants horizontal" id="g4d">
+        <div class="arbre-scrollable">
+          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
         </div>
       </div>
 
@@ -168,13 +162,13 @@
     <p class="discret">© 2025 Famille Sakho</p>
   </footer>
 
-  <!-- JS toggle amélioré avec déroulement -->
+  <!-- JS toggle avec animation, compatible code existant -->
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
       if (!el) return;
 
-      // Replier toutes les autres branches du même parent
+      // Replier toutes les autres branches au même niveau
       const siblings = el.parentNode.querySelectorAll('.enfants');
       siblings.forEach(sib => {
         if (sib !== el) sib.classList.remove('visible');
