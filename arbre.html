@@ -21,14 +21,14 @@
 
     /* Animation déroulement */
     .enfants {
-      max-height: 0;             
+      max-height: 0;
       overflow: hidden;
       transition: max-height 0.5s ease;
       flex-direction: column;
     }
 
     .enfants.visible {
-      max-height: 2000px;       
+      max-height: 2000px; /* suffisamment grand pour tout afficher */
     }
 
     /* Wrapper horizontal pour générations larges (4e et 5e) */
@@ -161,19 +161,22 @@
     <p class="discret">© 2025 Famille Sakho</p>
   </footer>
 
-  <!-- JS toggle final -->
+  <!-- JS toggle final respect méthodologie -->
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
       if (!el) return;
 
       // Toggle génération cliquée
+      const isVisible = el.classList.contains('visible');
       el.classList.toggle('visible');
 
-      // Replier uniquement les sous-branches directes
-      el.querySelectorAll('.enfants').forEach(child => {
-        if (child !== el) child.classList.remove('visible');
-      });
+      // Si on ferme, replier seulement ses descendants
+      if (isVisible) {
+        el.querySelectorAll('.enfants').forEach(child => {
+          child.classList.remove('visible');
+        });
+      }
     }
   </script>
 </body>
