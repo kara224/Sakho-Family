@@ -8,28 +8,32 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- CSS isolé pour l'arbre, respect méthodologie Sakho -->
+  <!-- CSS isolé pour l'arbre avec animation -->
   <style>
-    /* Scroll horizontal global */
+    /* Container général */
     .arbre-container {
-      overflow-x: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
       width: 100%;
+      overflow-x: auto;
     }
 
-    /* Générations horizontales (4e et 5e) */
-    .generation.horizontal {
+    /* Générations verticales et horizontales */
+    .generation {
       display: flex;
-      flex-direction: row;
       justify-content: center;
-      align-items: flex-start;
-      gap: 40px; /* espace entre enfants */
+      align-items: center;
+      margin: 30px 0;
+      position: relative;
     }
 
-    /* Scroll spécifique pour enfants nombreux */
+    .generation.horizontal {
+      flex-direction: column; /* container parent vertical, enfants horizontaux gérés via .arbre-scrollable */
+    }
+
+    /* Arbre scrollable horizontal pour 4e et 5e générations */
     .arbre-scrollable {
       display: flex;
       flex-direction: row;
@@ -38,6 +42,7 @@
       max-width: 100%;
       padding: 10px 0;
       box-sizing: border-box;
+      transition: all 0.3s ease;
     }
 
     .arbre-scrollable::-webkit-scrollbar {
@@ -47,6 +52,25 @@
     .arbre-scrollable::-webkit-scrollbar-thumb {
       background-color: #a68c5a;
       border-radius: 10px;
+    }
+
+    /* Animation déroulement */
+    .enfants {
+      max-height: 0;             /* collapsed */
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      flex-direction: column;
+    }
+
+    .enfants.visible {
+      max-height: 2000px;       /* assez grand pour tout afficher */
+    }
+
+    /* Layout horizontal pour enfants de la génération 4 et 5 */
+    .generation.horizontal .enfants {
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
     }
   </style>
 </head>
@@ -98,7 +122,7 @@
 
       <!-- Génération 4 (horizontal) -->
       <div class="generation enfants horizontal" id="g3">
-        <div class="arbre-scrollable">
+        <div class="arbre-scrollable enfants">
           <div class="personne" onclick="toggle('g4a')" title="Cliquer pour afficher les enfants de Ba Salim Sakho">
             <div class="titre-generation">4e Génération</div>
             Ba Salim Sakho<br/>
@@ -124,32 +148,16 @@
 
       <!-- Génération 5 (horizontal) -->
       <div class="generation enfants horizontal" id="g4a">
-        <div class="arbre-scrollable">
+        <div class="arbre-scrollable enfants">
           <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Sankoun Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bambo Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
         </div>
       </div>
 
       <div class="generation enfants horizontal" id="g4b">
-        <div class="arbre-scrollable">
+        <div class="arbre-scrollable enfants">
           <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
           <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <div class="generation enfants horizontal" id="g4c">
-        <div class="arbre-scrollable">
-          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <div class="generation enfants horizontal" id="g4d">
-        <div class="arbre-scrollable">
-          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
         </div>
       </div>
 
@@ -160,19 +168,19 @@
     <p class="discret">© 2025 Famille Sakho</p>
   </footer>
 
-  <!-- JS toggle amélioré -->
+  <!-- JS toggle amélioré avec déroulement -->
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
       if (!el) return;
 
-      // Replier les autres branches du même parent
+      // Replier toutes les autres branches du même parent
       const siblings = el.parentNode.querySelectorAll('.enfants');
       siblings.forEach(sib => {
         if (sib !== el) sib.classList.remove('visible');
       });
 
-      // Basculer affichage de la génération cliquée
+      // Dérouler la génération cliquée
       el.classList.toggle('visible');
     }
   </script>
