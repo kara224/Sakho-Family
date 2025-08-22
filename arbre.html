@@ -10,7 +10,6 @@
 
   <!-- CSS isolé pour l'arbre avec animation -->
   <style>
-    /* Container général */
     .arbre-container {
       display: flex;
       flex-direction: column;
@@ -20,8 +19,20 @@
       overflow-x: auto;
     }
 
-    /* Générations horizontales (4e et 5e) */
-    .generation.horizontal .arbre-scrollable {
+    /* Animation déroulement */
+    .enfants {
+      max-height: 0;             /* collapsed */
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      flex-direction: column;
+    }
+
+    .enfants.visible {
+      max-height: 2000px;       /* assez grand pour tout afficher */
+    }
+
+    /* Wrapper horizontal pour générations larges (4e et 5e) */
+    .arbre-scrollable {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -39,18 +50,6 @@
     .arbre-scrollable::-webkit-scrollbar-thumb {
       background-color: #a68c5a;
       border-radius: 10px;
-    }
-
-    /* Animation déroulement des sous-générations */
-    .enfants {
-      max-height: 0;             /* collapsed */
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      flex-direction: column;
-    }
-
-    .enfants.visible {
-      max-height: 2000px;       /* assez grand pour tout afficher */
     }
   </style>
 </head>
@@ -162,13 +161,13 @@
     <p class="discret">© 2025 Famille Sakho</p>
   </footer>
 
-  <!-- JS toggle avec animation, compatible code existant -->
+  <!-- JS toggle fonctionnel, respect méthodologie Sakho -->
   <script>
     function toggle(id) {
       const el = document.getElementById(id);
       if (!el) return;
 
-      // Replier toutes les autres branches au même niveau
+      // Replier les autres branches du même niveau
       const siblings = el.parentNode.querySelectorAll('.enfants');
       siblings.forEach(sib => {
         if (sib !== el) sib.classList.remove('visible');
