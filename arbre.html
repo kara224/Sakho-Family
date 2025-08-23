@@ -1,183 +1,170 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arbre généalogique - Famille Sakho</title>
-  <meta name="description" content="Découvrez l'arbre généalogique de la famille Sakho, avec biographies détaillées et descendants.">
-
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- CSS isolé pour l'arbre avec animation -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbre Généalogique Famille Sakho</title>
   <style>
-    .arbre-container {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .arbre {
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 20px;
+    }
+    .generation {
+      display: none;
+      justify-content: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .generation.active {
+      display: flex;
+    }
+    .arbre-scrollable {
+      display: flex;
+      gap: 40px;
+      overflow-x: auto;
+      padding: 10px;
+    }
+    .personne {
+      background: white;
+      border: 2px solid #007bff;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      min-width: 150px;
+    }
+    .personne:hover {
+      transform: scale(1.05);
+      background: #e9f2ff;
+    }
+    .titre-generation {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .branche-parent {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
-      width: 100%;
-      overflow-x: auto;
+      gap: 12px;
+      min-width: 180px;
     }
-
-    /* Animation déroulement */
-    .enfants {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      flex-direction: column;
-    }
-
-    .enfants.visible {
-      max-height: 2000px; /* suffisamment grand pour tout afficher */
-    }
-
-    /* Wrapper horizontal pour générations larges (4e et 5e) */
-    .arbre-scrollable {
+    .branche-parent .enfants {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 40px;
-      overflow-x: auto;
-      max-width: 100%;
-      padding: 10px 0;
-      box-sizing: border-box;
-    }
-
-    .arbre-scrollable::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .arbre-scrollable::-webkit-scrollbar-thumb {
-      background-color: #a68c5a;
-      border-radius: 10px;
+      flex-direction: column;
+      gap: 8px;
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <h1 style="text-align: center;">Famille Sakho</h1>
-    <nav style="text-align: center;">
-      <a href="index.html">Accueil</a> |
-      <a href="arbre.html" class="active">Arbre généalogique</a> |
-      <a href="biographie.html">Biographie</a> |
-      <a href="pourquoi.html">Pourquoi ce site</a>
-    </nav>
-  </header>
 
-  <main>
-    <div class="arbre-container">
-      <h2>Arbre généalogique</h2>
+<div class="arbre">
 
-      <!-- Génération 1 -->
-      <div class="generation">
-        <div class="personne" onclick="toggle('g1')" title="Cliquer pour afficher la 2e génération">
-          <div class="titre-generation">1ère Génération</div>
-          Cheikh Mawla Idrissa Sakho<br/>
-          (Djeninkaba Sakho)
-          <div class="ligne-verticale"></div>
+  <!-- Génération 1 -->
+  <div class="generation active" id="g1">
+    <div class="personne" onclick="toggle('g2')" title="Afficher enfants de Kemo Sakho">
+      <div class="titre-generation">1ère Génération</div>
+      Kemo Sakho
+    </div>
+  </div>
+
+  <!-- Génération 2 -->
+  <div class="generation enfants" id="g2">
+    <div class="personne" onclick="toggle('g3')" title="Afficher enfants de Sidy Mohamed">
+      <div class="titre-generation">2e Génération</div>
+      Sidy Mohamed Sakho<br/>
+      Fils de : Kemo Sakho
+    </div>
+  </div>
+
+  <!-- Génération 3 -->
+  <div class="generation enfants horizontal" id="g3">
+    <div class="arbre-scrollable">
+      <div class="personne" onclick="toggle('g4')" title="Afficher enfants de Sidy Mohamed">
+        <div class="titre-generation">3e Génération</div>
+        Ba Salim, Ba Sanoussy, Idrissa, Karamba<br/>
+        Fils de : Sidy Mohamed Sakho
+      </div>
+    </div>
+  </div>
+
+  <!-- Génération 4 et 5 (chaque parent contient ses enfants) -->
+  <div class="generation enfants horizontal" id="g4">
+    <div class="arbre-scrollable">
+
+      <!-- Ba Salim -->
+      <div class="branche-parent">
+        <div class="personne" onclick="toggle('g5a')" title="Afficher enfants de Ba Salim">
+          <div class="titre-generation">4e Génération</div>
+          Ba Salim Sakho<br/>
+          Fils de : Sidy Mohamed Sakho
+        </div>
+        <div class="generation enfants" id="g5a">
+          <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim</div>
+          <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim</div>
         </div>
       </div>
 
-      <!-- Génération 2 -->
-      <div class="generation enfants" id="g1">
-        <div class="personne" onclick="toggle('g2')" title="Cliquer pour afficher la 3e génération">
-          <div class="titre-generation">2e Génération</div>
-          Mohamed Khalifa Sakho<br/>
-          Fils de : Djeninkaba Sakho
-          <div class="ligne-verticale"></div>
+      <!-- Ba Sanoussy -->
+      <div class="branche-parent">
+        <div class="personne" onclick="toggle('g5b')" title="Afficher enfants de Ba Sanoussy">
+          <div class="titre-generation">4e Génération</div>
+          Ba Sanoussy Sakho<br/>
+          Fils de : Sidy Mohamed Sakho
+        </div>
+        <div class="generation enfants" id="g5b">
+          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy</div>
+          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy</div>
         </div>
       </div>
 
-      <!-- Génération 3 -->
-      <div class="generation enfants" id="g2">
-        <div class="personne" onclick="toggle('g3')" title="Cliquer pour afficher la 4e génération">
-          <div class="titre-generation">3e Génération</div>
-          Sidy Mohamed Sakho<br/>
-          Fils de : Mohamed Khalifa Sakho
-          <div class="ligne-verticale"></div>
+      <!-- Idrissa -->
+      <div class="branche-parent">
+        <div class="personne" onclick="toggle('g5c')" title="Afficher enfants d'Idrissa">
+          <div class="titre-generation">4e Génération</div>
+          Idrissa Sakho<br/>
+          Fils de : Sidy Mohamed Sakho
+        </div>
+        <div class="generation enfants" id="g5c">
+          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa</div>
+          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa</div>
         </div>
       </div>
 
-      <!-- Génération 4 (horizontal) -->
-      <div class="generation enfants horizontal" id="g3">
-        <div class="arbre-scrollable">
-          <div class="personne" onclick="toggle('g4a')" title="Cliquer pour afficher les enfants de Ba Salim Sakho">
-            <div class="titre-generation">4e Génération</div>
-            Ba Salim Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-          </div>
-          <div class="personne" onclick="toggle('g4b')" title="Cliquer pour afficher les enfants de Ba Sanoussy Sakho">
-            <div class="titre-generation">4e Génération</div>
-            Ba Sanoussy Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-          </div>
-          <div class="personne" onclick="toggle('g4c')" title="Cliquer pour afficher les enfants d'Idrissa Sakho">
-            <div class="titre-generation">4e Génération</div>
-            Idrissa Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-          </div>
-          <div class="personne" onclick="toggle('g4d')" title="Cliquer pour afficher les enfants de Karamba Sakho">
-            <div class="titre-generation">4e Génération</div>
-            Karamba Sakho<br/>
-            Fils de : Sidy Mohamed Sakho
-          </div>
+      <!-- Karamba -->
+      <div class="branche-parent">
+        <div class="personne" onclick="toggle('g5d')" title="Afficher enfants de Karamba">
+          <div class="titre-generation">4e Génération</div>
+          Karamba Sakho<br/>
+          Fils de : Sidy Mohamed Sakho
         </div>
-      </div>
-
-      <!-- Génération 5 (horizontal) -->
-      <div class="generation enfants horizontal" id="g4a">
-        <div class="arbre-scrollable">
-          <div class="personne">Bakasso Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bo Lassana Sakho<br/>Fils de : Ba Salim<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <div class="generation enfants horizontal" id="g4b">
-        <div class="arbre-scrollable">
-          <div class="personne">Balamine Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Kalifa Sakho<br/>Fils de : Ba Sanoussy<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <div class="generation enfants horizontal" id="g4c">
-        <div class="arbre-scrollable">
-          <div class="personne">Ta Ba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Madiba Sakho<br/>Fils de : Idrissa<br/>Petit-fils de : Sidy Mohamed</div>
-        </div>
-      </div>
-
-      <div class="generation enfants horizontal" id="g4d">
-        <div class="arbre-scrollable">
-          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
-          <div class="personne">Bemba Sakho<br/>Fils de : Karamba<br/>Petit-fils de : Sidy Mohamed</div>
+        <div class="generation enfants" id="g5d">
+          <div class="personne">Muhamadou Sakho<br/>Fils de : Karamba</div>
+          <div class="personne">Bemba Sakho<br/>Fils de : Karamba</div>
         </div>
       </div>
 
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <p class="discret">© 2025 Famille Sakho</p>
-  </footer>
+</div>
 
-  <!-- JS toggle final respect méthodologie -->
-  <script>
-    function toggle(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('active');
+  }
+</script>
 
-      // Toggle génération cliquée
-      const isVisible = el.classList.contains('visible');
-      el.classList.toggle('visible');
-
-      // Si on ferme, replier seulement ses descendants
-      if (isVisible) {
-        el.querySelectorAll('.enfants').forEach(child => {
-          child.classList.remove('visible');
-        });
-      }
-    }
-  </script>
 </body>
 </html>
